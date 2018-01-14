@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Trump Clicker</title>
+		<link rel="icon" type="img/ico" href="styles/images/cursor.png">
+		<link rel='stylesheet' type='text/css' href='styling.css' />
+		
+		<!--<meta name="viewport" content="user-scalable=no" />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="white" />
+	</head>
+	
+	<body onresize="resize()">
+		<canvas class="canvas" id="canvas_bg"></canvas>
+		
+		<div class="news">
+			<span id="news"></span>
+		</div>
+	
+		<div class="img-container map">
+			<img src="styles/images/map.png">
+		</div>
+		
+		<div class="img-container face">
+			<img id="face" src="styles/images/trump.png">
+		</div>
+		
+		<div id="count-div" class="count">
+			<span id="count">0</span> illegals deported
+			<br>
+			<span class="pers"><span id="persecond">0</span> per second | +<span id="perclick">0</span> per click</span>
+		</div>
+		
+		<canvas class="canvas" id="canvas"></canvas>
+		
+		<img class="shop-img" src="styles/images/shop.png">
+		
+		<div class="shop" id="shop"></div>
+		</div>
+	</body>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="js/purchase.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/touch.js"></script>
+	<script src="js/fallingface.js"></script>
+	<script src="js/person.js"></script>
+	<script src="js/agent.js"></script>
+</html>
