@@ -1,10 +1,3 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
-	try {
-		window.plugins.webviewcolor.change('#2280BA');
-	} catch (e) {}
-}
-
 draw();
 
 function draw(){
