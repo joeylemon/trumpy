@@ -24,7 +24,7 @@ Purchase.prototype.getDescription = function(){
 
 Purchase.prototype.getDetails = function(){
 	return {
-			image: "styles/images/" + this.id + ".png",
+			image: "images/" + this.id + ".png",
 			id: this.id,
 			num_cost: this.cost,
 			title: this.getProperID(),

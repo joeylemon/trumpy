@@ -14,7 +14,7 @@ var expanded_face = face_width - 5;
 
 /* Load face image */
 var face = new Image();
-face.src = "styles/images/small_face.png";
+face.src = "images/small_face.png";
 
 var middle_y = 148;
 
@@ -60,7 +60,7 @@ var news = [
 	"Donald Trump approval rating sitting at 35%.",
 	"Americans wondering when Trump will make good on his promise to build the wall."
 ];
-$("#news").html(news.join(" <img src='styles/images/fox.png'> "));
+$("#news").html(news.join(" <img src='images/fox.png'> "));
 var min_left = -$("#news").width() - 120;
 
 var milestones = [
@@ -126,7 +126,7 @@ function updateNews(string){
 	}
 	news.push(string);
 	
-	$("#news").html(news.join(" <img src='styles/images/fox.png'> "));
+	$("#news").html(news.join(" <img src='images/fox.png'> "));
 	min_left = -$("#news").width() - 120;
 }
 

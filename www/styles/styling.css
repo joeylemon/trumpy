@@ -21,17 +21,17 @@ time, mark, audio, video {
 
 @font-face {
     font-family: profont;
-    src: url(styles/Pro-Font.ttf);
+    src: url(Pro-Font.ttf);
 }
 
 @font-face {
     font-family: roboto;
-    src: url(styles/Roboto-Thin.ttf);
+    src: url(Roboto-Thin.ttf);
 }
 
 @font-face {
     font-family: bigfont;
-    src: url(styles/Gobold-Bold.ttf);
+    src: url(Gobold-Bold.ttf);
 }
 
 body {
