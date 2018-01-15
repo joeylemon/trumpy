@@ -1,20 +1,24 @@
+admobid = {
+	banner: 'ca-app-pub-3849622190274333/9972053558', // or DFP format "/6253334/dfp_example_ad"
+	interstitial: 'ca-app-pub-3849622190274333/4913978629'
+};
+
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
+		
+		if(AdMob){ 
+			AdMob.createBanner({
+				adId: admobid.banner,
+				position: AdMob.AD_POSITION.BOTTOM_CENTER,
+				autoShow: true 
+			});
+			alert("Create banner ad");
+		}
 	} catch (e) {}
 }
-
-admobid = {
-	banner: 'ca-app-pub-3849622190274333/9972053558', // or DFP format "/6253334/dfp_example_ad"
-	interstitial: 'ca-app-pub-3849622190274333/4913978629'
-};
-if(AdMob) AdMob.createBanner({
-	adId: admobid.banner,
-	position: AdMob.AD_POSITION.BOTTOM_CENTER,
-	autoShow: true 
-});
 
 /* Initialize canvas */
 var canvas = document.getElementById("canvas");
