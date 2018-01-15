@@ -4,6 +4,7 @@ var admobid = {
 	reward_video: 'ca-app-pub-3849622190274333/6461087910'
 };
 var lastInterstitial = 0;
+var shown = false;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
@@ -18,19 +19,33 @@ function onDeviceReady() {
 				autoShow: true,
 				isTesting: true
 			});
+			
 			AdMob.createBanner({
 				adId: admobid.banner,
 				autoShow: true
 			});
+			
+			AdMob.prepareInterstitial({
+				adId: admobid.interstitial,
+				autoShow: false
+			});
 			slideout.on('open', function () {
 				if (canDisplayInterstitial()) {
-					AdMob.prepareInterstitial({
-						adId: admobid.interstitial,
-						autoShow: true
-					});
+					AdMob.showInterstitial();
+					shown = true;
 					lastInterstitial = Date.now();
 				}
 			});
+			slideout.on('close', function () {
+				if (shown) {
+					AdMob.prepareInterstitial({
+						adId: admobid.interstitial,
+						autoShow: false
+					});
+					shown = false;
+				}
+			});
+			
 			AdMob.prepareRewardVideoAd({
 				adId: admobid.reward_video,
 				success: function () {
@@ -149,7 +164,7 @@ var faces = new Array();
 var total_persecond = 0;
 var total_perclick = 0;
 
-var deported = 15000000;
+var deported = 0;
 var reward = 1000;
 var lastDraw = 0;
 var total = 0;
