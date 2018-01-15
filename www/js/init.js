@@ -1,5 +1,5 @@
 admobid = {
-	banner: 'ca-app-pub-3849622190274333/9972053558', // or DFP format "/6253334/dfp_example_ad"
+	banner: 'ca-app-pub-3849622190274333/9972053558',
 	interstitial: 'ca-app-pub-3849622190274333/4913978629'
 };
 
@@ -10,12 +10,13 @@ function onDeviceReady() {
 		StatusBar.hide();
 		
 		if(AdMob){ 
-			AdMob.createBanner({
-				adId: admobid.banner,
-				position: AdMob.AD_POSITION.BOTTOM_CENTER,
-				autoShow: true 
-			});
-			alert("Create banner ad");
+			AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:false} );
+			alert("Prepare interstitial ad");
+			
+			setTimeout(function(){
+				AdMob.showInterstitial();
+				alert("Show");
+			}, 1000);
 		}
 	} catch (e) {}
 }
