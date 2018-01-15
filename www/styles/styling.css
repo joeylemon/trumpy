@@ -232,7 +232,7 @@ body {
 }
 
 .shop-menu .shop-item:active {
-	background-color: rgba(0, 0, 0, 0.06);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 .shop-menu .shop-item img {
@@ -250,12 +250,16 @@ body {
 	font-size: 25px;
 	font-family: bigfont;
 	vertical-align: top;
+	font-size: 20px;
 	user-select: none;
+}
+
+.shop-menu .shop-item .desc:active {
+	font-size: 20.5px;
 }
 
 .shop-menu .shop-item .desc .name {
 	font-family: bigfont;
-	font-size: 20px;
 }
 
 .shop-menu .shop-item .desc .more {
