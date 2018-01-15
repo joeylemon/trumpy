@@ -149,7 +149,7 @@ var faces = new Array();
 var total_persecond = 0;
 var total_perclick = 0;
 
-var deported = 0;
+var deported = 15000000;
 var reward = 1000;
 var lastDraw = 0;
 var total = 0;

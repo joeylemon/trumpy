@@ -46,7 +46,7 @@ Agent.prototype.deport = function(){
 };
 
 Agent.prototype.draw = function(){
-	ctx.globalAlpha = 0.5;
+	ctx.globalAlpha = 0.95;
 	ctx.fillStyle = this.color;
 	ctx.fillRect(this.x, this.y, this.size.width, this.size.height);
 	ctx.globalAlpha = 1;
