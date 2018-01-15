@@ -11,36 +11,53 @@
 	</head>
 	
 	<body onresize="resize()">
-		<canvas class="canvas" id="canvas_bg"></canvas>
+		<div id="trumpy" style="background-color: #2280BA;box-shadow: -8px 0px 15px rgba(0, 0, 0, 0.4);">
+			<canvas class="canvas" id="canvas_bg"></canvas>
+			
+			<div class="news">
+				<span id="news"></span>
+			</div>
 		
-		<div class="news">
-			<span id="news"></span>
-		</div>
-	
-		<div class="img-container map">
-			<img src="images/map.png">
-		</div>
-		
-		<div class="img-container face">
-			<img id="face" src="images/trump.png">
-		</div>
-		
-		<div id="count-div" class="count">
-			<span id="count">0</span> illegals deported
-			<br>
-			<span class="pers"><span id="persecond">0</span> per second | +<span id="perclick">0</span> per click</span>
-		</div>
-		
-		<canvas class="canvas" id="canvas"></canvas>
-		
-		<img class="shop-img" src="images/shop.png">
-		
-		<div class="shop" id="shop"></div>
+			<div class="img-container map">
+				<img src="images/map.png">
+			</div>
+			
+			<div class="img-container face">
+				<img id="face" src="images/trump.png">
+			</div>
+			
+			<div id="count-div" class="count">
+				<span id="count">0</span> illegals deported
+				<br>
+				<span class="pers"><span id="persecond">0</span> per second | +<span id="perclick">0</span> per click</span>
+			</div>
+			
+			<canvas class="canvas" id="canvas"></canvas>
+			
+			<img class="shop-img" src="images/shop.png">
+			
+			<nav id="menu">
+				<header>
+					<h2>Menu</h2>
+				</header>
+			</nav>
+			
+			<div class="shop" id="shop"></div>
 		</div>
 	</body>
 	
-	<script src="cordova.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	
+	<script src="js/slideout.min.js"></script>
+	<script>
+		var slideout = new Slideout({
+			'panel': document.getElementById('trumpy'),
+			'menu': document.getElementById('menu'),
+			'padding': 256,
+			'tolerance': 70
+		});
+	</script>
+	
 	<script src="js/purchase.js"></script>
 	<script src="js/init.js"></script>
 	<script src="js/main.js"></script>

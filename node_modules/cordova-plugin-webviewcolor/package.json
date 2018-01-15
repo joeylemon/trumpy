@@ -1,19 +1,19 @@
 {
-  "_from": "cordova-plugin-webviewcolor@~2.0.0",
+  "_from": "cordova-plugin-webviewcolor",
   "_id": "cordova-plugin-webviewcolor@2.0.0",
   "_inBundle": false,
   "_integrity": "sha1-zS595R5rNDpARr07RDgwkhJGFJg=",
   "_location": "/cordova-plugin-webviewcolor",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "tag",
     "registry": true,
-    "raw": "cordova-plugin-webviewcolor@~2.0.0",
+    "raw": "cordova-plugin-webviewcolor",
     "name": "cordova-plugin-webviewcolor",
     "escapedName": "cordova-plugin-webviewcolor",
-    "rawSpec": "~2.0.0",
+    "rawSpec": "",
     "saveSpec": null,
-    "fetchSpec": "~2.0.0"
+    "fetchSpec": "latest"
   },
   "_requiredBy": [
     "#USER",
@@ -21,8 +21,8 @@
   ],
   "_resolved": "https://registry.npmjs.org/cordova-plugin-webviewcolor/-/cordova-plugin-webviewcolor-2.0.0.tgz",
   "_shasum": "cd2e7de51e6b343a4046bd3b4438309212461498",
-  "_spec": "cordova-plugin-webviewcolor@~2.0.0",
-  "_where": "C:\\Users\\Joey\\Desktop\\trumpy",
+  "_spec": "cordova-plugin-webviewcolor",
+  "_where": "C:\\Users\\Joey\\Desktop\\Apps\\trumpy",
   "author": {
     "name": "Eddy Verbruggen",
     "email": "eddyverbruggen@gmail.com",

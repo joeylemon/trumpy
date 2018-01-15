@@ -35,7 +35,8 @@ time, mark, audio, video {
 }
 
 body {
-	background-color: #2280BA;
+	/* Background color for shop */
+	background-color: #fff;
 }
 
 .canvas {
@@ -123,9 +124,9 @@ body {
 
 .shop-img {
 	position: fixed;
-	bottom: 4px;
-	right: 4px;
-	width: 60px;
+	bottom: 6px;
+	right: 6px;
+	width: 50px;
 	height: auto;
 	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
 	user-select: none;
@@ -153,6 +154,44 @@ body {
 
 .scroll-container {
 	overflow: hidden;
+}
+
+.slideout-menu {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 256px;
+	min-height: 100vh;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	z-index: 0;
+	display: none;
+}
+
+.slideout-menu-left {
+	left: 0;
+}
+
+.slideout-menu-right {
+	right: 0;
+}
+
+.slideout-panel {
+	position: relative;
+	z-index: 1;
+	will-change: transform;
+	background-color: #FFF; /* A background-color is required */
+	min-height: 100vh;
+}
+
+.slideout-open,
+.slideout-open body,
+.slideout-open .slideout-panel {
+	overflow: hidden;
+}
+
+.slideout-open .slideout-menu {
+	display: block;
 }
 
 .shop {
