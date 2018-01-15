@@ -12,7 +12,6 @@ function onDeviceReady() {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
 		
-		window.localStorage.setItem('deports', 1000);
 		alert(window.localStorage.getItem('deports'));
 
 		if (AdMob) {
