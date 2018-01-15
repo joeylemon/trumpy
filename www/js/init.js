@@ -10,13 +10,19 @@ function onDeviceReady() {
 		StatusBar.hide();
 		
 		if(AdMob){ 
-			AdMob.prepareInterstitial( {adId:admobid.interstitial, autoShow:false} );
-			alert("Prepare interstitial ad");
+			AdMob.createBanner({
+				adId: admobid.banner,
+				position: AdMob.AD_POSITION.BOTTOM_CENTER,
+				autoShow: true 
+			},
 			
-			setTimeout(function(){
-				AdMob.showInterstitial();
-				alert("Show");
-			}, 1000);
+			function(){
+				alert("Success");
+			},
+			
+			function(error){
+				alert("E:" + error);
+			});
 		}
 	} catch (e) {}
 }
