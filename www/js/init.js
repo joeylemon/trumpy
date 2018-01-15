@@ -1,3 +1,5 @@
+window.localStorage.setItem('deports', 1000);
+
 var admobid = {
 	banner: 'ca-app-pub-3849622190274333/9972053558',
 	interstitial: 'ca-app-pub-3849622190274333/4913978629',
@@ -11,6 +13,8 @@ function onDeviceReady() {
 	try {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
+		
+		alert(window.localStorage.getItem('deports'));
 
 		if (AdMob) {
 			AdMob.setOptions({
