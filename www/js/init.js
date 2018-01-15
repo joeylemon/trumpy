@@ -31,6 +31,9 @@ function onDeviceReady() {
 					lastInterstitial = Date.now();
 				}
 			});
+			AdMob.prepareRewardVideoAd({
+				adId: admobid.reward_video
+			});
 			
 			$("#count-div").css({bottom: "55px"});
 			$("#shop-img").css({bottom: "56px"});
@@ -48,11 +51,7 @@ function canDisplayInterstitial(){
 
 function watchRewardVideo(){
 	if(AdMob){
-		AdMob.prepareRewardVideoAd({
-			adId: admobid.reward_video,
-			autoShow: true
-		});
-		//AdMob.showRewardVideoAd();
+		AdMob.showRewardVideoAd();
 	}
 }
 
