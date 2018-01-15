@@ -33,7 +33,7 @@ Agent.prototype.fromData = function(data){
 	
 	this.size = data.size;
 	
-	this.lastDeport = 0;
+	this.lastDeport = Date.now() - (Math.random() * 3000);
 	
 	return this;
 };

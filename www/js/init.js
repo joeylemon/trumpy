@@ -244,24 +244,48 @@ function getPurchaseHTML(details) {
 }
 
 /* Declare functions */
-setInterval(saveData, 3000);
+setInterval(saveData, 5000);
 function saveData(){
-	window.localStorage.setItem('deported', deported);
-	window.localStorage.setItem('total_persecond', total_persecond);
-	window.localStorage.setItem('total_perclick', total_perclick);
-	window.localStorage.setItem('agents', JSON.stringify(agents));
+	window.localStorage.setItem('data', JSON.stringify({
+		deported: deported,
+		total_persecond: total_persecond,
+		total_perclick: total_perclick,
+		agents: JSON.stringify(agents),
+		purchases: JSON.stringify(purchases)
+	}));
 }
 
+getData();
 function getData(){
-	deported = parseInt(window.localStorage.getItem('deported'));
-	total_persecond = parseInt(window.localStorage.getItem('total_persecond'));
-	total_perclick = parseInt(window.localStorage.getItem('total_perclick'));
-	
-	var agents_json = $.parseJSON(window.localStorage.getItem('agents'));
-	for(var i = 0; i < agents_json.length; i++){
-		var agent_data = agents_json[i];
-		var agent = new Agent(0);
-		agents.push(agent.fromData(agent_data));
+	if(window.localStorage.getItem('data')){
+		var data = $.parseJSON(window.localStorage.getItem('data'));
+		
+		deported = data.deported;
+		$("#count").html(deported);
+		
+		total_persecond = Math.round(data.total_persecond * 10) / 10;
+		$("#persecond").html(total_persecond);
+		
+		total_perclick = Math.round(data.total_perclick * 10) / 10;
+		$("#perclick").html(total_perclick);
+		
+		setTimeout(function(){
+			var agents_json = $.parseJSON(data.agents);
+			for(var i = 0; i < agents_json.length; i++){
+				var agent_data = agents_json[i];
+				var agent = new Agent(0);
+				agents.push(agent.fromData(agent_data));
+			}
+			
+			var purchases_json = $.parseJSON(data.purchases);
+			for(var key in purchases_json){
+				var purchase_data = purchases_json[key];
+				purchases[key].cost = purchase_data.cost;
+				purchases[key].current = purchase_data.current;
+				$("#" + key + "-cost").html(purchase_data.cost);
+				$("#" + key + "-amount").html(purchase_data.current);
+			}
+		}, 100);
 	}
 }
 
