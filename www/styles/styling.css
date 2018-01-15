@@ -194,6 +194,34 @@ body {
 	display: block;
 }
 
+.vid-img {
+	position: fixed;
+	bottom: 92px;
+	right: 8px;
+	width: 45px;
+	height: auto;
+	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+	user-select: none;
+}
+
+.vid-img:active {
+	width: 47px;
+}
+
+.vid-reward {
+	position: fixed;
+	bottom: 75px;
+	right: 6px;
+	width: 80px;
+	height: auto;
+	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+	font-size: 16px;
+	font-family: profont;
+	color: #fff;
+	text-align: right;
+	user-select: none;
+}
+
 .shop-img {
 	position: fixed;
 	bottom: 6px;
@@ -205,7 +233,7 @@ body {
 }
 
 .shop-img:active {
-	opacity: 0.5;
+	width: 52px;
 }
 
 .shop-container {

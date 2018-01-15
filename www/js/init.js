@@ -1,6 +1,7 @@
 var admobid = {
 	banner: 'ca-app-pub-3849622190274333/9972053558',
-	interstitial: 'ca-app-pub-3849622190274333/4913978629'
+	interstitial: 'ca-app-pub-3849622190274333/4913978629',
+	reward_video: 'ca-app-pub-3849622190274333/6461087910'
 };
 var lastInterstitial = 0;
 
@@ -43,6 +44,16 @@ function onDeviceReady() {
 
 function canDisplayInterstitial(){
 	return (Date.now() - lastInterstitial > 45000) && Math.random() <= 0.4;
+}
+
+function watchRewardVideo(){
+	if(AdMob){
+		AdMob.prepareRewardVideoAd({
+			adId: admobid.reward_video,
+			autoShow: true
+		});
+		//AdMob.showRewardVideoAd();
+	}
 }
 
 /* Initialize canvas */
