@@ -36,14 +36,24 @@
 			
 			<img class="shop-img" src="images/shop.png" ontouchend="slideout.open();">
 			
-			<nav id="menu">
-				<header>
-					<h2>Menu</h2>
-				</header>
-			</nav>
-			
 			<div class="shop" id="shop"></div>
 		</div>
+		<nav id="menu" class="shop-menu">
+			<h1>Store</h1>
+			<!--
+			<div class="shop-item">
+				<img src="images/agent.png">
+				<div class="desc">
+					<p class="name">agent</p>
+					<p class="more">5 per second</p>
+					<p class="more">Cost: 100</p>
+				</div>
+				<div class="amount">
+					<p>10</p>
+				</div>
+			</div>
+			-->
+		</nav>
 	</body>
 	
 	<script src="cordova.js"></script>
@@ -54,7 +64,7 @@
 		var slideout = new Slideout({
 			'panel': document.getElementById('trumpy'),
 			'menu': document.getElementById('menu'),
-			'padding': 256,
+			'padding': 275,
 			'tolerance': 70
 		});
 	</script>

@@ -75,33 +75,6 @@ function addOrder(){
 	agents.push(new Agent("executive_order", {x: x, y: y}));
 }
 
-function moveShop(up){
-	var time = 700;
-	if(up){
-		$("#shop").show();
-		$("#shop").animate({
-			top: "0%"
-		}, time);
-	}else{
-		$("#shop").animate({
-			top: "100%"
-		}, time);
-		setTimeout(function(){
-			$("#shop").hide();
-		}, time);
-	}
-}
-
-function openShop(){
-	shopOpen = true;
-	moveShop(true);
-}
-
-function closeShop(){
-	shopOpen = false;
-	moveShop(false);
-}
-
 var buyPos = undefined;
 
 function attemptBuy(e, id){
@@ -183,11 +156,11 @@ $(window).bind('touchstart mousedown', function(e){
 	var x = e.changedTouches[0].pageX;
 	var y = e.changedTouches[0].pageY;
 	
-	if(distance({x: x, y: y}, {x: canvas.width, y: canvas.height}) < 75 && !shopOpen){
+	if(distance({x: x, y: y}, {x: canvas.width, y: canvas.height}) < 75 && !slideout.isOpen()){
 		return;
 	}
 	
-	if(!click && !shopOpen){
+	if(!click && !slideout.isOpen()){
 		click = true;
 		$("#face").css({filter: "brightness(0.8)", width: expanded_face});
 	}

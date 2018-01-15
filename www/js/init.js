@@ -87,22 +87,29 @@ var purchases = {
 };
 
 /* Set up page */
-for(var key in purchases){
-	var item = purchases[key];
-	var details = item.getDetails();
-	$("#shop").append(getPurchaseHTML(details));
+initShop();
+function initShop(){
+	for(var key in purchases){
+		var item = purchases[key];
+		var details = item.getDetails();
+		$("#menu").append(getPurchaseHTML(details));
+	}
 }
 
 function getPurchaseHTML(details){
-	return '<div class="shop-item" id="' + details.id + '" onselectstart="return false;" ontouchstart="attemptBuy(event, \'' + details.id + '\')" ontouchend="buy(event, \'' + details.id + '\')">' +
-				'<img src="' + details.image + '">' +
-				'<div class="item-desc" id="' + details.id + '-desc">' +
-					'<p class="item-title">' + details.title + '</p>' +
-					'<p class="item-info">Deports: ' + details.desc + '</p>' +
-					'<p class="item-info">Cost: <span id="' + details.id + '-cost">' + details.cost + '</span></p>' +
-				'</div>' +
-				'<div class="item-amount" id="' + details.id + '-amount">' + details.amount + '</div>' +
-			'</div>';
+	return `
+		<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
+			<img src="` + details.image + `">
+			<div class="desc" id="` + details.id + `-desc">
+				<p class="name">` + details.title + `</p>
+				<p class="more">` + details.desc + `</p>
+				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
+			</div>
+			<div class="amount">
+				<p id="` + details.id + `-amount">` + details.amount + `</p>
+			</div>
+		</div>
+	`;
 }
 
 updateObscuredItems();
@@ -113,10 +120,8 @@ function updateObscuredItems(){
 		var item = purchases[key];
 		if(deported < item.cost){
 			$("#" + key).css("opacity", "0.3");
-			$("#" + key + "-desc").css("color", "red");
 		}else{
 			$("#" + key).css("opacity", "1");
-			$("#" + key + "-desc").css("color", "#fff");
 		}
 	}
 }
