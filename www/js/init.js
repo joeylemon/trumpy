@@ -37,6 +37,8 @@ function onDeviceReady() {
 			
 			$("#count-div").css({bottom: "55px"});
 			$("#shop-img").css({bottom: "56px"});
+			$("#vid-img").css({bottom: "135px"});
+			$("#vid-reward").css({bottom: "118px"});
 			$("#face-div").css({bottom: "110px"});
 			$("#face").css({width: "165px"});
 			face_width = $("#face").width();
@@ -52,6 +54,17 @@ function canDisplayInterstitial(){
 function watchRewardVideo(){
 	if(AdMob){
 		AdMob.showRewardVideoAd();
+		
+		setTimeout(function(){
+			deported += reward;
+			reward *= 3;
+			$("#vid-reward").html("+" + reward);
+			$("#reward").hide();
+			
+			AdMob.prepareRewardVideoAd({
+				adId: admobid.reward_video
+			});
+		}, 1000);
 	}
 }
 
@@ -107,6 +120,7 @@ var total_persecond = 0;
 var total_perclick = 0;
 
 var deported = 0;
+var reward = 1000;
 var lastDraw = 0;
 var total = 0;
 
