@@ -24,7 +24,8 @@ function onDeviceReady() {
 			slideout.on('open', function() {
 				if(canDisplayInterstitial()){
 					AdMob.prepareInterstitial({
-						adId: admobid.interstitial
+						adId: admobid.interstitial,
+						autoShow: true
 					});
 					lastInterstitial = Date.now();
 				}
