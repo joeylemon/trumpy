@@ -122,20 +122,6 @@ body {
 	width: 195px;
 }
 
-.shop-img {
-	position: fixed;
-	bottom: 6px;
-	right: 6px;
-	width: 50px;
-	height: auto;
-	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
-	user-select: none;
-}
-
-.shop-img:active {
-	opacity: 0.5;
-}
-
 .count {
 	position: fixed;
 	bottom: 5px;
@@ -192,6 +178,20 @@ body {
 
 .slideout-open .slideout-menu {
 	display: block;
+}
+
+.shop-img {
+	position: fixed;
+	bottom: 6px;
+	right: 6px;
+	width: 50px;
+	height: auto;
+	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+	user-select: none;
+}
+
+.shop-img:active {
+	opacity: 0.5;
 }
 
 .shop {

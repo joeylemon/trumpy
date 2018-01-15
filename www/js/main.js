@@ -182,9 +182,11 @@ var click = false;
 $(window).bind('touchstart mousedown', function(e){
 	var x = e.changedTouches[0].pageX;
 	var y = e.changedTouches[0].pageY;
-	if(distance({x: x, y: y}, {x: canvas.width, y: canvas.height}) < 65 && !shopOpen){
-		openShop();
+	
+	if(distance({x: x, y: y}, {x: canvas.width, y: canvas.height}) < 75 && !shopOpen){
+		return;
 	}
+	
 	if(!click && !shopOpen){
 		click = true;
 		$("#face").css({filter: "brightness(0.8)", width: expanded_face});
