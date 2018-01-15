@@ -228,11 +228,12 @@ body {
 	height: 70px;
 	margin-left: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	font-size: 20px !important;
 	user-select: none;
 }
 
 .shop-menu .shop-item:active {
-	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+	font-size: 20.5px !important;
 }
 
 .shop-menu .shop-item img {
@@ -247,15 +248,9 @@ body {
 	margin-left: 15px;
 	height: 100%;
 	text-align: left;
-	font-size: 25px;
 	font-family: bigfont;
 	vertical-align: top;
-	font-size: 20px;
 	user-select: none;
-}
-
-.shop-menu .shop-item .desc:active {
-	font-size: 20.5px;
 }
 
 .shop-menu .shop-item .desc .name {
