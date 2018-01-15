@@ -253,9 +253,9 @@ function saveData(){
 }
 
 function getData(){
-	deported = window.localStorage.getItem('deported');
-	total_persecond = window.localStorage.getItem('total_persecond');
-	total_perclick = window.localStorage.getItem('total_perclick');
+	deported = parseInt(window.localStorage.getItem('deported'));
+	total_persecond = parseInt(window.localStorage.getItem('total_persecond'));
+	total_perclick = parseInt(window.localStorage.getItem('total_perclick'));
 	
 	var agents_json = $.parseJSON(window.localStorage.getItem('agents'));
 	for(var i = 0; i < agents_json.length; i++){
