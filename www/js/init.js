@@ -10,31 +10,38 @@ function onDeviceReady() {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
 		
-		admob.setOptions({
-			publisherId: admobid.banner,
-			interstitialAdId: admobid.interstitial,
-			overlap: true,
-			isTesting: true
-		});
-		admob.createBannerView();
-		slideout.on('open', function() {
-			if(canDisplayInterstitial()){
-				admob.requestInterstitialAd();
-				lastInterstitial = Date.now();
-			}
-		});
-		
-		$("#count-div").css({bottom: "55px"});
-		$("#shop-img").css({bottom: "56px"});
-		$("#face-div").css({bottom: "110px"});
-		$("#face").css({width: "165px"});
-		face_width = $("#face").width();
-		expanded_face = face_width - 5;
+		if(AdMob){
+			AdMob.setOptions({
+				overlap: true,
+				position: AdMob.AD_POSITION.BOTTOM_CENTER,
+				autoShow: true,
+				isTesting: true
+			});
+			AdMob.createBanner({
+				adId: admobid.banner,
+				autoShow: true
+			});
+			slideout.on('open', function() {
+				if(canDisplayInterstitial()){
+					AdMob.prepareInterstitial({
+						adId: admobid.interstitial
+					});
+					lastInterstitial = Date.now();
+				}
+			});
+			
+			$("#count-div").css({bottom: "55px"});
+			$("#shop-img").css({bottom: "56px"});
+			$("#face-div").css({bottom: "110px"});
+			$("#face").css({width: "165px"});
+			face_width = $("#face").width();
+			expanded_face = face_width - 5;
+		}
 	} catch (e) {}
 }
 
 function canDisplayInterstitial(){
-	return (Date.now() - lastInterstitial > 30000);
+	return (Date.now() - lastInterstitial > 45000) && Math.random() <= 0.4;
 }
 
 /* Initialize canvas */
