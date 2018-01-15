@@ -37,6 +37,14 @@ time, mark, audio, video {
 body {
 	/* Background color for shop */
 	background-color: #fff;
+	
+	overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+	width: 0px;
+	background: transparent;
 }
 
 .canvas {
@@ -196,6 +204,7 @@ body {
 
 .shop-container {
 	margin-bottom: 300px;
+	padding-right: 30px;
 }
 
 .shop-menu h1 {
