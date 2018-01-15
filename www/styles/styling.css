@@ -19,6 +19,12 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 
+*:not(input):not(textarea) {
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	user-select: none;
+} 
+
 @font-face {
     font-family: profont;
     src: url(Pro-Font.ttf);
@@ -222,6 +228,7 @@ body {
 	height: 70px;
 	margin-left: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	user-select: none;
 }
 
 .shop-menu .shop-item:active {
@@ -243,6 +250,7 @@ body {
 	font-size: 25px;
 	font-family: bigfont;
 	vertical-align: top;
+	user-select: none;
 }
 
 .shop-menu .shop-item .desc .name {
