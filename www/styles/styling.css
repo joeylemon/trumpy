@@ -194,6 +194,10 @@ body {
 	opacity: 0.5;
 }
 
+.shop-container {
+	margin-bottom: 300px;
+}
+
 .shop-menu h1 {
 	font-size: 35px;
 	margin: 5px;
@@ -208,7 +212,7 @@ body {
 	width: 230px;
 	height: 70px;
 	margin-left: 15px;
-	border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .shop-menu .shop-item:active {

@@ -92,7 +92,7 @@ function initShop(){
 	for(var key in purchases){
 		var item = purchases[key];
 		var details = item.getDetails();
-		$("#menu").append(getPurchaseHTML(details));
+		$("#shop").append(getPurchaseHTML(details));
 	}
 }
 
