@@ -9,21 +9,7 @@ function onDeviceReady() {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
 		
-		if(AdMob){ 
-			AdMob.createBanner({
-				adId: admobid.banner,
-				position: AdMob.AD_POSITION.BOTTOM_CENTER,
-				autoShow: true 
-			},
-			
-			function(){
-				alert("Success");
-			},
-			
-			function(error){
-				alert("E:" + error);
-			});
-		}
+		admob.createBannerView({publisherId: "ca-app-pub-3849622190274333/9972053558"});
 	} catch (e) {}
 }
 
