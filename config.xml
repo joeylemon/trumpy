@@ -15,5 +15,4 @@
     <plugin name="cordova-plugin-webviewcolor" spec="~2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="~2.4.1" />
     <plugin name="cordova-admob" spec="~4.1.16" />
-	<gap:plugin name="phonegap-admob" source="npm"/>
 </widget>
