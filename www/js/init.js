@@ -16,6 +16,10 @@ function onDeviceReady() {
 			isTesting: true
 		});
 		admob.createBannerView();
+		$("#count-div").css({bottom: "55px"});
+		$("#shop-img").css({bottom: "56px"});
+		$("#face-div").css({bottom: "110px"});
+		$("#face").css({width: "165px"});
 	} catch (e) {}
 }
 
