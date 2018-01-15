@@ -1,7 +1,8 @@
-admobid = {
+var admobid = {
 	banner: 'ca-app-pub-3849622190274333/9972053558',
 	interstitial: 'ca-app-pub-3849622190274333/4913978629'
 };
+var lastInterstitial = 0;
 
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
@@ -16,11 +17,24 @@ function onDeviceReady() {
 			isTesting: true
 		});
 		admob.createBannerView();
+		slideout.on('open', function() {
+			if(canDisplayInterstitial()){
+				admob.requestInterstitialAd();
+				lastInterstitial = Date.now();
+			}
+		});
+		
 		$("#count-div").css({bottom: "55px"});
 		$("#shop-img").css({bottom: "56px"});
 		$("#face-div").css({bottom: "110px"});
 		$("#face").css({width: "165px"});
+		face_width = $("#face").width();
+		expanded_face = face_width - 5;
 	} catch (e) {}
+}
+
+function canDisplayInterstitial(){
+	return (Date.now() - lastInterstitial > 30000);
 }
 
 /* Initialize canvas */
