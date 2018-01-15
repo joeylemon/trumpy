@@ -11,8 +11,6 @@ function onDeviceReady() {
 	try {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
-		
-		alert(window.localStorage.getItem('deports'));
 
 		if (AdMob) {
 			AdMob.setOptions({
@@ -77,6 +75,7 @@ function onDeviceReady() {
 			expanded_face = face_width - 5;
 		}
 	} catch (e) {}
+	getData();
 }
 
 function canDisplayInterstitial() {
@@ -244,9 +243,29 @@ function getPurchaseHTML(details) {
 	`;
 }
 
-updateObscuredItems();
-
 /* Declare functions */
+setInterval(saveData, 3000);
+function saveData(){
+	window.localStorage.setItem('deported', deported);
+	window.localStorage.setItem('total_persecond', total_persecond);
+	window.localStorage.setItem('total_perclick', total_perclick);
+	window.localStorage.setItem('agents', JSON.stringify(agents));
+}
+
+function getData(){
+	deported = window.localStorage.getItem('deported');
+	total_persecond = window.localStorage.getItem('total_persecond');
+	total_perclick = window.localStorage.getItem('total_perclick');
+	
+	var agents_json = $.parseJSON(window.localStorage.getItem('agents'));
+	for(var i = 0; i < agents_json.length; i++){
+		var agent_data = agents_json[i];
+		var agent = new Agent(0);
+		agents.push(agent.fromData(agent_data));
+	}
+}
+
+updateObscuredItems();
 function updateObscuredItems() {
 	for (var key in purchases) {
 		var item = purchases[key];

@@ -8,16 +8,34 @@ var Agent = function(id, loc, size){
 	
 	this.id = id;
 	
-	this.delay = purchases[id].options.delay;
-	this.color = purchases[id].options.color;
+	if(id){
+		this.delay = purchases[id].options.delay;
+		this.color = purchases[id].options.color;
+	}
 	
-	if(!size){
+	if(!size && id){
 		this.size = {width: purchases[id].options.size, height: purchases[id].options.size};
 	}else{
 		this.size = size;
 	}
 	
 	this.lastDeport = 0;
+};
+
+Agent.prototype.fromData = function(data){
+	this.x = data.x;
+	this.y = data.y;
+	
+	this.id = data.id;
+	
+	this.delay = data.delay;
+	this.color = data.color;
+	
+	this.size = data.size;
+	
+	this.lastDeport = 0;
+	
+	return this;
 };
 
 Agent.prototype.setRandomLocation = function(){
