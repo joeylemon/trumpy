@@ -10,8 +10,9 @@ function onDeviceReady() {
 		StatusBar.hide();
 		
 		admob.setOptions({
-			publisherId: admobid.banner
+			publisherId: admobid.banner,
 			interstitialAdId: admobid.interstitial,
+			overlap: true,
 			isTesting: true
 		});
 		admob.createBannerView();
