@@ -6,16 +6,6 @@ var Purchase = function(id, cost, type, options){
 	this.options = options;
 };
 
-Purchase.prototype.fromData = function(data){
-	this.id = data.id;
-	this.current = data.current;
-	this.cost = data.cost;
-	this.type = data.type;
-	this.options = data.options;
-	
-	return this;
-};
-
 Purchase.prototype.getProperCost = function(){
 	return getNumberWithCommas(this.cost);
 };

@@ -44,6 +44,9 @@ function onDeviceReady() {
 					});
 					shown = false;
 				}
+				if(settingsOpen){
+					toggleSettings();
+				}
 			});
 			
 			AdMob.prepareRewardVideoAd({
@@ -171,6 +174,7 @@ var lastDraw = 0;
 var total = 0;
 
 var shopOpen = false;
+var settingsOpen = false;
 
 var news_left = 0;
 var news = [
@@ -255,6 +259,44 @@ function saveData(){
 	}));
 }
 
+function clearData(){
+	window.localStorage.clear();
+	deported = 0;
+	total_persecond = 0;
+	total_perclick = 0;
+	agents = new Array();
+	purchases = {
+		republican: new Purchase('republican', 10, 'agent', {
+			delay: 1000 / 0.2,
+			color: '#A20000',
+			size: settings.illegal_size + 2
+		}),
+		click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
+			rate: .10
+		}),
+		agent: new Purchase('agent', 100, 'agent', {
+			delay: 1000 / 1,
+			color: '#000',
+			size: settings.illegal_size + 4
+		}),
+		wall: new Purchase('wall', 1100, 'agent', {
+			delay: 1000 / 8,
+			color: '#DD8500',
+			size: settings.illegal_size + 6
+		}),
+		executive_order: new Purchase('executive_order', 13000, 'agent', {
+			delay: 1000 / 45,
+			color: '#787878',
+			size: settings.illegal_size + 6
+		}),
+		state_law: new Purchase('state_law', 140000, 'agent', {
+			delay: 1000 / 260,
+			color: '#21C800',
+			size: settings.illegal_size + 9
+		})
+	};
+}
+
 getData();
 function getData(){
 	if(window.localStorage.getItem('data')){
@@ -287,6 +329,15 @@ function getData(){
 			}
 		}, 100);
 	}
+}
+
+function toggleSettings(){
+	if(!settingsOpen){
+		$("#settings").show();
+	}else{
+		$("#settings").hide();
+	}
+	settingsOpen = !settingsOpen
 }
 
 updateObscuredItems();

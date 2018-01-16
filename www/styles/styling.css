@@ -241,6 +241,42 @@ body {
 	padding-right: 30px;
 }
 
+.shop-menu .settings-img {
+	position: absolute;
+	top: 5px;
+	right: 0px;
+	width: 30px;
+}
+
+.shop-menu .settings-img:active {
+	width: 32px;
+}
+
+.shop-menu .settings {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	background-color: #fff;
+}
+
+.shop-menu .settings p {
+	width: 237px;
+	height: 30px;
+	padding-top: 5px;
+	margin-left: 10px;
+	text-align: center;
+	font-family: profont;
+	font-size: 25px;
+	border: 2px solid #000;
+}
+
+.shop-menu .settings p:active {
+	opacity: 0.5;
+	border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
 .shop-menu h1 {
 	font-size: 35px;
 	margin: 5px;

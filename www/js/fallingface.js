@@ -1,6 +1,6 @@
 var FallingFace = function(){
 	this.x = rand(0, canvas.width - face.width);
-	this.y = rand(0, 10);
+	this.y = rand(-face.height - 10, -face.height);
 	this.speed = rand(2, 3.5);
 	this.id = rand(1, 10000);
 };
