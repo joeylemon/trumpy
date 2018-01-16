@@ -316,7 +316,10 @@ function getData(){
 			for(var i = 0; i < agents_json.length; i++){
 				var agent_data = agents_json[i];
 				var agent = new Agent(0);
-				agents.push(agent.fromData(agent_data));
+				agent = agent.fromData(agent_data);
+				if(!doesAgentExist(agent)){
+					agents.push(agent);
+				}
 			}
 			
 			var purchases_json = $.parseJSON(data.purchases);
@@ -329,6 +332,16 @@ function getData(){
 			}
 		}, 100);
 	}
+}
+
+function doesAgentExist(agent){
+	for(var i = 0; i < agents.length; i++){
+		var a = agents[i];
+		if(a.x == agent.x && a.y == agent.y){
+			return true;
+		}
+	}
+	return false;
 }
 
 function toggleSettings(){
