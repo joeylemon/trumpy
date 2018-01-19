@@ -69,10 +69,10 @@ function onDeviceReady() {
 				bottom: "118px"
 			});
 			$("#face-div").css({
-				bottom: "110px"
+				bottom: "100px"
 			});
 			$("#face").css({
-				width: "165px"
+				width: "185px"
 			});
 			face_width = $("#face").width();
 			expanded_face = face_width - 5;
