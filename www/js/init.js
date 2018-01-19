@@ -195,6 +195,7 @@ var milestones = [
 	1000
 ];
 
+// http://cookieclicker.wikia.com/wiki/Building
 var default_purchases = {
 	republican: new Purchase('republican', 10, 'agent', {
 		delay: 1000 / 0.2,
