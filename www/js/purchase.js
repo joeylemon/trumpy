@@ -16,7 +16,13 @@ Purchase.prototype.getProperID = function(){
 
 Purchase.prototype.getDescription = function(){
 	if(this.type == "agent"){
-		return (1000 / this.options.delay).toFixed(1) + " per second";
+		var per = (1000 / this.options.delay);
+		if(per % 1 >= 0.1){
+			per = per.toFixed(1);
+		}else{
+			per = per.toFixed(0);
+		}
+		return per + " per second";
 	}else if(this.type == "upgrade"){
 		return "+" + this.options.rate + " per click";
 	}

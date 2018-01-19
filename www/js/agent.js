@@ -1,4 +1,4 @@
-var Agent = function(id, loc, size){
+var Agent = function(id, loc, size, circle){
 	if(!loc){
 		this.setRandomLocation();
 	}else{
@@ -19,7 +19,12 @@ var Agent = function(id, loc, size){
 		this.size = size;
 	}
 	
-	this.lastDeport = 0;
+	if(id){
+		this.circle = purchases[id].options.circle;
+	}
+	
+	this.deport_total = unroundedRand(0, 1);
+	this.lastAdd = Date.now();
 };
 
 Agent.prototype.fromData = function(data){
@@ -33,7 +38,10 @@ Agent.prototype.fromData = function(data){
 	
 	this.size = data.size;
 	
-	this.lastDeport = Date.now() - (Math.random() * 3000);
+	this.circle = data.circle;
+	
+	this.deport_total = unroundedRand(0, 1);
+	this.lastAdd = Date.now();
 	
 	return this;
 };
@@ -55,17 +63,35 @@ Agent.prototype.setRandomLocation = function(){
 };
 
 Agent.prototype.canDeport = function(){
-	return (Date.now() - this.lastDeport > this.delay);
+	return (this.deport_total >= 1);
 };
 
 Agent.prototype.deport = function(){
-	addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10)});
-	this.lastDeport = Date.now();
+	var now = Date.now();
+	
+	if(this.canDeport()){
+		addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10)});
+		this.deport_total = 0;
+	}
+
+	var diff = now - this.lastAdd;
+	var add = diff / this.delay;
+	deported += add;
+	this.deport_total += add;
+	//console.log("diff:" + diff + ",add:" + add);
+	
+	this.lastAdd = now;
 };
 
 Agent.prototype.draw = function(){
-	ctx.globalAlpha = 0.95;
 	ctx.fillStyle = this.color;
-	ctx.fillRect(this.x, this.y, this.size.width, this.size.height);
-	ctx.globalAlpha = 1;
+	if(this.circle){
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.size.width, 0, 2 * Math.PI);
+		ctx.fill();
+	}else{
+		ctx.fillRect(this.x, this.y, this.size.width, this.size.height);
+	}
+	
+	this.deport();
 };

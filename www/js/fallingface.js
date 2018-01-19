@@ -6,10 +6,11 @@ var FallingFace = function(){
 };
 
 FallingFace.prototype.draw = function(){
+	this.y += this.speed;
+	
 	ctx_bg.globalAlpha = 0.7;
 	ctx_bg.drawImage(face, this.x, this.y);
 	ctx_bg.globalAlpha = 1;
-	this.y += this.speed;
 	
 	if(this.y > canvas.height + 100){
 		for(var i = 0; i < faces.length; i++){

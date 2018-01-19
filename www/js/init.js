@@ -157,7 +157,8 @@ var borderLocs = [{
 /* Define settings */
 var settings = {
 	illegal_size: 3,
-	fade_dist: 20
+	fade_dist: 20,
+	max_people: 1000
 }
 
 /* Declare global variables */
@@ -168,7 +169,7 @@ var faces = new Array();
 var total_persecond = 0;
 var total_perclick = 0;
 
-var deported = 0;
+var deported = 330000000;
 var reward = 1000;
 var lastDraw = 0;
 var total = 0;
@@ -190,11 +191,12 @@ var milestones = [
 	1000
 ];
 
-var purchases = {
+var default_purchases = {
 	republican: new Purchase('republican', 10, 'agent', {
 		delay: 1000 / 0.2,
 		color: '#A20000',
-		size: settings.illegal_size + 2
+		size: 3,
+		circle: true
 	}),
 	click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
 		rate: .10
@@ -202,24 +204,47 @@ var purchases = {
 	agent: new Purchase('agent', 100, 'agent', {
 		delay: 1000 / 1,
 		color: '#000',
-		size: settings.illegal_size + 4
+		size: 4,
+		circle: true
 	}),
 	wall: new Purchase('wall', 1100, 'agent', {
 		delay: 1000 / 8,
 		color: '#DD8500',
-		size: settings.illegal_size + 6
+		size: settings.illegal_size + 6,
+		circle: false
 	}),
 	executive_order: new Purchase('executive_order', 13000, 'agent', {
 		delay: 1000 / 45,
 		color: '#787878',
-		size: settings.illegal_size + 6
+		size: 6,
+		circle: true
 	}),
-	state_law: new Purchase('state_law', 140000, 'agent', {
+	local_law: new Purchase('local_law', 140000, 'agent', {
 		delay: 1000 / 260,
 		color: '#21C800',
-		size: settings.illegal_size + 9
+		size: 7,
+		circle: true
+	}),
+	state_law: new Purchase('state_law', 1500000, 'agent', {
+		delay: 1000 / 1400,
+		color: '#21C800',
+		size: 7,
+		circle: true
+	}),
+	federal_law: new Purchase('federal_law', 20000000, 'agent', {
+		delay: 1000 / 7800,
+		color: '#21C800',
+		size: 10,
+		circle: true
+	}),
+	federal_mandate: new Purchase('federal_mandate', 330000000, 'agent', {
+		delay: 1000 / 44000,
+		color: '#21C800',
+		size: 10,
+		circle: true
 	})
 };
+var purchases = default_purchases;
 
 /* Set up page */
 initShop();
@@ -229,6 +254,7 @@ function initShop() {
 		var details = item.getDetails();
 		$("#shop").append(getPurchaseHTML(details));
 	}
+	setTimeout(updateItemCosts, 500);
 }
 
 function getPurchaseHTML(details) {
@@ -238,7 +264,7 @@ function getPurchaseHTML(details) {
 			<div class="desc" id="` + details.id + `-desc">
 				<p class="name">` + details.title + `</p>
 				<p class="more">` + details.desc + `</p>
-				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
+				<p class="more">Cost: <span id="` + details.id + `-cost">` + getNumberWithCommas(details.cost) + `</span></p>
 			</div>
 			<div class="amount">
 				<p id="` + details.id + `-amount">` + details.amount + `</p>
@@ -265,36 +291,7 @@ function clearData(){
 	total_persecond = 0;
 	total_perclick = 0;
 	agents = new Array();
-	purchases = {
-		republican: new Purchase('republican', 10, 'agent', {
-			delay: 1000 / 0.2,
-			color: '#A20000',
-			size: settings.illegal_size + 2
-		}),
-		click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
-			rate: .10
-		}),
-		agent: new Purchase('agent', 100, 'agent', {
-			delay: 1000 / 1,
-			color: '#000',
-			size: settings.illegal_size + 4
-		}),
-		wall: new Purchase('wall', 1100, 'agent', {
-			delay: 1000 / 8,
-			color: '#DD8500',
-			size: settings.illegal_size + 6
-		}),
-		executive_order: new Purchase('executive_order', 13000, 'agent', {
-			delay: 1000 / 45,
-			color: '#787878',
-			size: settings.illegal_size + 6
-		}),
-		state_law: new Purchase('state_law', 140000, 'agent', {
-			delay: 1000 / 260,
-			color: '#21C800',
-			size: settings.illegal_size + 9
-		})
-	};
+	purchases = default_purchases;
 }
 
 getData();
@@ -303,7 +300,7 @@ function getData(){
 		var data = $.parseJSON(window.localStorage.getItem('data'));
 		
 		deported = data.deported;
-		$("#count").html(deported);
+		$("#count").html(deported.toFixed(0));
 		
 		total_persecond = Math.round(data.total_persecond * 10) / 10;
 		$("#persecond").html(total_persecond);
@@ -368,7 +365,7 @@ function updateObscuredItems() {
 function updateItemCosts() {
 	for (var key in purchases) {
 		var item = purchases[key];
-		$("#" + key + "-cost").html(item.getDetails().cost);
+		$("#" + key + "-cost").html(item.getProperCost());
 	}
 }
 

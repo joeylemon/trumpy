@@ -17,10 +17,6 @@ function draw(){
 		for(var i = 0; i < agents.length; i++){
 			var agent = agents[i];
 			agent.draw();
-			
-			if(agent.canDeport()){
-				agent.deport();
-			}
 		}
 		
 		news_left -= 0.5;
@@ -34,10 +30,16 @@ function draw(){
 	window.requestAnimationFrame(draw);
 }
 
-function addPerson(start){
-	people.push(new Person(start));
-	deported += 1 + (purchases.click_multiplier.current * purchases.click_multiplier.options.rate);
-	total++;
+function addPerson(start, click){
+	if(people.length < settings.max_people){
+		people.push(new Person(start));
+	}
+	
+	if(click){
+		deported += 1 + (purchases.click_multiplier.current * purchases.click_multiplier.options.rate);
+		total++;
+	}
+	
 	document.getElementById("count").innerHTML = deported.toFixed(0);
 	updateObscuredItems();
 	
@@ -121,15 +123,7 @@ function buy(e, id){
 		updateItemCosts();
 		updateObscuredItems();
 		
-		if(id == "agent" || id == "republican" || id == "state_law"){
-			agents.push(new Agent(id));
-			
-			if(id == "republican" && item.current == 1){
-				updateNews("Trump supporters getting involved by helping identify illegal immigrants.");
-			}else if(id == "agent" && item.current == 1){
-				updateNews("President pushing for deportation agents to start doing their jobs--handing out bonuses for agents with the highest deport totals.");
-			}
-		}else if(id == "wall"){
+		if(id == "wall"){
 			addWall();
 			
 			if(id == "wall" && item.current == 1){
@@ -144,6 +138,14 @@ function buy(e, id){
 			
 			if(id == "executive_order" && item.current == 1){
 				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
+			}
+		}else{
+			agents.push(new Agent(id));
+			
+			if(id == "republican" && item.current == 1){
+				updateNews("Trump supporters getting involved by helping identify illegal immigrants.");
+			}else if(id == "agent" && item.current == 1){
+				updateNews("President pushing for deportation agents to start doing their jobs--handing out bonuses for agents with the highest deport totals.");
 			}
 		}
 	}
@@ -178,7 +180,7 @@ $(window).bind('touchend mouseup', function(e){
 			addPerson();
 		}
 		*/
-		addPerson();
+		addPerson(undefined, true);
 		click = false;
 		$("#face").css({filter: "brightness(1)", width: face_width});
 	}
