@@ -55,19 +55,19 @@ function addWall(){
 	var chunk = rand(1, 5);
 	var x, y;
 	if(chunk == 1){
-		x = rand((canvas.width / 2) - 153.5, (canvas.width / 2) - 138.5);
+		x = rand((canvas.width / 4) - 153.5, (canvas.width / 4) - 138.5);
 		y = rand(middle_y + 36, middle_y + 38);
 	}else if(chunk == 2){
-		x = rand((canvas.width / 2) - 124.5, (canvas.width / 2) - 92.5);
+		x = rand((canvas.width / 4) - 124.5, (canvas.width / 4) - 92.5);
 		y = rand(middle_y + 49, middle_y + 58);
 	}else if(chunk == 3){
-		x = rand((canvas.width / 2) - 107.5, (canvas.width / 2) - 75.5);
+		x = rand((canvas.width / 4) - 107.5, (canvas.width / 4) - 75.5);
 		y = rand(middle_y + 56, middle_y + 56);
 	}else if(chunk == 4){
-		x = rand((canvas.width / 2) - 69.5, (canvas.width / 2) - 39.5);
+		x = rand((canvas.width / 4) - 69.5, (canvas.width / 4) - 39.5);
 		y = rand(middle_y + 67, middle_y + 76);
 	}else if(chunk == 5){
-		x = rand((canvas.width / 2) - 29.5, (canvas.width / 2) - 12.5);
+		x = rand((canvas.width / 4) - 29.5, (canvas.width / 4) - 12.5);
 		y = rand(middle_y + 94, middle_y + 103);
 	}
 	
@@ -75,7 +75,7 @@ function addWall(){
 }
 
 function addOrder(){
-	var x = ((canvas.width / 2) + 103.5) + rand(-20, 20);
+	var x = ((canvas.width / 4) + 103.5) + rand(-20, 20);
 	var y = middle_y + rand(-20, 20);
 	agents.push(new Agent("executive_order", {x: x, y: y}));
 }
@@ -157,11 +157,11 @@ function getRandomBorder(){
 
 var click = false;
 
-$(window).bind('touchstart mousedown', function(e){
+$(window).bind('touchstart', function(e){
 	var x = e.changedTouches[0].pageX;
 	var y = e.changedTouches[0].pageY;
 	
-	if(distance({x: x, y: y}, {x: canvas.width, y: canvas.height}) < 75 && !slideout.isOpen()){
+	if(distance({x: x, y: y}, {x: window.innerWidth, y: window.innerHeight}) < 75 && !slideout.isOpen()){
 		return;
 	}
 	
@@ -171,7 +171,7 @@ $(window).bind('touchstart mousedown', function(e){
 	}
 });
 
-$(window).bind('touchend mouseup', function(e){
+$(window).bind('touchend', function(e){
 	if(click){
 		/*
 		var x = e.changedTouches[0].pageX;

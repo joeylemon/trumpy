@@ -19,12 +19,12 @@ function onDeviceReady() {
 				autoShow: true,
 				isTesting: true
 			});
-			
+
 			AdMob.createBanner({
 				adId: admobid.banner,
 				autoShow: true
 			});
-			
+
 			AdMob.prepareInterstitial({
 				adId: admobid.interstitial,
 				autoShow: false
@@ -44,11 +44,11 @@ function onDeviceReady() {
 					});
 					shown = false;
 				}
-				if(settingsOpen){
+				if (settingsOpen) {
 					toggleSettings();
 				}
 			});
-			
+
 			AdMob.prepareRewardVideoAd({
 				adId: admobid.reward_video,
 				success: function () {
@@ -161,7 +161,8 @@ var borderLocs = [{
 var settings = {
 	illegal_size: 3,
 	fade_dist: 20,
-	max_people: 1000
+	max_people: 1000,
+	click_factor: 10
 }
 
 /* Declare global variables */
@@ -266,7 +267,7 @@ function getPurchaseHTML(details) {
 			<img src="` + details.image + `">
 			<div class="desc" id="` + details.id + `-desc">
 				<p class="name">` + details.title + `</p>
-				<p class="more">` + details.desc + `</p>
+				<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
 				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
 			</div>
 			<div class="amount">
@@ -278,61 +279,65 @@ function getPurchaseHTML(details) {
 
 /* Declare functions */
 setInterval(saveData, 5000);
-function saveData(){
+function saveData() {
 	window.localStorage.setItem('data', JSON.stringify({
-		deported: deported,
-		total_persecond: total_persecond,
-		total_perclick: total_perclick,
-		people: JSON.stringify(people),
-		agents: JSON.stringify(agents),
-		purchases: JSON.stringify(purchases)
-	}));
+			deported: deported,
+			total_persecond: total_persecond,
+			total_perclick: total_perclick,
+			news: news,
+			people: JSON.stringify(people),
+			agents: JSON.stringify(agents),
+			purchases: JSON.stringify(purchases)
+		}));
 }
 
-function clearData(){
+function clearData() {
 	window.localStorage.clear();
-	deported = 0;
-	total_persecond = 0;
-	total_perclick = 0;
-	agents = new Array();
-	purchases = default_purchases;
+	window.location.reload(true);
 }
 
 getData();
-function getData(){
-	if(window.localStorage.getItem('data')){
+function getData() {
+	if (window.localStorage.getItem('data')) {
 		var data = $.parseJSON(window.localStorage.getItem('data'));
-		
+
 		deported = data.deported;
 		$("#count").html(deported.toFixed(0));
-		
+
 		total_persecond = Math.round(data.total_persecond * 10) / 10;
 		$("#persecond").html(total_persecond);
-		
+
 		total_perclick = Math.round(data.total_perclick * 10) / 10;
 		$("#perclick").html(total_perclick);
-		
-		setTimeout(function(){
+
+		news = data.news;
+		$("#news").html(news.join(" <img src='images/fox.png'> "));
+		min_left = -$("#news").width() - 120;
+
+		setTimeout(function () {
 			var people_json = $.parseJSON(data.people);
-			for(var i = 0; i < people_json.length; i++){
+			for (var i = 0; i < people_json.length; i++) {
 				var person_data = people_json[i];
-				var person = new Person({x: person_data.x, y: person_data.y});
+				var person = new Person({
+						x: person_data.x,
+						y: person_data.y
+					});
 				person = person.fromData(person_data);
 				people.push(person);
 			}
-			
+
 			var agents_json = $.parseJSON(data.agents);
-			for(var i = 0; i < agents_json.length; i++){
+			for (var i = 0; i < agents_json.length; i++) {
 				var agent_data = agents_json[i];
 				var agent = new Agent(0);
 				agent = agent.fromData(agent_data);
-				if(!doesAgentExist(agent)){
+				if (!doesAgentExist(agent)) {
 					agents.push(agent);
 				}
 			}
-			
+
 			var purchases_json = $.parseJSON(data.purchases);
-			for(var key in purchases_json){
+			for (var key in purchases_json) {
 				var purchase_data = purchases_json[key];
 				purchases[key].cost = purchase_data.cost;
 				purchases[key].current = purchase_data.current;
@@ -343,23 +348,23 @@ function getData(){
 	}
 }
 
-function doesAgentExist(agent){
-	for(var i = 0; i < agents.length; i++){
+function doesAgentExist(agent) {
+	for (var i = 0; i < agents.length; i++) {
 		var a = agents[i];
-		if(a.x == agent.x && a.y == agent.y){
+		if (a.x == agent.x && a.y == agent.y) {
 			return true;
 		}
 	}
 	return false;
 }
 
-function toggleSettings(){
-	if(!settingsOpen){
+function toggleSettings() {
+	if (!settingsOpen) {
 		$("#settings").show();
-	}else{
+	} else {
 		$("#settings").hide();
 	}
-	settingsOpen = !settingsOpen
+	settingsOpen = !settingsOpen;
 }
 
 updateObscuredItems();
@@ -371,6 +376,14 @@ function updateObscuredItems() {
 		} else {
 			$("#" + key).css("opacity", "1");
 		}
+	}
+
+	if (total_persecond > (settings.click_factor / 10)) {
+		var new_rate = total_persecond / settings.click_factor;
+		purchases.click_multiplier.cost = new_rate * 110;
+		purchases.click_multiplier.options.rate = new_rate;
+		$("#click_multiplier-per").html(purchases.click_multiplier.getDescription());
+		$("#click_multiplier-cost").html(purchases.click_multiplier.getProperCost());
 	}
 }
 
@@ -417,13 +430,13 @@ function resize() {}
 
 /*
 document.ontouchstart = function (e) {
-	var x = e.changedTouches[0].pageX;
-	var y = e.changedTouches[0].pageY;
-	console.log(x + ", " + y);
+var x = e.changedTouches[0].pageX;
+var y = e.changedTouches[0].pageY;
+console.log(x + ", " + y);
 
-	var plus_x = (canvas.width / 4) - x;
-	var plus_y = middle_y - y;
-	console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
-	console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
+var plus_x = (canvas.width / 4) - x;
+var plus_y = middle_y - y;
+console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
+console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
 }
 */

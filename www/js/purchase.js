@@ -7,7 +7,7 @@ var Purchase = function(id, cost, type, options){
 };
 
 Purchase.prototype.getProperCost = function(){
-	return getNumberWithCommas(this.cost);
+	return getNumberWithCommas(this.cost.toFixed(0));
 };
 
 Purchase.prototype.getProperID = function(){
@@ -24,7 +24,7 @@ Purchase.prototype.getDescription = function(){
 		}
 		return getNumberWithCommas(per) + " per second";
 	}else if(this.type == "upgrade"){
-		return "+" + this.options.rate + " per click";
+		return "+" + this.options.rate.toFixed(1) + " per click";
 	}
 };
 
