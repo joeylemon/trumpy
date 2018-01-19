@@ -108,8 +108,11 @@ function watchRewardVideo() {
 /* Initialize canvas */
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
+canvas.width = window.innerWidth * 2;
+canvas.height = window.innerHeight * 2;
+canvas.style.width = window.innerWidth;
+canvas.style.height = window.innerHeight;
+ctx.scale(2, 2);
 
 var canvas_bg = document.getElementById("canvas_bg");
 var ctx_bg = canvas_bg.getContext("2d");
@@ -127,29 +130,29 @@ var middle_y = 148;
 
 /* Define bounds */
 var bounds = {
-	top_left_x: (canvas.width / 2) - 166,
+	top_left_x: (canvas.width / 4) - 166,
 	top_left_y: middle_y - 89,
-	top_right_x: (canvas.width / 2) + 120,
+	top_right_x: (canvas.width / 4) + 120,
 	bottom_right_y: middle_y + 57
 }
 
 var borderLocs = [{
-		x: (canvas.width / 2) - 123,
+		x: (canvas.width / 4) - 123,
 		y: middle_y + 56
 	}, {
-		x: (canvas.width / 2) - 104,
+		x: (canvas.width / 4) - 104,
 		y: middle_y + 54
 	}, {
-		x: (canvas.width / 2) - 79,
+		x: (canvas.width / 4) - 79,
 		y: middle_y + 58
 	}, {
-		x: (canvas.width / 2) - 60,
+		x: (canvas.width / 4) - 60,
 		y: middle_y + 78
 	}, {
-		x: (canvas.width / 2) - 39,
+		x: (canvas.width / 4) - 39,
 		y: middle_y + 73
 	}, {
-		x: (canvas.width / 2) - 30,
+		x: (canvas.width / 4) - 30,
 		y: middle_y + 93
 	}
 ];
@@ -227,19 +230,19 @@ var default_purchases = {
 	}),
 	state_law: new Purchase('state_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
-		color: '#21C800',
+		color: '#f4d442',
 		size: 7,
 		circle: true
 	}),
 	federal_law: new Purchase('federal_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
-		color: '#21C800',
+		color: '#f48341',
 		size: 10,
 		circle: true
 	}),
 	federal_mandate: new Purchase('federal_mandate', 330000000, 'agent', {
 		delay: 1000 / 44000,
-		color: '#21C800',
+		color: '#41b5f4',
 		size: 10,
 		circle: true
 	})
@@ -264,7 +267,7 @@ function getPurchaseHTML(details) {
 			<div class="desc" id="` + details.id + `-desc">
 				<p class="name">` + details.title + `</p>
 				<p class="more">` + details.desc + `</p>
-				<p class="more">Cost: <span id="` + details.id + `-cost">` + getNumberWithCommas(details.cost) + `</span></p>
+				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
 			</div>
 			<div class="amount">
 				<p id="` + details.id + `-amount">` + details.amount + `</p>
@@ -280,6 +283,7 @@ function saveData(){
 		deported: deported,
 		total_persecond: total_persecond,
 		total_perclick: total_perclick,
+		people: JSON.stringify(people),
 		agents: JSON.stringify(agents),
 		purchases: JSON.stringify(purchases)
 	}));
@@ -309,6 +313,14 @@ function getData(){
 		$("#perclick").html(total_perclick);
 		
 		setTimeout(function(){
+			var people_json = $.parseJSON(data.people);
+			for(var i = 0; i < people_json.length; i++){
+				var person_data = people_json[i];
+				var person = new Person({x: person_data.x, y: person_data.y});
+				person = person.fromData(person_data);
+				people.push(person);
+			}
+			
 			var agents_json = $.parseJSON(data.agents);
 			for(var i = 0; i < agents_json.length; i++){
 				var agent_data = agents_json[i];
@@ -403,13 +415,15 @@ function distance(pos1, pos2) {
 
 function resize() {}
 
-document.onmousedown = function (event) {
-	var x = event.offsetX;
-	var y = event.offsetY;
+/*
+document.ontouchstart = function (e) {
+	var x = e.changedTouches[0].pageX;
+	var y = e.changedTouches[0].pageY;
 	console.log(x + ", " + y);
 
-	var plus_x = (canvas.width / 2) - x;
+	var plus_x = (canvas.width / 4) - x;
 	var plus_y = middle_y - y;
-	console.log("(canvas.width / 2)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
+	console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
 	console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
 }
+*/

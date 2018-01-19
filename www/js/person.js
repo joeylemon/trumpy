@@ -18,6 +18,16 @@ var Person = function(start){
 	this.speed = unroundedRand(0.2, 0.6);
 };
 
+Person.prototype.fromData = function(data){
+	this.x = data.x;
+	this.y = data.y;
+	this.dest = data.dest;
+	this.id = data.id;
+	this.speed = data.speed;
+	
+	return this;
+};
+
 Person.prototype.setRandomLocation = function(){
 	var x = rand(bounds.top_left_x, bounds.top_right_x);
 	var y = rand(bounds.top_left_y, bounds.bottom_right_y);

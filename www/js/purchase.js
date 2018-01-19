@@ -22,7 +22,7 @@ Purchase.prototype.getDescription = function(){
 		}else{
 			per = per.toFixed(0);
 		}
-		return per + " per second";
+		return getNumberWithCommas(per) + " per second";
 	}else if(this.type == "upgrade"){
 		return "+" + this.options.rate + " per click";
 	}
