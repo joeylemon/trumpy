@@ -5,6 +5,14 @@ var FallingFace = function(){
 	this.id = rand(1, 10000);
 };
 
+FallingFace.prototype.fromData = function(data){
+	this.x = data.x;
+	this.y = data.y;
+	this.speed = data.speed;
+	this.id = data.id;
+	return this;
+};
+
 FallingFace.prototype.draw = function(){
 	this.y += this.speed;
 	
@@ -12,7 +20,7 @@ FallingFace.prototype.draw = function(){
 	ctx_bg.drawImage(face, this.x, this.y);
 	ctx_bg.globalAlpha = 1;
 	
-	if(this.y > canvas.height + 100){
+	if(this.y > canvas.height + face.height){
 		for(var i = 0; i < faces.length; i++){
 			if(faces[i].id == this.id){
 				faces.splice(i, 1);

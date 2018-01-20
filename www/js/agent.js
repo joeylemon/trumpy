@@ -93,7 +93,13 @@ Agent.prototype.draw = function(){
 		ctx.arc(this.x, this.y, this.size.width, 0, 2 * Math.PI);
 		ctx.fill();
 	}else{
-		ctx.fillRect(this.x, this.y, this.size.width, this.size.height);
+		var multiplier = 1.6;
+		if(this.id == "wall"){
+			multiplier = 1;
+		}
+		var width = this.size.width * multiplier;
+		var height = this.size.height * multiplier;
+		ctx.fillRect(this.x - (width / 2), this.y - (height / 2), width, height);
 	}
 	
 	this.deport();

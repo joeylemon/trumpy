@@ -57,9 +57,6 @@ function addPerson(start, click){
 	updateObscuredItems();
 	
 	if(faces.length < settings.max_faces){
-		if((total_persecond >= 64 && Math.random() <= 0.9) || total_persecond >= 10 && Math.random() <= 0.5){
-			return;
-		}
 		faces.push(new FallingFace());
 	}
 }
@@ -174,7 +171,7 @@ $(window).bind('touchstart', function(e){
 	var x = e.changedTouches[0].pageX;
 	var y = e.changedTouches[0].pageY;
 	
-	if(distance({x: x, y: y}, {x: window.innerWidth, y: window.innerHeight}) < 75 && !slideout.isOpen()){
+	if(distance({x: x, y: y}, {x: window.innerWidth, y: window.innerHeight - 50}) < 75 && !slideout.isOpen()){
 		return;
 	}
 	

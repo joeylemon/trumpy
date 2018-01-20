@@ -217,35 +217,35 @@ var default_purchases = {
 		color: '#787878',
 		size: 6,
 		max: 30,
-		circle: true
+		circle: false
 	}),
 	local_law: new Purchase('local_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
 		color: '#21C800',
 		size: 7,
-		max: 60,
-		circle: true
+		max: 110,
+		circle: false
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		color: '#f4d442',
 		size: 7,
 		max: 400,
-		circle: true
+		circle: false
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
 		color: '#f48341',
 		size: 10,
 		max: 1000,
-		circle: true
+		circle: false
 	}),
 	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
 		delay: 1000 / 260000,
 		color: '#41b5f4',
 		size: 10,
 		max: 5000,
-		circle: true
+		circle: false
 	})
 };
 var purchases = default_purchases;
@@ -285,6 +285,7 @@ function saveData() {
 			total_persecond: total_persecond,
 			total_perclick: total_perclick,
 			news: news,
+			faces: faces,
 			locs: locs,
 			people: JSON.stringify(people),
 			agents: JSON.stringify(agents),
@@ -346,6 +347,13 @@ function getData() {
 				purchases[key].current = purchase_data.current;
 				$("#" + key + "-cost").html(purchase_data.cost);
 				$("#" + key + "-amount").html(purchase_data.current);
+			}
+			
+			for (var i = 0; i < data.faces.length; i++) {
+				var face_data = data.faces[i];
+				var face = new FallingFace();
+				face = face.fromData(face_data);
+				faces.push(face);
 			}
 		}, 100);
 	}
