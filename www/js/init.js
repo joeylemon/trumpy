@@ -73,10 +73,12 @@ document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 
 document.addEventListener('admob.rewardvideo.events.START', function(event) {
 	$("#reward").hide();
-	admob.rewardvideo.prepare();
+	setTimeout(function(){
+		admob.rewardvideo.prepare();
+	}, 45000);
 });
 
-document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
+document.addEventListener('admob.rewardvideo.events.REWARD', () => {
 	deported += reward;
 	reward *= 3;
 	$("#vid-reward").html("+" + reward);
