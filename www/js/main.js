@@ -56,7 +56,7 @@ function addPerson(start, click){
 	document.getElementById("count").innerHTML = deported.toFixed(0);
 	updateObscuredItems();
 	
-	if(faces.length < 50){
+	if(faces.length < settings.max_faces){
 		if((total_persecond >= 64 && Math.random() <= 0.9) || total_persecond >= 10 && Math.random() <= 0.5){
 			return;
 		}

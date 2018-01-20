@@ -14,5 +14,5 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <plugin name="cordova-plugin-webviewcolor" spec="2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
-    <plugin name="cordova-plugin-admobpro" spec="2.30.1" />
+    <plugin name="cordova-plugin-admob-free" spec="~0.13.0" />
 </widget>

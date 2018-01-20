@@ -15,10 +15,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-admobpro": {
+  "cordova-plugin-admob-free": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-admobpro@~2.30.1"
+      "id": "cordova-plugin-admob-free"
     },
     "is_top_level": true,
     "variables": {}
