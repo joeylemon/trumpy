@@ -13,8 +13,7 @@ function onDeviceReady() {
 		StatusBar.hide();
 
 		admob.setOptions({
-			overlap: true,
-			isTesting: true
+			overlap: true
 		});
 
 		admob.banner.config({
@@ -78,7 +77,7 @@ document.addEventListener('admob.rewardvideo.events.START', function(event) {
 	}, 45000);
 });
 
-document.addEventListener('admob.rewardvideo.events.REWARD', () => {
+document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
 	deported += reward;
 	reward *= 3;
 	$("#vid-reward").html("+" + reward);
