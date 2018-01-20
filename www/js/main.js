@@ -19,6 +19,19 @@ function draw(){
 			agent.draw();
 		}
 		
+		/*
+		for(var i = 0; i < locs.length; i++){
+			var loc = locs[i];
+			
+			var x = (canvas.width / 4) + loc.plus_x;
+			var y = middle_y + loc.plus_y;
+			
+			ctx.beginPath();
+			ctx.arc(x, y, 6, 0, 2 * Math.PI);
+			ctx.fill();
+		}
+		*/
+		
 		news_left -= 0.5;
 		if(news_left < min_left){
 			news_left = $(window).width();
@@ -185,3 +198,21 @@ $(window).bind('touchend', function(e){
 		$("#face").css({filter: "brightness(1)", width: face_width});
 	}
 });
+
+/*
+$(window).bind('touchstart', function(e){
+	var x = e.changedTouches[0].pageX;
+	var y = e.changedTouches[0].pageY;
+	console.log(x + ", " + y);
+
+	var plus_x = (canvas.width / 4) - x;
+	var plus_y = middle_y - y;
+	console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
+	console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
+	
+	locs.push({
+		plus_x: -plus_x,
+		plus_y: -plus_y
+	});
+});
+*/

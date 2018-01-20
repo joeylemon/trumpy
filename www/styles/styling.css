@@ -128,17 +128,17 @@ body {
 }
 
 .face {
-	bottom: 60px;
+	bottom: 100px;
 	filter: drop-shadow(2px 2px 4px #000);
 }
 
 .face img {
-	width: 210px;
+	width: 185px;
 }
 
 .count {
 	position: fixed;
-	bottom: 5px;
+	bottom: 55px;
 	left: 8px;
 	font-family: bigfont;
 	font-size: 20px;
@@ -150,6 +150,15 @@ body {
 .count .pers {
 	font-family: profont;
 	font-size: 17px;
+}
+
+.ad {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 50px;
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 .scroll-container {
@@ -196,7 +205,7 @@ body {
 
 .vid-img {
 	position: fixed;
-	bottom: 92px;
+	bottom: 135px;
 	right: 8px;
 	width: 45px;
 	height: auto;
@@ -210,7 +219,7 @@ body {
 
 .vid-reward {
 	position: fixed;
-	bottom: 75px;
+	bottom: 118px;
 	right: 6px;
 	width: 80px;
 	height: auto;
@@ -224,7 +233,7 @@ body {
 
 .shop-img {
 	position: fixed;
-	bottom: 6px;
+	bottom: 56px;
 	right: 6px;
 	width: 50px;
 	height: auto;

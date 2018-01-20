@@ -47,10 +47,9 @@ Agent.prototype.fromData = function(data){
 };
 
 Agent.prototype.setRandomLocation = function(){
-	var x = rand(bounds.top_left_x, bounds.top_right_x);
-	var y = rand(bounds.top_left_y, bounds.bottom_right_y);
-	this.x = x;
-	this.y = y;
+	var loc = getRandomLocation();
+	this.x = loc.x;
+	this.y = loc.y;
 	
 	/*
 	if(distance({x: x, y: y}, {x: (canvas.width / 2) + 180, y: (canvas.height / 2) - 319}) < 50){

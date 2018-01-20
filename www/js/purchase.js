@@ -11,7 +11,11 @@ Purchase.prototype.getProperCost = function(){
 };
 
 Purchase.prototype.getProperID = function(){
-	return this.id.replace("_", " ");
+	if(this.options.name){
+		return this.options.name;
+	}else{
+		return this.id.replace("_", " ");
+	}
 };
 
 Purchase.prototype.getDescription = function(){
