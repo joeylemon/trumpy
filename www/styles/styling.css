@@ -250,14 +250,24 @@ body {
 	padding-right: 30px;
 }
 
-.shop-menu::-webkit-scrollbar {
-	width: 0 !important;
+.shop-menu {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.shop-menu .no-scrollbar {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+	padding-right: 17px;
 }
 
 .shop-menu .settings-img {
 	position: absolute;
 	top: 5px;
-	right: 0px;
+	left: 240px;
 	width: 30px;
 }
 
@@ -293,7 +303,7 @@ body {
 .shop-menu h1 {
 	font-size: 35px;
 	margin: 5px;
-	margin-left: 10px;
+	margin-left: -90px;
 	font-family: profont;
 	text-align: center;
 	border-bottom: 3px solid #000;
