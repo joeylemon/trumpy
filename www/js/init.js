@@ -13,7 +13,9 @@ function onDeviceReady() {
 		StatusBar.hide();
 
 		admob.setOptions({
-			overlap: true
+			publisherId: admobid.banner,
+			overlap: true,
+			isTesting: true
 		});
 
 		admob.banner.config({
