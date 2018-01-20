@@ -149,7 +149,7 @@ body {
 
 .count .pers {
 	font-family: profont;
-	font-size: 17px;
+	font-size: 15px;
 }
 
 .ad {
@@ -279,7 +279,7 @@ body {
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	bottom: 0px;
+	bottom: -200px;
 	left: 0px;
 	background-color: #fff;
 }
@@ -288,7 +288,7 @@ body {
 	width: 237px;
 	height: 30px;
 	padding-top: 5px;
-	margin-left: 10px;
+	margin-left: 16px;
 	text-align: center;
 	font-family: profont;
 	font-size: 25px;
@@ -312,9 +312,10 @@ body {
 
 .shop-menu .shop-item {
 	position: relative;
-	width: 230px;
+	width: 260px;
 	height: 70px;
-	margin-left: 15px;
+	margin-left: 0px;
+	padding-left: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 	font-size: 20px !important;
 	user-select: none;
@@ -365,12 +366,12 @@ body {
 
 .shop-menu .shop-item .amount {
 	position: absolute;
-	left: 0px;
-	bottom: -2px;
+	left: 22px;
+	bottom: 0px;
 	width: 50px;
 	font-size: 14px;
 	font-family: profont;
-	text-align: center;
+	text-align: right;
 }
 
 .light {
