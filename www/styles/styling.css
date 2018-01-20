@@ -250,6 +250,10 @@ body {
 	padding-right: 30px;
 }
 
+.shop-menu::-webkit-scrollbar {
+	width: 0 !important;
+}
+
 .shop-menu .settings-img {
 	position: absolute;
 	top: 5px;
