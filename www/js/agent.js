@@ -11,16 +11,14 @@ var Agent = function(id, loc, size, circle){
 	if(id){
 		this.delay = purchases[id].options.delay;
 		this.color = purchases[id].options.color;
+		this.circle = purchases[id].options.circle;
+		this.max = purchases[id].options.max;
 	}
 	
 	if(!size && id){
 		this.size = {width: purchases[id].options.size, height: purchases[id].options.size};
 	}else{
 		this.size = size;
-	}
-	
-	if(id){
-		this.circle = purchases[id].options.circle;
 	}
 	
 	this.deport_total = unroundedRand(0, 1);
@@ -40,6 +38,8 @@ Agent.prototype.fromData = function(data){
 	
 	this.circle = data.circle;
 	
+	this.max = data.max;
+	
 	this.deport_total = unroundedRand(0, 1);
 	this.lastAdd = Date.now();
 	
@@ -47,7 +47,7 @@ Agent.prototype.fromData = function(data){
 };
 
 Agent.prototype.setRandomLocation = function(){
-	var loc = getRandomLocation();
+	var loc = getRandomLocation(true);
 	this.x = loc.x;
 	this.y = loc.y;
 	
@@ -62,7 +62,11 @@ Agent.prototype.setRandomLocation = function(){
 };
 
 Agent.prototype.canDeport = function(){
-	return (this.deport_total >= 1);
+	var max = 1;
+	if(this.max){
+		max = this.max;
+	}
+	return (this.deport_total >= max);
 };
 
 Agent.prototype.deport = function(){

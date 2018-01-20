@@ -145,7 +145,7 @@ var borderLocs = [{
 var settings = {
 	illegal_size: 3,
 	fade_dist: 20,
-	max_people: 1000,
+	max_people: 5000,
 	max_faces: 75,
 	click_factor: 10
 }
@@ -202,42 +202,49 @@ var default_purchases = {
 		delay: 1000 / 8,
 		color: '#30afe5',
 		size: 4,
+		max: 2,
 		circle: true
 	}),
 	wall: new Purchase('wall', 13000, 'agent', {
 		delay: 1000 / 45,
 		color: '#DD8500',
 		size: settings.illegal_size + 6,
+		max: 6,
 		circle: false
 	}),
 	executive_order: new Purchase('executive_order', 140000, 'agent', {
 		delay: 1000 / 260,
 		color: '#787878',
 		size: 6,
+		max: 30,
 		circle: true
 	}),
 	local_law: new Purchase('local_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
 		color: '#21C800',
 		size: 7,
+		max: 60,
 		circle: true
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		color: '#f4d442',
 		size: 7,
+		max: 400,
 		circle: true
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
 		color: '#f48341',
 		size: 10,
+		max: 1000,
 		circle: true
 	}),
 	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
 		delay: 1000 / 260000,
 		color: '#41b5f4',
 		size: 10,
+		max: 5000,
 		circle: true
 	})
 };
@@ -278,6 +285,7 @@ function saveData() {
 			total_persecond: total_persecond,
 			total_perclick: total_perclick,
 			news: news,
+			locs: locs,
 			people: JSON.stringify(people),
 			agents: JSON.stringify(agents),
 			purchases: JSON.stringify(purchases)
@@ -306,6 +314,8 @@ function getData() {
 		news = data.news;
 		$("#news").html(news.join(" <img src='images/fox.png'> "));
 		min_left = -$("#news").width() - 120;
+		
+		locs = data.locs;
 
 		setTimeout(function () {
 			var people_json = $.parseJSON(data.people);
