@@ -14,8 +14,7 @@ function onDeviceReady() {
 
 		admob.setOptions({
 			publisherId: admobid.banner,
-			overlap: true,
-			isTesting: true
+			overlap: true
 		});
 
 		admob.banner.config({
