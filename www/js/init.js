@@ -14,7 +14,8 @@ function onDeviceReady() {
 
 		admob.setOptions({
 			publisherId: admobid.banner,
-			overlap: true
+			overlap: true,
+			isTesting: true
 		});
 
 		admob.banner.config({
@@ -80,6 +81,8 @@ document.addEventListener('admob.rewardvideo.events.START', function(event) {
 
 document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
 	deported += reward;
+	$("#count").html(deported.toFixed(0));
+	
 	reward *= 3;
 	$("#vid-reward").html("+" + reward);
 });
