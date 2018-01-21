@@ -34,6 +34,18 @@
 			
 			<canvas class="canvas" id="canvas"></canvas>
 			
+			<div class="overlay" id="overlay" onclick="exitAlert();"></div>
+			<div class="alert" id="alert">
+				<div class="header">
+					<img src="images/fox.png">
+					<p>breaking news</p>
+				</div>
+				<div class="message">
+					<p id="alert-message"></p>
+				</div>
+				<div class="exit" onclick="exitAlert();">x</div>
+			</div>
+			
 			<div class="ad"></div>
 			
 			<img class="shop-img" id="shop-img" src="images/shop.png" ontouchend="slideout.open();">

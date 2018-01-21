@@ -166,6 +166,8 @@ var total = 0;
 var shopOpen = false;
 var settingsOpen = false;
 
+var alertShown = 0;
+
 var news_left = 0;
 var news = [
 	"Donald Trump approval rating sitting at 35%.",
@@ -417,6 +419,30 @@ function updateNews(string) {
 
 	$("#news").html(news.join(" <img src='images/fox.png'> "));
 	min_left = -$("#news").width() - 120;
+}
+
+function showAlert(message){
+	$("#alert-message").html(message);
+	$("#overlay").show();
+	$("#alert").show();
+	
+	alertShown = Date.now();
+}
+
+function exitAlert(){
+	if(canExitAlert()){
+		$("#overlay").hide();
+		$("#alert").hide();
+		alertShown = 0;
+	}
+}
+
+function canExitAlert(){
+	return (Date.now() - alertShown > 1500);
+}
+
+function isAlertOpen(){
+	return (alertShown != 0);
 }
 
 function capitalize(str) {

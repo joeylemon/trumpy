@@ -161,6 +161,65 @@ body {
 	background-color: rgba(0, 0, 0, 0.5);
 }
 
+.overlay {
+	display: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	bottom: 0px;
+	right: 0px;
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+.alert {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 150px;
+	margin-left: -150px;
+	margin-top: -75px;
+	background-color: #fff;
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+	border-radius: 4px;
+}
+
+.alert .header {
+	height: 50px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.alert .header img {
+	height: 40px;
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+.alert .header p {
+	display: inline-block;
+	vertical-align: top;
+	font-family: bigfont;
+	font-size: 30px;
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
+.alert .message {
+	text-align: center;
+	font-family: profont;
+	font-size: 20px;
+	padding: 5px;
+}
+
+.alert .exit {
+	position: absolute;
+	top: -4px;
+	right: 3px;
+	font-family: profont;
+	font-size: 25px;
+}
+
 .scroll-container {
 	overflow: hidden;
 }

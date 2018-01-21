@@ -1,5 +1,9 @@
 draw();
 
+setTimeout(function(){
+	showAlert("Mexico has begun showing signs of aggression against the United States. Is war eminent?");
+}, 2000);
+
 function draw(){
 	var now = Date.now();
 	if(now - lastDraw > 15){
@@ -175,7 +179,7 @@ $(window).bind('touchstart', function(e){
 		return;
 	}
 	
-	if(!click && !slideout.isOpen()){
+	if(!click && !slideout.isOpen() && !isAlertOpen()){
 		click = true;
 		$("#face").css({filter: "brightness(0.8)", width: expanded_face});
 	}
