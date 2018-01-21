@@ -1,9 +1,5 @@
 draw();
 
-setTimeout(function(){
-	showAlert("Mexico has begun showing signs of aggression against the United States. Is war eminent?");
-}, 2000);
-
 function draw(){
 	var now = Date.now();
 	if(now - lastDraw > 15){

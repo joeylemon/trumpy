@@ -384,6 +384,10 @@ function toggleSettings() {
 	settingsOpen = !settingsOpen;
 }
 
+function resetCount(){
+	deported = 0;
+}
+
 updateObscuredItems();
 function updateObscuredItems() {
 	for (var key in purchases) {
@@ -421,6 +425,7 @@ function updateNews(string) {
 	min_left = -$("#news").width() - 120;
 }
 
+// showAlert("Mexico has begun showing signs of aggression against the United States. Is war eminent?");
 function showAlert(message){
 	$("#alert-message").html(message);
 	$("#overlay").show();
@@ -438,7 +443,7 @@ function exitAlert(){
 }
 
 function canExitAlert(){
-	return (Date.now() - alertShown > 1500);
+	return (Date.now() - alertShown > 1000);
 }
 
 function isAlertOpen(){
