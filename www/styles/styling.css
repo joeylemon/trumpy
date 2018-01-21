@@ -265,21 +265,21 @@ body {
 
 .vid-img {
 	position: fixed;
-	bottom: 135px;
+	bottom: 130px;
 	right: 8px;
-	width: 45px;
+	width: 40px;
 	height: auto;
 	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
 	user-select: none;
 }
 
 .vid-img:active {
-	width: 47px;
+	width: 43px;
 }
 
 .vid-reward {
 	position: fixed;
-	bottom: 118px;
+	bottom: 113px;
 	right: 6px;
 	width: 80px;
 	height: auto;
@@ -295,14 +295,14 @@ body {
 	position: fixed;
 	bottom: 56px;
 	right: 6px;
-	width: 50px;
+	width: 45px;
 	height: auto;
 	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
 	user-select: none;
 }
 
 .shop-img:active {
-	width: 52px;
+	width: 48px;
 }
 
 .shop-container {

@@ -10,14 +10,18 @@ function draw(){
 			people[i].draw();
 		}
 		
+		
 		for(var i = 0; i < faces.length; i++){
 			faces[i].draw();
 		}
 		
+		
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
 		for(var i = 0; i < agents.length; i++){
 			var agent = agents[i];
 			agent.draw();
 		}
+		ctx.shadowColor = "transparent";
 		
 		/*
 		for(var i = 0; i < locs.length; i++){
@@ -82,12 +86,6 @@ function addWall(){
 	}
 	
 	agents.push(new Agent("wall", {x: x, y: y}, {width: 25, height: 10}));
-}
-
-function addOrder(){
-	var x = ((canvas.width / 4) + 103.5) + rand(-20, 20);
-	var y = middle_y + rand(-20, 20);
-	agents.push(new Agent("executive_order", {x: x, y: y}));
 }
 
 var buyPos = undefined;
@@ -160,12 +158,6 @@ function buy(e, id){
 			}else if(item.current == 8){
 				updateNews("The wall between the U.S. and Mexico is showing great promise. Immeasurable amounts of illegals being deterred from the U.S. already.");
 			}
-		}else if(id == "executive_order"){
-			addOrder();
-			
-			if(item.current == 1){
-				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
-			}
 		}else{
 			agents.push(new Agent(id));
 			
@@ -173,6 +165,8 @@ function buy(e, id){
 				updateNews("Trump supporters getting involved by helping identify illegal immigrants.");
 			}else if(id == "agent" && item.current == 1){
 				updateNews("President pushing for deportation agents to start doing their jobs--handing out bonuses for agents with the highest deport totals.");
+			}else if(id == "executive_order" && item.current == 1){
+				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
 			}
 		}
 	}

@@ -99,13 +99,16 @@ canvas.style.height = window.innerHeight;
 ctx.scale(2, 2);
 
 ctx.shadowBlur = 7;
-ctx.shadowOffsetX = 5;
-ctx.shadowOffsetY = 5;
+ctx.shadowOffsetX = 2;
+ctx.shadowOffsetY = 2;
+
 
 var canvas_bg = document.getElementById("canvas_bg");
 var ctx_bg = canvas_bg.getContext("2d");
 ctx_bg.canvas.width = window.innerWidth;
 ctx_bg.canvas.height = window.innerHeight;
+ctx_bg.globalAlpha = 0.7;
+
 
 var face_width = $("#face").width();
 var expanded_face = face_width - 5;
@@ -235,7 +238,7 @@ var default_purchases = {
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		color: '#f4d442',
-		size: 24,
+		size: 20,
 		max: 400,
 		circle: false
 	}),

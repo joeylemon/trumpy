@@ -106,9 +106,8 @@ Agent.prototype.draw = function(){
 		ctx.fillRect(this.x - (width / 2), this.y - (height / 2), width, height);
 	}
 	*/
-	ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+	
 	ctx.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
-	ctx.shadowColor = "transparent";
 	
 	this.deport();
 };
