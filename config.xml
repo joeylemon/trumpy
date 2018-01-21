@@ -9,7 +9,6 @@
 	</author>
     <icon height="120" platform="ios" src="www/images/icon2x.png" width="120" />
     <engine name="ios" spec="~4.4.0" />
-    <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="orienation" value="portrait" />
     <preference name="StatusBarStyle" value="lightcontent" />
