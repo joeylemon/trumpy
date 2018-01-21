@@ -327,7 +327,7 @@ function getData() {
 						y: person_data.y
 					});
 				person = person.fromData(person_data);
-				if (!doesIndexExist(people, person) && people.length < settings.max_people && (i % 3) == 0) {
+				if (!doesIndexExist(people, person) && people.length < settings.max_people && (i % 5) == 0) {
 					people.push(person);
 				}
 			}
