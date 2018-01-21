@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.jlemon.crypto" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="https://phonegap.com/ns/1.0">
-    <name>Trumpy</name>
+    <name>Trumpy Click</name>
     <description>
 		A satirical endless idle game based around the deportation of illegal southern immigrants.
 	</description>

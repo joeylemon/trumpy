@@ -327,7 +327,7 @@ function getData() {
 						y: person_data.y
 					});
 				person = person.fromData(person_data);
-				if (!doesIndexExist(people, person)) {
+				if (!doesIndexExist(people, person) && people.length < settings.max_people) {
 					people.push(person);
 				}
 			}
@@ -355,7 +355,7 @@ function getData() {
 				var face_data = data.faces[i];
 				var face = new FallingFace();
 				face = face.fromData(face_data);
-				if (!doesIndexExist(faces, face)) {
+				if (!doesIndexExist(faces, face) && faces.length < settings.max_faces) {
 					faces.push(face);
 				}
 			}
