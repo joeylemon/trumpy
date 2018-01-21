@@ -274,7 +274,7 @@ body {
 }
 
 .vid-img:active {
-	width: 47px;
+	width: 41px;
 }
 
 .vid-reward {
@@ -302,7 +302,7 @@ body {
 }
 
 .shop-img:active {
-	width: 52px;
+	width: 46px;
 }
 
 .shop-container {
@@ -332,7 +332,9 @@ body {
 }
 
 .shop-menu .settings-img:active {
-	width: 32px;
+	width: 26px;
+	top: 7px;
+	left: 243px;
 }
 
 .shop-menu .settings {
