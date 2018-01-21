@@ -4,6 +4,8 @@ var Purchase = function(id, cost, type, options){
 	this.cost = cost;
 	this.type = type;
 	this.options = options;
+	this.img = new Image();
+	this.img.src = "images/" + id + ".png";
 };
 
 Purchase.prototype.getProperCost = function(){

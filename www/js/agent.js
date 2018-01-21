@@ -13,6 +13,7 @@ var Agent = function(id, loc, size, circle){
 		this.color = purchases[id].options.color;
 		this.circle = purchases[id].options.circle;
 		this.max = purchases[id].options.max;
+		this.img = purchases[id].img;
 	}
 	
 	if(!size && id){
@@ -30,6 +31,8 @@ Agent.prototype.fromData = function(data){
 	this.y = data.y;
 	
 	this.id = data.id;
+	
+	this.img = purchases[this.id].img;
 	
 	this.delay = data.delay;
 	this.color = data.color;
@@ -87,6 +90,7 @@ Agent.prototype.deport = function(){
 };
 
 Agent.prototype.draw = function(){
+	/*
 	ctx.fillStyle = this.color;
 	if(this.circle){
 		ctx.beginPath();
@@ -101,6 +105,10 @@ Agent.prototype.draw = function(){
 		var height = this.size.height * multiplier;
 		ctx.fillRect(this.x - (width / 2), this.y - (height / 2), width, height);
 	}
+	*/
+	ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+	ctx.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
+	ctx.shadowColor = "transparent";
 	
 	this.deport();
 };

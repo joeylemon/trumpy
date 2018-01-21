@@ -49,7 +49,7 @@ function addPerson(start, click){
 	}
 	
 	if(click){
-		deported += 1 + (purchases.click_multiplier.current * purchases.click_multiplier.options.rate);
+		deported += 1 + total_perclick;
 		total++;
 	}
 	
@@ -105,6 +105,30 @@ function buy(e, id){
 	
 	var item = purchases[id];
 	if(deported >= item.cost){
+		
+		if(id == "click_multiplier"){
+			/* Seperate buy function, otherwise deport total becomes NaN? */
+			item.current++;
+			
+			deported -= item.cost;
+			document.getElementById("count").innerHTML = deported.toFixed(0);
+			
+			total_perclick += item.options.rate;
+			document.getElementById("perclick").innerHTML = total_perclick.toFixed(1);
+			
+			if(item.current == 1){
+				updateNews("Unknown entity is assisting in the war on illegals--large amounts of immigrants exiting the country for no apparent reason.");
+			}
+			
+			document.getElementById(id + "-amount").innerHTML = item.current;
+			
+			item.cost += Math.round(item.cost / 6.5);
+			updateItemCosts();
+			updateObscuredItems();
+			
+			return;
+		}
+		
 		item.current++;
 		
 		deported -= item.cost;
@@ -118,13 +142,6 @@ function buy(e, id){
 				updateNews("Deportation totals are soaring, reaching a record high of " + milestones[0] + " illegals deported per second.");
 				milestones.splice(0, 1);
 			}
-		}else if(item.type == 'upgrade'){
-			total_perclick += item.options.rate;
-			document.getElementById("perclick").innerHTML = total_perclick.toFixed(1);
-			
-			if(item.current == 1){
-				updateNews("Unknown entity is assisting in the war on illegals--large amounts of immigrants exiting the country for no apparent reason.");
-			}
 		}
 		
 		document.getElementById(id + "-amount").innerHTML = item.current;
@@ -136,17 +153,17 @@ function buy(e, id){
 		if(id == "wall"){
 			addWall();
 			
-			if(id == "wall" && item.current == 1){
+			if(item.current == 1){
 				updateNews("After a long wait, Trump finally laying down foundations for the wall between the U.S. and Mexico.");
-			}else if(id == "wall" && item.current == 4){
+			}else if(item.current == 4){
 				updateNews("Trump rapidly expanding the wall--already stretching hundreds of miles on the border.");
-			}else if(id == "wall" && item.current == 8){
+			}else if(item.current == 8){
 				updateNews("The wall between the U.S. and Mexico is showing great promise. Immeasurable amounts of illegals being deterred from the U.S. already.");
 			}
 		}else if(id == "executive_order"){
 			addOrder();
 			
-			if(id == "executive_order" && item.current == 1){
+			if(item.current == 1){
 				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
 			}
 		}else{

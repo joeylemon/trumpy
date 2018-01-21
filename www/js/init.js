@@ -98,6 +98,10 @@ canvas.style.width = window.innerWidth;
 canvas.style.height = window.innerHeight;
 ctx.scale(2, 2);
 
+ctx.shadowBlur = 7;
+ctx.shadowOffsetX = 5;
+ctx.shadowOffsetY = 5;
+
 var canvas_bg = document.getElementById("canvas_bg");
 var ctx_bg = canvas_bg.getContext("2d");
 ctx_bg.canvas.width = window.innerWidth;
@@ -147,7 +151,7 @@ var settings = {
 	fade_dist: 20,
 	max_people: 5000,
 	max_faces: 75,
-	click_factor: 10
+	click_factor: 7
 }
 
 /* Declare global variables */
@@ -187,7 +191,7 @@ var default_purchases = {
 	republican: new Purchase('republican', 10, 'agent', {
 		delay: 1000 / 0.2,
 		color: '#A20000',
-		size: 3,
+		size: 15,
 		circle: true
 	}),
 	click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
@@ -197,13 +201,13 @@ var default_purchases = {
 		name: "i.c.e. agent",
 		delay: 1000 / 1,
 		color: '#000',
-		size: 4,
+		size: 18,
 		circle: true
 	}),
 	border_agent: new Purchase('border_agent', 1100, 'agent', {
 		delay: 1000 / 8,
 		color: '#30afe5',
-		size: 4,
+		size: 20,
 		max: 2,
 		circle: true
 	}),
@@ -217,35 +221,35 @@ var default_purchases = {
 	executive_order: new Purchase('executive_order', 140000, 'agent', {
 		delay: 1000 / 260,
 		color: '#787878',
-		size: 6,
+		size: 22,
 		max: 30,
 		circle: false
 	}),
 	local_law: new Purchase('local_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
 		color: '#21C800',
-		size: 7,
+		size: 22,
 		max: 110,
 		circle: false
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		color: '#f4d442',
-		size: 7,
+		size: 24,
 		max: 400,
 		circle: false
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
 		color: '#f48341',
-		size: 10,
+		size: 25,
 		max: 1000,
 		circle: false
 	}),
 	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
 		delay: 1000 / 260000,
 		color: '#41b5f4',
-		size: 10,
+		size: 28,
 		max: 5000,
 		circle: false
 	})
@@ -286,6 +290,7 @@ function saveData() {
 			deported: deported,
 			total_persecond: total_persecond,
 			total_perclick: total_perclick,
+			closed: Date.now(),
 			news: news,
 			faces: faces,
 			locs: locs,
@@ -304,8 +309,12 @@ getData();
 function getData() {
 	if (window.localStorage.getItem('data')) {
 		var data = $.parseJSON(window.localStorage.getItem('data'));
-
-		deported = data.deported;
+		
+		var secondsSinceLast = (Date.now() - data.closed) / 1000;
+		var toAdd = (secondsSinceLast * data.total_persecond);
+		console.log("Seconds since last: " + secondsSinceLast);
+		console.log("Add: " + toAdd);
+		deported = data.deported + toAdd;
 		$("#count").html(deported.toFixed(0));
 
 		total_persecond = Math.round(data.total_persecond * 10) / 10;
@@ -386,6 +395,7 @@ function toggleSettings() {
 
 function resetCount(){
 	deported = 0;
+	$("#count").html(deported.toFixed(0));
 }
 
 updateObscuredItems();
@@ -401,7 +411,12 @@ function updateObscuredItems() {
 
 	if (total_persecond > (settings.click_factor / 10)) {
 		var new_rate = total_persecond / settings.click_factor;
-		purchases.click_multiplier.cost = new_rate * 110;
+		
+		purchases.click_multiplier.cost = (new_rate * 95);
+		for(var i = 0; i < purchases.click_multiplier.current; i++){
+			purchases.click_multiplier.cost += Math.round(purchases.click_multiplier.cost / 20);
+		}
+		
 		purchases.click_multiplier.options.rate = new_rate;
 		$("#click_multiplier-per").html(purchases.click_multiplier.getDescription());
 		$("#click_multiplier-cost").html(purchases.click_multiplier.getProperCost());
