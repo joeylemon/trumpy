@@ -328,7 +328,7 @@ function getData() {
 					});
 				person = person.fromData(person_data);
 				if (!doesIndexExist(people, person) && people.length < settings.max_people) {
-					people.push(person);
+					//people.push(person);
 				}
 			}
 
