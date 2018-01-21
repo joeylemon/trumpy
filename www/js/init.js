@@ -327,7 +327,9 @@ function getData() {
 						y: person_data.y
 					});
 				person = person.fromData(person_data);
-				people.push(person);
+				if (!doesIndexExist(people, person)) {
+					people.push(person);
+				}
 			}
 
 			var agents_json = $.parseJSON(data.agents);
@@ -335,7 +337,7 @@ function getData() {
 				var agent_data = agents_json[i];
 				var agent = new Agent(0);
 				agent = agent.fromData(agent_data);
-				if (!doesAgentExist(agent)) {
+				if (!doesIndexExist(agents, agent)) {
 					agents.push(agent);
 				}
 			}
@@ -353,16 +355,18 @@ function getData() {
 				var face_data = data.faces[i];
 				var face = new FallingFace();
 				face = face.fromData(face_data);
-				faces.push(face);
+				if (!doesIndexExist(faces, face)) {
+					faces.push(face);
+				}
 			}
 		}, 100);
 	}
 }
 
-function doesAgentExist(agent) {
-	for (var i = 0; i < agents.length; i++) {
-		var a = agents[i];
-		if (a.x == agent.x && a.y == agent.y) {
+function doesIndexExist(array, object) {
+	for (var i = 0; i < array.length; i++) {
+		var a = array[i];
+		if (a.x == object.x && a.y == object.y) {
 			return true;
 		}
 	}
