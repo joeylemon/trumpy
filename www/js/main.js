@@ -1,5 +1,6 @@
 draw();
 
+/* Draw the game */
 function draw(){
 	var now = Date.now();
 	if(now - lastDraw > 15){
@@ -45,6 +46,7 @@ function draw(){
 	window.requestAnimationFrame(draw);
 }
 
+/* Add a person to the map */
 function addPerson(start, click){
 	if(people.length < settings.max_people){
 		people.push(new Person(start));
@@ -63,123 +65,9 @@ function addPerson(start, click){
 	}
 }
 
-function addWall(){
-	var chunk = rand(1, 5);
-	var x, y;
-	if(chunk == 1){
-		x = rand((canvas.width / 4) - 153.5, (canvas.width / 4) - 138.5);
-		y = rand(middle_y + 36, middle_y + 38);
-	}else if(chunk == 2){
-		x = rand((canvas.width / 4) - 124.5, (canvas.width / 4) - 92.5);
-		y = rand(middle_y + 49, middle_y + 58);
-	}else if(chunk == 3){
-		x = rand((canvas.width / 4) - 107.5, (canvas.width / 4) - 75.5);
-		y = rand(middle_y + 56, middle_y + 56);
-	}else if(chunk == 4){
-		x = rand((canvas.width / 4) - 69.5, (canvas.width / 4) - 39.5);
-		y = rand(middle_y + 67, middle_y + 76);
-	}else if(chunk == 5){
-		x = rand((canvas.width / 4) - 29.5, (canvas.width / 4) - 12.5);
-		y = rand(middle_y + 94, middle_y + 103);
-	}
-	
-	agents.push(new Agent("wall", {x: x, y: y}, {width: 25, height: 10}));
-}
-
-var buyPos = undefined;
-
-function attemptBuy(e, id){
-	buyPos = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY};
-}
-
-function buy(e, id){
-	var pos = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY};
-	if(distance(buyPos, pos) > 20){
-		return;
-	}
-	buyPos = undefined;
-	
-	var item = purchases[id];
-	if(deported >= item.cost){
-		
-		if(id == "click_multiplier"){
-			/* Seperate buy function, otherwise deport total becomes NaN? */
-			item.current++;
-			
-			deported -= item.cost;
-			document.getElementById("count").innerHTML = deported.toFixed(0);
-			
-			total_perclick += item.options.rate;
-			document.getElementById("perclick").innerHTML = total_perclick.toFixed(1);
-			
-			if(item.current == 1){
-				updateNews("Unknown entity is assisting in the war on illegals--large amounts of immigrants exiting the country for no apparent reason.");
-			}
-			
-			document.getElementById(id + "-amount").innerHTML = item.current;
-			
-			item.cost += Math.round(item.cost / 6.5);
-			updateItemCosts();
-			updateObscuredItems();
-			
-			saveData();
-			
-			return;
-		}
-		
-		item.current++;
-		
-		deported -= item.cost;
-		document.getElementById("count").innerHTML = deported.toFixed(0);
-		
-		if(item.type == 'agent'){
-			total_persecond += (1000 / item.options.delay);
-			document.getElementById("persecond").innerHTML = total_persecond.toFixed(1);
-			
-			if(total_persecond > milestones[0]){
-				updateNews("Deportation totals are soaring, reaching a record high of " + milestones[0] + " illegals deported per second.");
-				milestones.splice(0, 1);
-			}
-		}
-		
-		document.getElementById(id + "-amount").innerHTML = item.current;
-		
-		item.cost += Math.round(item.cost / 6.5);
-		updateItemCosts();
-		updateObscuredItems();
-		
-		if(id == "wall"){
-			addWall();
-			
-			if(item.current == 1){
-				updateNews("After a long wait, Trump finally laying down foundations for the wall between the U.S. and Mexico.");
-			}else if(item.current == 4){
-				updateNews("Trump rapidly expanding the wall--already stretching hundreds of miles on the border.");
-			}else if(item.current == 8){
-				updateNews("The wall between the U.S. and Mexico is showing great promise. Immeasurable amounts of illegals being deterred from the U.S. already.");
-			}
-		}else{
-			agents.push(new Agent(id));
-			
-			if(id == "republican" && item.current == 1){
-				updateNews("Trump supporters getting involved by helping identify illegal immigrants.");
-			}else if(id == "agent" && item.current == 1){
-				updateNews("President pushing for deportation agents to start doing their jobs--handing out bonuses for agents with the highest deport totals.");
-			}else if(id == "executive_order" && item.current == 1){
-				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
-			}
-		}
-		
-		saveData();
-	}
-}
-
-function getRandomBorder(){
-	return borderLocs[rand(0, borderLocs.length - 1)];
-}
-
 var click = false;
 
+/* Listen for the touch start to begin adding a person */
 $(window).bind('touchstart', function(e){
 	var x = e.changedTouches[0].pageX;
 	var y = e.changedTouches[0].pageY;
@@ -194,15 +82,9 @@ $(window).bind('touchstart', function(e){
 	}
 });
 
+/* Listen for the touch end to add the person */
 $(window).bind('touchend', function(e){
 	if(click){
-		/*
-		var x = e.changedTouches[0].pageX;
-		var y = e.changedTouches[0].pageY;
-		if(x < face.width && y > (canvas.height - face.height)){
-			addPerson();
-		}
-		*/
 		addPerson(undefined, true);
 		click = false;
 		$("#face").css({filter: "brightness(1)", width: face_width});
@@ -210,6 +92,7 @@ $(window).bind('touchend', function(e){
 });
 
 /*
+var temp_locs = new Array();
 $(window).bind('touchstart', function(e){
 	var x = e.changedTouches[0].pageX;
 	var y = e.changedTouches[0].pageY;
@@ -220,7 +103,7 @@ $(window).bind('touchstart', function(e){
 	console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
 	console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
 	
-	locs.push({
+	temp_locs.push({
 		plus_x: -plus_x,
 		plus_y: -plus_y
 	});

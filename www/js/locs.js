@@ -31,3 +31,23 @@ function getRandomLocation(agent){
 		y: middle_y + plus_y
 	};
 }
+
+
+var default_borders = [{"plus_x":-121.90899658203125,"plus_y":38.02099609375},{"plus_x":-96.5,"plus_y":52},{"plus_x":-65.99500274658203,"plus_y":50.92500305175781},{"plus_x":-53.09100341796875,"plus_y":72.42999267578125},{"plus_x":-26.210006713867188,"plus_y":71.35499572753906},{"plus_x":-14.382003784179688,"plus_y":99.31199645996094},{"plus_x":-19.75799560546875,"plus_y":82.10800170898438},{"plus_x":-58.46800231933594,"plus_y":59.52699279785156}];
+var borders = default_borders.slice();
+
+/* Get a random border location */
+function getRandomBorder(){
+	var i = rand(0, borders.length - 1);
+	var loc = borders[i];
+	
+	borders.splice(i, 1);
+	if(borders.length < 1){
+		borders = default_borders;
+	}
+	
+	return {
+		x: (canvas.width / 4) + loc.plus_x,
+		y: middle_y + loc.plus_y
+	};;
+}

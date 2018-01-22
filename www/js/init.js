@@ -1,93 +1,12 @@
-var admobid = {
-	banner: 'ca-app-pub-3849622190274333/9972053558',
-	interstitial: 'ca-app-pub-3849622190274333/4913978629',
-	reward_video: 'ca-app-pub-3849622190274333/6461087910'
-};
-var lastInterstitial = 0;
-var shown = false;
-
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
-
-		admob.setOptions({
-			publisherId: admobid.banner,
-			overlap: true,
-			isTesting: true
-		});
-
-		admob.banner.config({
-			id: admobid.banner,
-			autoShow: true
-		});
-		admob.banner.prepare();
-
-		admob.interstitial.config({
-			id: admobid.interstitial,
-			autoShow: false
-		});
-		admob.interstitial.prepare();
-		
-		slideout.on('open', function () {
-			if (canDisplayInterstitial()) {
-				admob.interstitial.show();
-				shown = true;
-				lastInterstitial = Date.now();
-			}
-		});
-		slideout.on('close', function () {
-			if (shown) {
-				admob.interstitial.config({
-					id: admobid.interstitial,
-					autoShow: false
-				});
-				admob.interstitial.prepare();
-				
-				shown = false;
-			}
-			if (settingsOpen) {
-				toggleSettings();
-			}
-		});
-
-		admob.rewardvideo.config({
-			id: admobid.reward_video
-		});
-		admob.rewardvideo.prepare();
 	} catch (e) {}
+	
 	getData();
 }
-
-function canDisplayInterstitial() {
-	return (Date.now() - lastInterstitial > 75000) && Math.random() <= 0.4;
-}
-
-function watchRewardVideo() {
-	admob.rewardvideo.show();
-}
-
-document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
-	$("#reward").show();
-});
-
-document.addEventListener('admob.rewardvideo.events.START', function(event) {
-	$("#reward").hide();
-	setTimeout(function(){
-		admob.rewardvideo.prepare();
-	}, 45000);
-});
-
-document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
-	deported += getRewardAmount();
-	$("#count").html(deported.toFixed(0));
-	
-	videosWatched++;
-	$("#vid-reward").html("+" + getProperRewardAmount());
-});
-
-
 
 /* Initialize canvas */
 var canvas = document.getElementById("canvas");
@@ -126,27 +45,6 @@ var bounds = {
 	top_right_x: (canvas.width / 4) + 120,
 	bottom_right_y: middle_y + 57
 }
-
-var borderLocs = [{
-		x: (canvas.width / 4) - 123,
-		y: middle_y + 56
-	}, {
-		x: (canvas.width / 4) - 104,
-		y: middle_y + 54
-	}, {
-		x: (canvas.width / 4) - 79,
-		y: middle_y + 58
-	}, {
-		x: (canvas.width / 4) - 60,
-		y: middle_y + 78
-	}, {
-		x: (canvas.width / 4) - 39,
-		y: middle_y + 73
-	}, {
-		x: (canvas.width / 4) - 30,
-		y: middle_y + 93
-	}
-];
 
 /* Define settings */
 var settings = {
@@ -190,105 +88,12 @@ var milestones = [
 	1000
 ];
 
-// http://cookieclicker.wikia.com/wiki/Building
-var default_purchases = {
-	republican: new Purchase('republican', 10, 'agent', {
-		delay: 1000 / 0.2,
-		color: '#A20000',
-		size: 15,
-		circle: true
-	}),
-	click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
-		rate: .10
-	}),
-	agent: new Purchase('agent', 100, 'agent', {
-		name: "i.c.e. agent",
-		delay: 1000 / 1,
-		color: '#000',
-		size: 18,
-		circle: true
-	}),
-	border_agent: new Purchase('border_agent', 1100, 'agent', {
-		delay: 1000 / 8,
-		color: '#30afe5',
-		size: 20,
-		max: 2,
-		circle: true
-	}),
-	wall: new Purchase('wall', 13000, 'agent', {
-		delay: 1000 / 45,
-		color: '#DD8500',
-		size: settings.illegal_size + 6,
-		max: 6,
-		circle: false
-	}),
-	executive_order: new Purchase('executive_order', 140000, 'agent', {
-		delay: 1000 / 260,
-		color: '#787878',
-		size: 22,
-		max: 30,
-		circle: false
-	}),
-	local_law: new Purchase('local_law', 1500000, 'agent', {
-		delay: 1000 / 1400,
-		color: '#21C800',
-		size: 22,
-		max: 110,
-		circle: false
-	}),
-	state_law: new Purchase('state_law', 20000000, 'agent', {
-		delay: 1000 / 7800,
-		color: '#f4d442',
-		size: 20,
-		max: 400,
-		circle: false
-	}),
-	federal_law: new Purchase('federal_law', 330000000, 'agent', {
-		delay: 1000 / 44000,
-		color: '#f48341',
-		size: 25,
-		max: 1000,
-		circle: false
-	}),
-	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
-		delay: 1000 / 260000,
-		color: '#41b5f4',
-		size: 28,
-		max: 5000,
-		circle: false
-	})
-};
-var purchases = default_purchases;
-
-/* Set up page */
-initShop();
-function initShop() {
-	for (var key in purchases) {
-		var item = purchases[key];
-		var details = item.getDetails();
-		$("#shop").append(getPurchaseHTML(details));
-	}
-	setTimeout(updateItemCosts, 500);
-}
-
-function getPurchaseHTML(details) {
-	return `
-		<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
-			<img src="` + details.image + `">
-			<div class="desc" id="` + details.id + `-desc">
-				<p class="name">` + details.title + `</p>
-				<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
-				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
-			</div>
-			<div class="amount">
-				<p id="` + details.id + `-amount">` + details.amount + `</p>
-			</div>
-		</div>
-	`;
-}
-
 /* Declare functions */
+
+/* Save progress every 5 seconds */
 setInterval(saveData, 5000);
+
+/* Save progress */
 function saveData() {
 	window.localStorage.setItem('data', JSON.stringify({
 			deported: deported,
@@ -305,11 +110,13 @@ function saveData() {
 		}));
 }
 
+/* Clear progress and reload page */
 function clearData() {
 	window.localStorage.clear();
 	window.location.reload(true);
 }
 
+/* Retrieve the progress and add it to game */
 getData();
 function getData() {
 	if (window.localStorage.getItem('data')) {
@@ -317,8 +124,7 @@ function getData() {
 		
 		var secondsSinceLast = (Date.now() - data.closed) / 1000;
 		var toAdd = (secondsSinceLast * data.total_persecond);
-		console.log("Seconds since last: " + secondsSinceLast);
-		console.log("Add: " + toAdd);
+		console.log("Seconds since last: " + secondsSinceLast.toFixed(1) + " | Added: " + toAdd.toFixed(1));
 		deported = data.deported + toAdd;
 		$("#count").html(deported.toFixed(0));
 
@@ -382,6 +188,7 @@ function getData() {
 	}
 }
 
+/* Check if an object exists in an array */
 function doesIndexExist(array, object) {
 	for (var i = 0; i < array.length; i++) {
 		var a = array[i];
@@ -392,6 +199,7 @@ function doesIndexExist(array, object) {
 	return false;
 }
 
+/* Toggle the settings page */
 function toggleSettings() {
 	if (!settingsOpen) {
 		$("#settings").show();
@@ -401,71 +209,13 @@ function toggleSettings() {
 	settingsOpen = !settingsOpen;
 }
 
+/* Reset the deport count */
 function resetCount(){
 	deported = 0;
 	$("#count").html(deported.toFixed(0));
 }
 
-updateObscuredItems();
-function updateObscuredItems() {
-	for (var key in purchases) {
-		var item = purchases[key];
-		if (deported < item.cost) {
-			$("#" + key).css("opacity", "0.3");
-		} else {
-			$("#" + key).css("opacity", "1");
-		}
-	}
-
-	if (total_persecond > (settings.click_factor / 10)) {
-		var new_rate = total_persecond / settings.click_factor;
-		
-		purchases.click_multiplier.cost = (new_rate * 95);
-		for(var i = 0; i < purchases.click_multiplier.current; i++){
-			purchases.click_multiplier.cost += Math.round(purchases.click_multiplier.cost / 20);
-		}
-		
-		purchases.click_multiplier.options.rate = new_rate;
-		$("#click_multiplier-per").html(purchases.click_multiplier.getDescription());
-		$("#click_multiplier-cost").html(purchases.click_multiplier.getProperCost());
-	}
-}
-
-function updateItemCosts() {
-	for (var key in purchases) {
-		var item = purchases[key];
-		$("#" + key + "-cost").html(item.getProperCost());
-	}
-}
-
-function getRewardAmount(){
-	return 1000 + (videosWatched * 2000) + (deported / 10);
-}
-
-function getProperRewardAmount(){
-	return getShortenedNumber(getRewardAmount());
-}
-
-function getShortenedNumber(num){
-	var dividers = [
-		{div: 1000000000000000, ext: "Q"},
-		{div: 1000000000000, ext: "T"},
-		{div: 1000000000, ext: "B"},
-		{div: 1000000, ext: "M"},
-		{div: 1000, ext: "K"}
-	];
-	
-	for(var i = 0; i < dividers.length; i++){
-		var entry = dividers[i];
-		if(num >= entry.div){
-			var fixed = (num / entry.div) % 1 == 0 ? (num / entry.div).toFixed(0) : (num / entry.div).toFixed(1);
-			return fixed + entry.ext;
-		}
-	}
-	
-	return num.toString();
-}
-
+/* Add a new string to the news at the top of the page */
 function updateNews(string) {
 	if (news.length > 5) {
 		news.splice(0, 1);
@@ -477,6 +227,7 @@ function updateNews(string) {
 }
 
 // showAlert("Mexico has begun showing signs of aggression against the United States. Is war eminent?");
+/* Show a news alert in the center of the screen */
 function showAlert(message){
 	$("#alert-message").html(message);
 	$("#overlay").show();
@@ -485,6 +236,7 @@ function showAlert(message){
 	alertShown = Date.now();
 }
 
+/* Remove the alert from the screen */
 function exitAlert(){
 	if(canExitAlert()){
 		$("#overlay").hide();
@@ -493,32 +245,39 @@ function exitAlert(){
 	}
 }
 
+/* Check if the alert can be removed */
 function canExitAlert(){
 	return (Date.now() - alertShown > 1000);
 }
 
+/* Check if the alert is open */
 function isAlertOpen(){
 	return (alertShown != 0);
 }
 
+/* Capitalize the first letter of a string */
 function capitalize(str) {
 	return str.replace(/\w\S*/g, function (txt) {
 		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 	});
 }
 
+/* Get a number with commas */
 function getNumberWithCommas(number) {
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+/* Get a random whole number in the range */
 function rand(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+/* Get a random float in the range */
 function unroundedRand(min, max) {
 	return (Math.random() * (max - min) + min);
 }
 
+/* Get the distance between two locations */
 function distance(pos1, pos2) {
 	return Math.sqrt(((pos1.x - pos2.x) * (pos1.x - pos2.x)) + ((pos1.y - pos2.y) * (pos1.y - pos2.y)));
 }
