@@ -80,11 +80,11 @@ document.addEventListener('admob.rewardvideo.events.START', function(event) {
 });
 
 document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
-	deported += reward;
+	deported += getRewardAmount();
 	$("#count").html(deported.toFixed(0));
 	
-	reward *= 3;
-	$("#vid-reward").html("+" + reward);
+	videosWatched++;
+	$("#vid-reward").html("+" + getProperRewardAmount());
 });
 
 
@@ -166,9 +166,10 @@ var total_persecond = 0;
 var total_perclick = 0;
 
 var deported = 5100000000;
-var reward = 1000;
 var lastDraw = 0;
 var total = 0;
+
+var videosWatched = 0;
 
 var shopOpen = false;
 var settingsOpen = false;
@@ -293,6 +294,7 @@ function saveData() {
 			deported: deported,
 			total_persecond: total_persecond,
 			total_perclick: total_perclick,
+			videos_watched: videosWatched,
 			closed: Date.now(),
 			news: news,
 			faces: faces,
@@ -325,6 +327,9 @@ function getData() {
 
 		total_perclick = Math.round(data.total_perclick * 10) / 10;
 		$("#perclick").html(total_perclick);
+		
+		videosWatched = data.videos_watched;
+		$("#vid-reward").html("+" + getProperRewardAmount());
 
 		news = data.news;
 		$("#news").html(news.join(" <img src='images/fox.png'> "));
@@ -431,6 +436,34 @@ function updateItemCosts() {
 		var item = purchases[key];
 		$("#" + key + "-cost").html(item.getProperCost());
 	}
+}
+
+function getRewardAmount(){
+	return 1000 + (videosWatched * 2000) + (deported / 10);
+}
+
+function getProperRewardAmount(){
+	return getShortenedNumber(getRewardAmount());
+}
+
+function getShortenedNumber(num){
+	var dividers = [
+		{div: 1000000000000000, ext: "Q"},
+		{div: 1000000000000, ext: "T"},
+		{div: 1000000000, ext: "B"},
+		{div: 1000000, ext: "M"},
+		{div: 1000, ext: "K"}
+	];
+	
+	for(var i = 0; i < dividers.length; i++){
+		var entry = dividers[i];
+		if(num >= entry.div){
+			var fixed = (num / entry.div) % 1 == 0 ? (num / entry.div).toFixed(0) : (num / entry.div).toFixed(1);
+			return fixed + entry.ext;
+		}
+	}
+	
+	return num.toString();
 }
 
 function updateNews(string) {

@@ -6,15 +6,13 @@ function draw(){
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx_bg.clearRect(0, 0, canvas.width, canvas.height);
 		
-		for(var i = 0; i < people.length; i++){
-			people[i].draw();
-		}
-		
-		
 		for(var i = 0; i < faces.length; i++){
 			faces[i].draw();
 		}
 		
+		for(var i = 0; i < people.length; i++){
+			people[i].draw();
+		}
 		
 		ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
 		for(var i = 0; i < agents.length; i++){
@@ -124,6 +122,8 @@ function buy(e, id){
 			updateItemCosts();
 			updateObscuredItems();
 			
+			saveData();
+			
 			return;
 		}
 		
@@ -169,6 +169,8 @@ function buy(e, id){
 				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
 			}
 		}
+		
+		saveData();
 	}
 }
 
