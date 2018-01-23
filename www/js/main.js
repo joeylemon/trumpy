@@ -50,9 +50,7 @@ function draw(){
 
 /* Add a person to the map */
 function addPerson(start, click){
-	if(people.length < settings.max_people){
-		people.push(new Person(start));
-	}
+	people.push(new Person(start));
 	
 	if(click){
 		deported += 1 + total_perclick;

@@ -115,5 +115,5 @@ function getShortenedNumber(num){
 		}
 	}
 	
-	return num.toString();
+	return num.toFixed(0);
 }

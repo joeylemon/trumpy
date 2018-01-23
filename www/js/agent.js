@@ -69,7 +69,7 @@ Agent.prototype.canDeport = function(){
 	if(this.max){
 		max = this.max;
 	}
-	return (this.deport_total >= max);
+	return (this.deport_total >= max && people.length < settings.max_people);
 };
 
 Agent.prototype.deport = function(){

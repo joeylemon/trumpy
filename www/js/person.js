@@ -17,7 +17,7 @@ var Person = function(start){
 	
 	this.speed = unroundedRand(0.2, 0.6);
 	
-	this.color = getRandomColor();
+	this.color = getNextColor();
 };
 
 Person.prototype.fromData = function(data){
@@ -26,6 +26,8 @@ Person.prototype.fromData = function(data){
 	this.dest = data.dest;
 	this.id = data.id;
 	this.speed = data.speed;
+	
+	this.color = getNextColor();
 	
 	return this;
 };

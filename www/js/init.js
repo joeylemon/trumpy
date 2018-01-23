@@ -51,8 +51,8 @@ var bounds = {
 var settings = {
 	illegal_size: 3,
 	fade_dist: 20,
-	max_people: 5000,
-	max_faces: 75,
+	max_people: 2000,
+	max_faces: 50,
 	click_factor: 7
 }
 
@@ -316,6 +316,7 @@ function isAlertOpen(){
 	return (alertShown != 0);
 }
 
+var color_index = 0;
 var colors = [
 	"132, 92, 0",
 	"139, 69, 19",
@@ -324,8 +325,11 @@ var colors = [
 	"160, 82, 45"
 ];
 /* Get a random color from the array */
-function getRandomColor(){
-	return colors[rand(0, colors.length - 1)];
+function getNextColor(){
+	var color = colors[color_index];
+	color_index = color_index < colors.length - 1 ? color_index + 1 : 0;
+	
+	return color;
 }
 
 /* Capitalize the first letter of a string */
