@@ -27,6 +27,7 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="FadeSplashScreen" value="false" />
+	<preference name="BackgroundColor" value="0x00000000" />
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
     <preference name="DisallowOverscroll" value="true" />
@@ -36,8 +37,4 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.1" />
-	<feature name="SplashScreen">
-		<param name="ios-package" value="CDVSplashScreen" />
-		<param name="onload" value="true" />
-	</feature>
 </widget>
