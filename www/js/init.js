@@ -73,6 +73,8 @@ var videosWatched = 0;
 var shopOpen = false;
 var settingsOpen = false;
 
+var gamePaused = false;
+
 var alertShown = 0;
 
 var news_left = 0;
@@ -124,18 +126,15 @@ function getData() {
 	if (window.localStorage.getItem('data')) {
 		var data = $.parseJSON(window.localStorage.getItem('data'));
 		
-		var secondsSinceLast = (Date.now() - data.closed) / 1000;
-		var toAdd = (secondsSinceLast * data.total_persecond);
-		console.log("Seconds since last: " + secondsSinceLast.toFixed(1) + " | Added: " + toAdd.toFixed(1));
-		deported = data.deported + toAdd;
-		$("#count").html(deported.toFixed(0));
-		showAdded(toAdd);
+		deported = data.deported;
 
 		total_persecond = Math.round(data.total_persecond * 10) / 10;
 		$("#persecond").html(total_persecond);
 
 		total_perclick = Math.round(data.total_perclick * 10) / 10;
 		$("#perclick").html(total_perclick);
+		
+		addToTotalSinceTime(data.closed);
 		
 		videosWatched = data.videos_watched;
 		$("#vid-reward").html("+" + getProperRewardAmount());
@@ -193,6 +192,17 @@ function getData() {
 	}
 }
 
+/* Add to the total based on a timestamp */
+function addToTotalSinceTime(closed){
+	var secondsSinceLast = (Date.now() - closed) / 1000;
+	var toAdd = (secondsSinceLast * total_persecond);
+	if(toAdd > 1){
+		deported += toAdd;
+		$("#count").html(deported.toFixed(0));
+		showAdded(toAdd);
+	}
+}
+
 /* Check if an object exists in an array */
 function doesIndexExist(array, object) {
 	for (var i = 0; i < array.length; i++) {
@@ -202,6 +212,22 @@ function doesIndexExist(array, object) {
 		}
 	}
 	return false;
+}
+
+var temp = {closed: 0};
+document.addEventListener("pause", paused, false);
+document.addEventListener("resume", resumed, false);
+
+/* Detect when the app is moved to the background */
+function paused() {
+	temp.closed = Date.now();
+	gamePaused = true;
+}
+
+/* Detect when the app is back in the foreground */
+function resumed() {
+	addToTotalSinceTime(temp.closed);
+	gamePaused = false;
 }
 
 /* Display an animate the amount added after starting app */
@@ -288,6 +314,18 @@ function canExitAlert(){
 /* Check if the alert is open */
 function isAlertOpen(){
 	return (alertShown != 0);
+}
+
+var colors = [
+	"132, 92, 0",
+	"139, 69, 19",
+	"205, 133, 63",
+	"244, 164, 96",
+	"160, 82, 45"
+];
+/* Get a random color from the array */
+function getRandomColor(){
+	return colors[rand(0, colors.length - 1)];
 }
 
 /* Capitalize the first letter of a string */

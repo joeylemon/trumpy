@@ -2,46 +2,48 @@ draw();
 
 /* Draw the game */
 function draw(){
-	var now = Date.now();
-	if(now - lastDraw > 15){
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx_bg.clearRect(0, 0, canvas.width, canvas.height);
-		
-		for(var i = 0; i < faces.length; i++){
-			faces[i].draw();
-		}
-		
-		for(var i = 0; i < people.length; i++){
-			people[i].draw();
-		}
-		
-		ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-		for(var i = 0; i < agents.length; i++){
-			var agent = agents[i];
-			agent.draw();
-		}
-		ctx.shadowColor = "transparent";
-		
-		/*
-		for(var i = 0; i < locs.length; i++){
-			var loc = locs[i];
+	if(!gamePaused){
+		var now = Date.now();
+		if(now - lastDraw > 15){
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx_bg.clearRect(0, 0, canvas.width, canvas.height);
 			
-			var x = (canvas.width / 4) + loc.plus_x;
-			var y = middle_y + loc.plus_y;
+			for(var i = 0; i < faces.length; i++){
+				faces[i].draw();
+			}
 			
-			ctx.beginPath();
-			ctx.arc(x, y, 6, 0, 2 * Math.PI);
-			ctx.fill();
+			for(var i = 0; i < people.length; i++){
+				people[i].draw();
+			}
+			
+			ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+			for(var i = 0; i < agents.length; i++){
+				var agent = agents[i];
+				agent.draw();
+			}
+			ctx.shadowColor = "transparent";
+			
+			/*
+			for(var i = 0; i < locs.length; i++){
+				var loc = locs[i];
+				
+				var x = (canvas.width / 4) + loc.plus_x;
+				var y = middle_y + loc.plus_y;
+				
+				ctx.beginPath();
+				ctx.arc(x, y, 6, 0, 2 * Math.PI);
+				ctx.fill();
+			}
+			*/
+			
+			news_left -= 0.5;
+			if(news_left < min_left){
+				news_left = $(window).width();
+			}
+			$("#news").css({left: news_left});
+			
+			lastDraw = now;
 		}
-		*/
-		
-		news_left -= 0.5;
-		if(news_left < min_left){
-			news_left = $(window).width();
-		}
-		$("#news").css({left: news_left});
-		
-		lastDraw = now;
 	}
 	window.requestAnimationFrame(draw);
 }

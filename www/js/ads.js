@@ -48,6 +48,7 @@ function onDeviceReady() {
 				
 				shown = false;
 			}
+			
 			if (settingsOpen) {
 				toggleSettings();
 			}
@@ -62,7 +63,7 @@ function onDeviceReady() {
 }
 
 function canDisplayInterstitial() {
-	return (Date.now() - lastInterstitial > 75000) && Math.random() <= 0.4;
+	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4;
 }
 
 function watchRewardVideo() {

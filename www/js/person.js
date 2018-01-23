@@ -16,6 +16,8 @@ var Person = function(start){
 	this.id = rand(1, 10000);
 	
 	this.speed = unroundedRand(0.2, 0.6);
+	
+	this.color = getRandomColor();
 };
 
 Person.prototype.fromData = function(data){
@@ -52,13 +54,13 @@ Person.prototype.draw = function(){
 		this.x += (tx / dist) * this.speed;
 		this.y += (ty / dist) * this.speed;
 		
-		ctx.fillStyle = "rgba(132, 92, 0, 1)";
+		ctx.fillStyle = "rgba(" + this.color + ", 1)";
 		ctx.fillRect(this.x, this.y, settings.illegal_size, settings.illegal_size);
 	}else if(dist > 1){
 		this.x += (tx / dist) * this.speed;
 		this.y += (ty / dist) * this.speed;
 		
-		ctx.fillStyle = "rgba(132, 92, 0, " + (dist / settings.fade_dist) + ")";
+		ctx.fillStyle = "rgba(" + this.color + ", " + (dist / settings.fade_dist) + ")";
 		ctx.fillRect(this.x, this.y, settings.illegal_size, settings.illegal_size);
 	}else{
 		for(var i = 0; i < people.length; i++){
