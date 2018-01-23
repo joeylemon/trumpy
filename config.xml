@@ -35,5 +35,5 @@
     <plugin name="cordova-plugin-webviewcolor" spec="2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
-    <plugin name="cordova-plugin-splashscreen" spec="5.0.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="0.2.7" />
 </widget>
