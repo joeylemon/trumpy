@@ -19,11 +19,6 @@ FallingFace.prototype.draw = function(){
 	ctx_bg.drawImage(face, this.x, this.y);
 	
 	if(this.y > canvas.height + face.height){
-		for(var i = 0; i < faces.length; i++){
-			if(faces[i].id == this.id){
-				faces.splice(i, 1);
-				break;
-			}
-		}
+		faces_to_remove.push(this.id);
 	}
 };

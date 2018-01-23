@@ -3,49 +3,62 @@ draw();
 /* Draw the game */
 function draw(){
 	if(!gamePaused){
-		var now = Date.now();
-		if(now - lastDraw > 15){
-			ctx.clearRect(0, 0, canvas.width, canvas.height);
-			ctx_bg.clearRect(0, 0, canvas.width, canvas.height);
-			
-			for(var i = 0; i < faces.length; i++){
-				faces[i].draw();
-			}
-			
-			for(var i = 0; i < people.length; i++){
-				people[i].draw();
-			}
-			
-			ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-			for(var i = 0; i < agents.length; i++){
-				var agent = agents[i];
-				agent.draw();
-			}
-			ctx.shadowColor = "transparent";
-			
-			/*
-			for(var i = 0; i < locs.length; i++){
-				var loc = locs[i];
-				
-				var x = (canvas.width / 4) + loc.plus_x;
-				var y = middle_y + loc.plus_y;
-				
-				ctx.beginPath();
-				ctx.arc(x, y, 6, 0, 2 * Math.PI);
-				ctx.fill();
-			}
-			*/
-			
-			news_left -= 0.5;
-			if(news_left < min_left){
-				news_left = $(window).width();
-			}
-			$("#news").css({left: news_left});
-			
-			lastDraw = now;
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx_bg.clearRect(0, 0, canvas.width, canvas.height);
+		
+		clearPeople();
+		clearFaces();
+		
+		for(var i = 0; i < faces.length; i++){
+			faces[i].draw();
 		}
+		
+		for(var i = 0; i < people.length; i++){
+			people[i].draw();
+		}
+		
+		ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+		for(var i = 0; i < agents.length; i++){
+			var agent = agents[i];
+			agent.draw();
+		}
+		ctx.shadowColor = "transparent";
+		
+		news_left -= 0.5;
+		if(news_left < min_left){
+			news_left = $(window).width();
+		}
+		$("#news").css({left: news_left});
 	}
 	window.requestAnimationFrame(draw);
+}
+
+/* Clear old people from the array */
+function clearPeople(){
+	for(var x = 0; x < people_to_remove.length; x++){
+		var remove_id = people_to_remove[x];
+		for(var i = 0; i < people.length; i++){
+			if(people[i].id == remove_id){
+				people.splice(i, 1);
+				break;
+			}
+		}
+	}
+	people_to_remove = new Array();
+}
+
+/* Clear old faces from the array */
+function clearFaces(){
+	for(var x = 0; x < faces_to_remove.length; x++){
+		var remove_id = faces_to_remove[x];
+		for(var i = 0; i < faces.length; i++){
+			if(faces[i].id == remove_id){
+				faces.splice(i, 1);
+				break;
+			}
+		}
+	}
+	faces_to_remove = new Array();
 }
 
 /* Add a person to the map */

@@ -52,7 +52,7 @@ var settings = {
 	illegal_size: 3,
 	fade_dist: 10,
 	max_people: 2000,
-	max_faces: 50,
+	max_faces: 75,
 	click_factor: 7
 }
 
@@ -61,11 +61,15 @@ var people = new Array();
 var agents = new Array();
 var faces = new Array();
 
+var people_to_remove = new Array();
+var faces_to_remove = new Array();
+
 var total_persecond = 0;
 var total_perclick = 0;
 
 var deported = 5100000000;
-var lastDraw = 0;
+var lastRemove = 0;
+var lastId = 0;
 var total = 0;
 
 var videosWatched = 0;
@@ -108,6 +112,7 @@ function saveData() {
 			borders: borders,
 			faces: faces,
 			locs: locs,
+			lastId: lastId,
 			people: JSON.stringify(people),
 			agents: JSON.stringify(agents),
 			purchases: JSON.stringify(purchases)
@@ -142,6 +147,8 @@ function getData() {
 		news = data.news;
 		$("#news").html(news.join(" <img src='images/fox.png'> "));
 		min_left = -$("#news").width() - 120;
+		
+		lastId = data.lastId;
 
 		setTimeout(function () {
 			var people_json = $.parseJSON(data.people);
@@ -230,8 +237,13 @@ function resumed() {
 	gamePaused = false;
 }
 
+/* Toggle the game paused boolean */
+function togglePaused() {
+	gamePaused = !gamePaused;
+}
+
 /* Display an animate the amount added after starting app */
-function showAdded(added){
+function showAdded(added) {
 	var left = 5;
 	$("#added").show();
 	$("#added").css({left: left});
@@ -316,7 +328,6 @@ function isAlertOpen(){
 	return (alertShown != 0);
 }
 
-var color_index = 0;
 var colors = [
 	"132, 92, 0",
 	"139, 69, 19",
@@ -325,11 +336,17 @@ var colors = [
 	"160, 82, 45"
 ];
 /* Get a random color from the array */
-function getNextColor(){
-	var color = colors[color_index];
-	color_index = color_index < colors.length - 1 ? color_index + 1 : 0;
-	
-	return color;
+function getRandomColor(){
+	return colors[rand(0, colors.length - 1)];
+}
+
+/* Get the next id */
+function getNextID(){
+	lastId++;
+	if(lastId > 100000){
+		lastId = 0;
+	}
+	return lastId;
 }
 
 /* Capitalize the first letter of a string */
