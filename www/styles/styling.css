@@ -114,7 +114,6 @@ body {
 	height: auto;
 	padding: 0px;
 	margin: 0px;
-	margin-left: -10px;
 	text-align: center;
 	user-select: none;
 }
@@ -145,6 +144,7 @@ body {
 	color: #fff;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 	user-select: none;
+	text-decoration: none;
 }
 
 .count .pers {
@@ -162,11 +162,11 @@ body {
 	font-family: profont;
 	font-size: 25px;
 	color: rgba(255, 255, 255, 0.4);
+	text-align: center;
 }
 
-.ad p {
-	margin-top: 12px;
-	margin-left: 38px;
+.ad img {
+	width: 50px;
 }
 
 .overlay {

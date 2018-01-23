@@ -10,7 +10,7 @@ function getRandomLocation(agent){
 	if(agent){
 		locs.splice(i, 1);
 		if(locs.length < 3){
-			locs = default_locs;
+			locs = default_locs.slice();
 		}
 		
 		if(locs.length > 70){
@@ -37,17 +37,25 @@ var default_borders = [{"plus_x":-121.90899658203125,"plus_y":38.02099609375},{"
 var borders = default_borders.slice();
 
 /* Get a random border location */
-function getRandomBorder(){
+function getRandomBorder(person){
 	var i = rand(0, borders.length - 1);
 	var loc = borders[i];
 	
-	borders.splice(i, 1);
-	if(borders.length < 1){
-		borders = default_borders;
+	if(!person){
+		borders.splice(i, 1);
+		if(borders.length < 1){
+			borders = default_borders.slice();
+		}
+	}else{
+		i = rand(0, default_borders.length - 1);
+		loc = default_borders[i];
 	}
 	
+	var plus_x = loc.plus_x + rand(-10, 10);
+	var plus_y = loc.plus_y + rand(-5, 5);
+	
 	return {
-		x: (canvas.width / 4) + loc.plus_x,
-		y: middle_y + loc.plus_y
+		x: (canvas.width / 4) + plus_x,
+		y: middle_y + plus_y
 	};;
 }

@@ -6,7 +6,7 @@ var Person = function(start){
 		this.y = start.y;
 	}
 	
-	var border = getRandomBorder();
+	var border = getRandomBorder(true);
 	
 	this.dest = {
 		x: border.x + rand(-20, 20),

@@ -5,7 +5,12 @@ var Purchase = function(id, cost, type, options){
 	this.type = type;
 	this.options = options;
 	this.img = new Image();
-	this.img.src = "images/" + id + ".png";
+	
+	var img_id = id;
+	if(id == "wall"){
+		img_id = "wall_long";
+	}
+	this.img.src = "images/" + img_id + ".png";
 };
 
 Purchase.prototype.getProperCost = function(){

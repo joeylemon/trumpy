@@ -6,6 +6,10 @@ var admobid = {
 var lastInterstitial = 0;
 var shown = false;
 
+setTimeout(function(){
+	$("#loading-ad").hide();
+}, 5000);
+
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
@@ -105,7 +109,7 @@ function getShortenedNumber(num){
 		var entry = dividers[i];
 		if(num >= entry.div){
 			var fixed = (num / entry.div) % 1 == 0 ? (num / entry.div).toFixed(0) : (num / entry.div).toFixed(1);
-			return fixed + entry.ext;
+			return (fixed + entry.ext).replace(".0", "");
 		}
 	}
 	

@@ -31,6 +31,7 @@ ctx_bg.globalAlpha = 0.7;
 
 var face_width = $("#face").width();
 var expanded_face = face_width - 5;
+var face_bottom = $("#face-div").css("bottom");
 
 /* Load face image */
 var face = new Image();
@@ -102,6 +103,7 @@ function saveData() {
 			videos_watched: videosWatched,
 			closed: Date.now(),
 			news: news,
+			borders: borders,
 			faces: faces,
 			locs: locs,
 			people: JSON.stringify(people),
@@ -140,8 +142,6 @@ function getData() {
 		news = data.news;
 		$("#news").html(news.join(" <img src='images/fox.png'> "));
 		min_left = -$("#news").width() - 120;
-		
-		locs = data.locs;
 
 		setTimeout(function () {
 			var people_json = $.parseJSON(data.people);
@@ -184,6 +184,10 @@ function getData() {
 					faces.push(face);
 				}
 			}
+			
+			locs = data.locs;
+		
+			borders = data.borders;
 		}, 100);
 	}
 }

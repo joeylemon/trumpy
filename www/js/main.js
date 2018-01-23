@@ -79,6 +79,7 @@ $(window).bind('touchstart', function(e){
 	if(!click && !slideout.isOpen() && !isAlertOpen()){
 		click = true;
 		$("#face").css({filter: "brightness(0.8)", width: expanded_face});
+		$("#face-div").css({bottom: "103px"});
 	}
 });
 
@@ -88,6 +89,7 @@ $(window).bind('touchend', function(e){
 		addPerson(undefined, true);
 		click = false;
 		$("#face").css({filter: "brightness(1)", width: face_width});
+		$("#face-div").css({bottom: face_bottom});
 	}
 });
 

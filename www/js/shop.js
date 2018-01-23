@@ -132,7 +132,7 @@ function updateItemCosts() {
 
 /* Add a wall to the map */
 function addWall(){
-	agents.push(new Agent("wall", getRandomBorder(), {width: 25, height: 10}));
+	agents.push(new Agent("wall", getRandomBorder(), {width: 20, height: 10}));
 }
 
 
