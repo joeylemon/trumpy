@@ -27,7 +27,6 @@
     <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="FadeSplashScreen" value="false" />
-	<preference name="BackgroundColor" value="0x00000000" />
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
     <preference name="DisallowOverscroll" value="true" />

@@ -51,7 +51,7 @@ var bounds = {
 var settings = {
 	illegal_size: 3,
 	fade_dist: 10,
-	max_people: 2000,
+	max_people: 1000,
 	max_faces: 75,
 	click_factor: 7
 }

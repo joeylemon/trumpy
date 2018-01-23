@@ -61,11 +61,6 @@ function onDeviceReady() {
 	} catch (e) {}
 	
 	setTimeout(function(){
-		if(navigator){
-			showAlert("yes!");
-		}else{
-			showAlert("no");
-		}
 		navigator.splashscreen.hide();
 	}, 1000);
 	getData();
