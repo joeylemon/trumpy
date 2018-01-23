@@ -13,59 +13,59 @@ setTimeout(function(){
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
-		setTimeout(function(){
-			navigator.splashscreen.hide();
-			
-			admob.setOptions({
-				publisherId: admobid.banner,
-				overlap: true,
-				isTesting: true
-			});
+		admob.setOptions({
+			publisherId: admobid.banner,
+			overlap: true,
+			isTesting: true
+		});
 
-			admob.banner.config({
-				id: admobid.banner,
-				autoShow: true
-			});
-			admob.banner.prepare();
+		admob.banner.config({
+			id: admobid.banner,
+			autoShow: true
+		});
+		admob.banner.prepare();
 
-			admob.interstitial.config({
-				id: admobid.interstitial,
-				autoShow: false
-			});
-			admob.interstitial.prepare();
-			
-			slideout.on('open', function () {
-				if (canDisplayInterstitial()) {
-					admob.interstitial.show();
-					shown = true;
-					lastInterstitial = Date.now();
-				}
-			});
-			slideout.on('close', function () {
-				if (shown) {
-					admob.interstitial.config({
-						id: admobid.interstitial,
-						autoShow: false
-					});
-					admob.interstitial.prepare();
-					
-					shown = false;
-				}
+		admob.interstitial.config({
+			id: admobid.interstitial,
+			autoShow: false
+		});
+		admob.interstitial.prepare();
+		
+		slideout.on('open', function () {
+			if (canDisplayInterstitial()) {
+				admob.interstitial.show();
+				shown = true;
+				lastInterstitial = Date.now();
+			}
+		});
+		slideout.on('close', function () {
+			if (shown) {
+				admob.interstitial.config({
+					id: admobid.interstitial,
+					autoShow: false
+				});
+				admob.interstitial.prepare();
 				
-				if (settingsOpen) {
-					toggleSettings();
-				}
-			});
+				shown = false;
+			}
+			
+			if (settingsOpen) {
+				toggleSettings();
+			}
+		});
 
-			admob.rewardvideo.config({
-				id: admobid.reward_video
-			});
-			admob.rewardvideo.prepare();
-		}, 1000);
+		admob.rewardvideo.config({
+			id: admobid.reward_video
+		});
+		admob.rewardvideo.prepare();
 	} catch (e) {}
 	
 	getData();
 }
+
+setTimeout(function(){
+	navigator.splashscreen.hide();
+}, 3000);
 
 function canDisplayInterstitial() {
 	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4;
