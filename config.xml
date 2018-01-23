@@ -8,7 +8,7 @@
 		Joey Lemon
 	</author>
     <icon height="120" platform="ios" src="www/images/icon2x.png" width="120" />
-	<splash src="res/screen/ios/Default@2x~universal~anyany.png" />
+	<gap:splash src="splash/Default@2x~universal~anyany.png" gap:platform="ios" />
 	<engine name="ios" spec="~4.4.0" />
     <platform name="ios">
         <gap:config-file overwrite="true" parent="UIStatusBarHidden" platform="ios">
