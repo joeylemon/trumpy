@@ -10,12 +10,12 @@
     <icon height="120" platform="ios" src="www/images/icon2x.png" width="120" />
     <engine name="ios" spec="~4.4.0" />
     <platform name="ios">
-		<edit-config file="*-Info.plist" target="UIStatusBarHidden" mode="merge">
+		<config-file target="*-Info.plist" parent="UIStatusBarHidden">
 			<true/>
-		</edit-config>
-		<edit-config file="*-Info.plist" target="UIViewControllerBasedStatusBarAppearance" mode="merge">
+		</config-file>
+		<config-file target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance">
 			<false/>
-		</edit-config>
+		</config-file>
     </platform>
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
