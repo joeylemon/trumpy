@@ -84,7 +84,6 @@ Agent.prototype.deport = function(){
 	var add = diff / this.delay;
 	deported += add;
 	this.deport_total += add;
-	//console.log("diff:" + diff + ",add:" + add);
 	
 	this.lastAdd = now;
 };
