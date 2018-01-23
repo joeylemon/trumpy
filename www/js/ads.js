@@ -13,57 +13,57 @@ setTimeout(function(){
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
-		admob.setOptions({
-			publisherId: admobid.banner,
-			overlap: true,
-			isTesting: true
-		});
-
-		admob.banner.config({
-			id: admobid.banner,
-			autoShow: false
-		});
-		admob.banner.prepare();
-
-		admob.interstitial.config({
-			id: admobid.interstitial,
-			autoShow: false
-		});
-		admob.interstitial.prepare();
-		
-		slideout.on('open', function () {
-			if (canDisplayInterstitial()) {
-				admob.interstitial.show();
-				shown = true;
-				lastInterstitial = Date.now();
-			}
-		});
-		slideout.on('close', function () {
-			if (shown) {
-				admob.interstitial.config({
-					id: admobid.interstitial,
-					autoShow: false
-				});
-				admob.interstitial.prepare();
-				
-				shown = false;
-			}
+		setTimeout(function(){
+			navigator.splashscreen.hide();
 			
-			if (settingsOpen) {
-				toggleSettings();
-			}
-		});
+			admob.setOptions({
+				publisherId: admobid.banner,
+				overlap: true,
+				isTesting: true
+			});
 
-		admob.rewardvideo.config({
-			id: admobid.reward_video
-		});
-		admob.rewardvideo.prepare();
+			admob.banner.config({
+				id: admobid.banner,
+				autoShow: true
+			});
+			admob.banner.prepare();
+
+			admob.interstitial.config({
+				id: admobid.interstitial,
+				autoShow: false
+			});
+			admob.interstitial.prepare();
+			
+			slideout.on('open', function () {
+				if (canDisplayInterstitial()) {
+					admob.interstitial.show();
+					shown = true;
+					lastInterstitial = Date.now();
+				}
+			});
+			slideout.on('close', function () {
+				if (shown) {
+					admob.interstitial.config({
+						id: admobid.interstitial,
+						autoShow: false
+					});
+					admob.interstitial.prepare();
+					
+					shown = false;
+				}
+				
+				if (settingsOpen) {
+					toggleSettings();
+				}
+			});
+
+			admob.rewardvideo.config({
+				id: admobid.reward_video
+			});
+			admob.rewardvideo.prepare();
+		}, 1000);
 	} catch (e) {}
 	
-	setTimeout(function(){
-		navigator.splashscreen.hide();
-		admob.banner.show();
-	}, 1000);
 	getData();
 }
 
