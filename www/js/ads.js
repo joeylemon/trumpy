@@ -59,6 +59,8 @@ function onDeviceReady() {
 		});
 		admob.rewardvideo.prepare();
 	} catch (e) {}
+	
+	navigator.splashscreen.hide();
 	getData();
 }
 
