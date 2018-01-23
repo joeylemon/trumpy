@@ -21,7 +21,7 @@ function onDeviceReady() {
 
 		admob.banner.config({
 			id: admobid.banner,
-			autoShow: true
+			autoShow: false
 		});
 		admob.banner.prepare();
 
@@ -62,6 +62,7 @@ function onDeviceReady() {
 	
 	setTimeout(function(){
 		navigator.splashscreen.hide();
+		admob.banner.show();
 	}, 1000);
 	getData();
 }
