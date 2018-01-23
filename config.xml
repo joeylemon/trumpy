@@ -10,12 +10,12 @@
     <icon height="120" platform="ios" src="www/images/icon2x.png" width="120" />
     <engine name="ios" spec="~4.4.0" />
     <platform name="ios">
-		<config-file target="*-Info.plist" parent="UIStatusBarHidden">
+		<gap:config-file platform="ios" parent="UIStatusBarHidden" overwrite="true">
 			<true/>
-		</config-file>
-		<config-file target="*-Info.plist" parent="UIViewControllerBasedStatusBarAppearance">
+		</gap:config-file>
+		<gap:config-file platform="ios" parent="UIViewControllerBasedStatusBarAppearance" overwrite="true">
 			<false/>
-		</config-file>
+		</gap:config-file>
     </platform>
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
