@@ -19,10 +19,13 @@
             <false />
         </gap:config-file>
     </platform>
-	<preference name="SplashScreenDelay" value="30000" />
 	<preference name="ShowSplashScreenSpinner" value="false" />
-	<preference name="FadeSplashScreen" value="true" />
-	<preference name="FadeSplashScreenDuration" value="1.0" />
+	<preference name="ShowSplashScreen" value="true" />
+	<preference name="SplashScreen" value="screen" />
+	<preference name="SplashScreenDelay" value="30000" />
+	<preference name="AutoHideSplashScreen" value="false" />
+	<preference name="SplashShowOnlyFirstTime" value="false" />
+	<preference name="FadeSplashScreen" value="false" />
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
     <preference name="DisallowOverscroll" value="true" />
