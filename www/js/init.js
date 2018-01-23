@@ -129,6 +129,7 @@ function getData() {
 		console.log("Seconds since last: " + secondsSinceLast.toFixed(1) + " | Added: " + toAdd.toFixed(1));
 		deported = data.deported + toAdd;
 		$("#count").html(deported.toFixed(0));
+		showAdded(toAdd);
 
 		total_persecond = Math.round(data.total_persecond * 10) / 10;
 		$("#persecond").html(total_persecond);
@@ -201,6 +202,36 @@ function doesIndexExist(array, object) {
 		}
 	}
 	return false;
+}
+
+/* Display an animate the amount added after starting app */
+function showAdded(added){
+	var left = 5;
+	$("#added").show();
+	$("#added").css({left: left});
+	
+	$("#added").html("+" + getNumberWithCommas(added.toFixed(0)));
+	var opacity = parseFloat($("#added").css("opacity"));
+	
+	var task = setInterval(function(){
+		left += 0.5;
+		$("#added").css({left: left});
+		
+		if(left > 55){
+			if(opacity > 0){
+				opacity -= 0.02;
+				$("#added").css({opacity: opacity});
+			}else{
+				$("#added").hide();
+				clearInterval(task);
+			}
+		}else{
+			if(opacity < 1){
+				opacity += 0.04;
+				$("#added").css({opacity: opacity});
+			}
+		}
+	}, 15);
 }
 
 /* Toggle the settings page */

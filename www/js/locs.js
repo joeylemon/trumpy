@@ -38,6 +38,10 @@ var borders = default_borders.slice();
 
 /* Get a random border location */
 function getRandomBorder(person){
+	if(!borders){
+		borders = default_borders.slice();
+	}
+	
 	var i = rand(0, borders.length - 1);
 	var loc = borders[i];
 	

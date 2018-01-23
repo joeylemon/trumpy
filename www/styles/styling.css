@@ -152,6 +152,18 @@ body {
 	font-size: 15px;
 }
 
+.added {
+	display: none;
+	position: fixed;
+	bottom: 100px;
+	left: 5px;
+	font-family: bigfont;
+	font-size: 20px;
+	color: #47ce29;
+	opacity: 0;
+	text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
 .ad {
 	position: fixed;
 	bottom: 0px;

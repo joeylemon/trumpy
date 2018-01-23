@@ -81,6 +81,7 @@ document.addEventListener('admob.rewardvideo.events.START', function(event) {
 });
 
 document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
+	showAdded(getRewardAmount());
 	deported += getRewardAmount();
 	$("#count").html(deported.toFixed(0));
 	
