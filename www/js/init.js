@@ -236,7 +236,7 @@ function showAdded(added){
 	$("#added").show();
 	$("#added").css({left: left});
 	
-	$("#added").html("+" + getNumberWithCommas(added.toFixed(0)));
+	$("#added").html("+" + getShortenedNumber(added));
 	var opacity = parseFloat($("#added").css("opacity"));
 	
 	var task = setInterval(function(){
