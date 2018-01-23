@@ -18,11 +18,16 @@
         <gap:config-file overwrite="true" parent="UIViewControllerBasedStatusBarAppearance" platform="ios">
             <false />
         </gap:config-file>
+		<gap:config-file overwrite="true" parent="AutoHideSplashScreen" platform="ios">
+            <false />
+        </gap:config-file>
     </platform>
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="ShowSplashScreen" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="30000" />
+	<preference name="auto-hide-splash-screen" value="false" />
+    <preference name="AutoHideSplashScreen" value="false" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="FadeSplashScreen" value="false" />
     <preference name="SuppressesLongPressGesture" value="true" />
