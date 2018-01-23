@@ -63,9 +63,6 @@ function onDeviceReady() {
 	setTimeout(function(){
 		navigator.splashscreen.hide();
 	}, 1000);
-	setTimeout(function(){
-		navigator.splashscreen.show();
-	}, 5000);
 	getData();
 }
 
