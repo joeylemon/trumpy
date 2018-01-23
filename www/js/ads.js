@@ -60,12 +60,11 @@ function onDeviceReady() {
 		admob.rewardvideo.prepare();
 	} catch (e) {}
 	
+	setTimeout(function(){
+		navigator.splashscreen.hide();
+	}, 1000);
 	getData();
 }
-
-setTimeout(function(){
-	navigator.splashscreen.hide();
-}, 3000);
 
 function canDisplayInterstitial() {
 	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4;
