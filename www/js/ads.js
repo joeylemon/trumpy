@@ -60,7 +60,9 @@ function onDeviceReady() {
 		admob.rewardvideo.prepare();
 	} catch (e) {}
 	
-	navigator.splashscreen.hide();
+	setTimeout(function(){
+		navigator.splashscreen.hide();
+	}, 500);
 	getData();
 }
 
