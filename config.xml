@@ -18,9 +18,6 @@
         <gap:config-file overwrite="true" parent="UIViewControllerBasedStatusBarAppearance" platform="ios">
             <false />
         </gap:config-file>
-		<gap:config-file overwrite="true" parent="AutoHideSplashScreen" platform="ios">
-            <false />
-        </gap:config-file>
     </platform>
     <preference name="ShowSplashScreenSpinner" value="false" />
     <preference name="ShowSplashScreen" value="true" />
