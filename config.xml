@@ -34,7 +34,7 @@
     <plugin name="cordova-plugin-webviewcolor" spec="2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
-	<gap:plugin name="cordova-plugin-splashscreen" />
+	<gap:plugin name="cordova-plugin-splashscreen" source="npm" version="2.1.0" />
 	<feature name="SplashScreen">
 		<param name="ios-package" value="CDVSplashScreen" />
 	</feature>
