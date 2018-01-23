@@ -10,12 +10,12 @@
     <icon height="120" platform="ios" src="www/images/icon2x.png" width="120" />
     <engine name="ios" spec="~4.4.0" />
     <platform name="ios">
-        <config-file parent="UIStatusBarHidden" target="*-Info.plist">
-            <true />
-        </config-file>
-        <config-file parent="UIViewControllerBasedStatusBarAppearance" target="*-Info.plist">
-            <false />
-        </config-file>
+		<edit-config file="*-Info.plist" target="UIStatusBarHidden" mode="merge">
+			<true/>
+		</edit-config>
+		<edit-config file="*-Info.plist" target="UIViewControllerBasedStatusBarAppearance" mode="merge">
+			<false/>
+		</edit-config>
     </platform>
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
@@ -25,5 +25,4 @@
     <plugin name="cordova-plugin-webviewcolor" spec="2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
-    <plugin name="cordova-custom-config" spec="5.0.2" />
 </widget>
