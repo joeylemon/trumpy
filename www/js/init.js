@@ -50,7 +50,7 @@ var bounds = {
 /* Define settings */
 var settings = {
 	illegal_size: 3,
-	fade_dist: 20,
+	fade_dist: 10,
 	max_people: 2000,
 	max_faces: 50,
 	click_factor: 7

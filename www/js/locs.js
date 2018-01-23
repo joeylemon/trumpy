@@ -33,7 +33,7 @@ function getRandomLocation(agent){
 }
 
 
-var default_borders = [{"plus_x":-121.90899658203125,"plus_y":38.02099609375},{"plus_x":-96.5,"plus_y":52},{"plus_x":-65.99500274658203,"plus_y":50.92500305175781},{"plus_x":-53.09100341796875,"plus_y":72.42999267578125},{"plus_x":-26.210006713867188,"plus_y":71.35499572753906},{"plus_x":-14.382003784179688,"plus_y":99.31199645996094},{"plus_x":-19.75799560546875,"plus_y":82.10800170898438},{"plus_x":-58.46800231933594,"plus_y":59.52699279785156}];
+var default_borders = [{"plus_x":-121.90899658203125,"plus_y":38.02099609375},{"plus_x":-96.5,"plus_y":52},{"plus_x":-65.99500274658203,"plus_y":50.92500305175781},{"plus_x":-53.09100341796875,"plus_y":72.42999267578125},{"plus_x":-26.210006713867188,"plus_y":71.35499572753906},{"plus_x":-58.46800231933594,"plus_y":59.52699279785156}];
 var borders = default_borders.slice();
 
 /* Get a random border location */
@@ -55,7 +55,7 @@ function getRandomBorder(person){
 		loc = default_borders[i];
 	}
 	
-	var plus_x = loc.plus_x + rand(-10, 10);
+	var plus_x = loc.plus_x + rand(-13, 13);
 	var plus_y = loc.plus_y + rand(-5, 5);
 	
 	return {

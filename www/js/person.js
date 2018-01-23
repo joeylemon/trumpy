@@ -15,7 +15,7 @@ var Person = function(start){
 	
 	this.id = rand(1, 10000);
 	
-	this.speed = unroundedRand(0.2, 0.6);
+	this.speed = unroundedRand(0.3, 0.6);
 	
 	this.color = getNextColor();
 };
