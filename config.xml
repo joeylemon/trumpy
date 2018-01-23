@@ -8,9 +8,9 @@
 		Joey Lemon
 	</author>
     <icon height="120" platform="ios" src="www/images/icon2x.png" width="120" />
-	<splash src="splash/ios/iphone_6_7.png" platform="ios" width="750" height="1334" />
-	<splash src="splash/ios/iphone_6+_7+.png" platform="ios" width="1242" height="2208" />
-	<engine name="ios" spec="~4.4.0" />
+    <splash height="1334" platform="ios" src="splash/ios/iphone_6_7.png" width="750" />
+    <splash height="2208" platform="ios" src="splash/ios/iphone_6+_7+.png" width="1242" />
+    <engine name="ios" spec="~4.4.0" />
     <platform name="ios">
         <gap:config-file overwrite="true" parent="UIStatusBarHidden" platform="ios">
             <true />
@@ -19,13 +19,13 @@
             <false />
         </gap:config-file>
     </platform>
-	<preference name="ShowSplashScreenSpinner" value="false" />
-	<preference name="ShowSplashScreen" value="true" />
-	<preference name="SplashScreen" value="screen" />
-	<preference name="SplashScreenDelay" value="10000000000000" />
-	<preference name="AutoHideSplashScreen" value="false" />
-	<preference name="SplashShowOnlyFirstTime" value="false" />
-	<preference name="FadeSplashScreen" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="30000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="FadeSplashScreen" value="false" />
     <preference name="SuppressesLongPressGesture" value="true" />
     <preference name="Suppresses3DTouchGesture" value="true" />
     <preference name="DisallowOverscroll" value="true" />
@@ -34,5 +34,5 @@
     <plugin name="cordova-plugin-webviewcolor" spec="2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
-    <plugin name="cordova-plugin-splashscreen" spec="5.0.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="^3.1.0" />
 </widget>
