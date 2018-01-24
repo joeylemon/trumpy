@@ -33,7 +33,7 @@ function onDeviceReady() {
 			admob.interstitial.prepare();
 			
 			lastInterstitial = 1;
-		}, 2000);
+		}, 7500);
 		
 		slideout.on('open', function () {
 			if (canDisplayInterstitial()) {
@@ -63,7 +63,7 @@ function onDeviceReady() {
 				id: admobid.reward_video
 			});
 			admob.rewardvideo.prepare();
-		}, 7500);
+		}, 15000);
 	} catch (e) {}
 	
 	setTimeout(function(){
