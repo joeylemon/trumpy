@@ -28,6 +28,7 @@ function onDeviceReady() {
 			document.addEventListener('admob.banner.events.LOAD', function(event) {
 				moveBannerHTML();
 				admob.banner.show();
+				$("#reward").show();
 			});
 		}, 5000);
 		
@@ -66,10 +67,6 @@ function onDeviceReady() {
 				toggleSettings();
 			}
 		});
-		
-		setTimeout(function(){
-			$("#reward").show();
-		}, 8000);
 	} catch (e) {}
 	
 	setTimeout(function(){
@@ -96,6 +93,9 @@ function watchRewardVideo() {
 	admob.rewardvideo.prepare();
 	$("#reward").hide();
 	$("#video-loading").show();
+	setTimeout(function(){
+		$("#video-loading").hide();
+	}, 7000);
 }
 
 document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
