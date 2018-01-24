@@ -42,9 +42,9 @@ function onDeviceReady() {
 					autoShow: false
 				});
 				admob.interstitial.prepare();
-				document.addEventListener('admob.interstitial.events.LOAD', function(event) {
+				setTimeout(function(){
 					lastInterstitial = 1;
-				});
+				}, 2000);
 			}
 			
 			if (canDisplayInterstitial()) {
