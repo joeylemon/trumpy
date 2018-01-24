@@ -137,7 +137,7 @@ body {
 
 .count {
 	position: fixed;
-	bottom: 55px;
+	bottom: 5px;
 	left: 8px;
 	font-family: bigfont;
 	font-size: 20px;
@@ -155,30 +155,13 @@ body {
 .added {
 	display: none;
 	position: fixed;
-	bottom: 100px;
+	bottom: 50px;
 	left: 5px;
 	font-family: bigfont;
 	font-size: 20px;
 	color: #47ce29;
 	opacity: 0;
 	text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-}
-
-.ad {
-	position: fixed;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	height: 50px;
-	background-color: rgba(0, 0, 0, 0.5);
-	font-family: profont;
-	font-size: 25px;
-	color: rgba(255, 255, 255, 0.4);
-	text-align: center;
-}
-
-.ad img {
-	width: 50px;
 }
 
 .overlay {
@@ -313,7 +296,7 @@ body {
 
 .shop-img {
 	position: fixed;
-	bottom: 56px;
+	bottom: 7px;
 	right: 6px;
 	width: 50px;
 	height: auto;

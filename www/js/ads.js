@@ -18,12 +18,18 @@ function onDeviceReady() {
 			overlap: true,
 			isTesting: true
 		});
-
-		admob.banner.config({
-			id: admobid.banner,
-			autoShow: true
-		});
-		admob.banner.prepare();
+		
+		setTimeout(function(){
+			admob.banner.config({
+				id: admobid.banner,
+				autoShow: false
+			});
+			admob.banner.prepare();
+			document.addEventListener('admob.banner.events.LOAD', function(event) {
+				moveBannerHTML();
+				admob.banner.show();
+			});
+		}, 5000);
 		
 		setTimeout(function(){
 			admob.interstitial.config({
@@ -31,9 +37,10 @@ function onDeviceReady() {
 				autoShow: false
 			});
 			admob.interstitial.prepare();
-			
-			lastInterstitial = 1;
-		}, 7500);
+			document.addEventListener('admob.interstitial.events.LOAD', function(event) {
+				lastInterstitial = 1;
+			});
+		}, 10000);
 		
 		slideout.on('open', function () {
 			if (canDisplayInterstitial()) {
@@ -70,6 +77,12 @@ function onDeviceReady() {
 		navigator.splashscreen.hide();
 	}, 1000);
 	getData();
+}
+
+function moveBannerHTML(){
+	$("#count-div").css({bottom: "55px"});
+	$("#shop-img").css({bottom: "56px"});
+	$("#added").css({bottom: "100px"});
 }
 
 function canDisplayInterstitial() {
