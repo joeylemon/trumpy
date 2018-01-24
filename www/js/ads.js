@@ -68,11 +68,8 @@ function onDeviceReady() {
 		});
 		
 		setTimeout(function(){
-			admob.rewardvideo.config({
-				id: admobid.reward_video
-			});
-			admob.rewardvideo.prepare();
-		}, 25000);
+			$("#reward").show();
+		}, 6000);
 	} catch (e) {}
 	
 	setTimeout(function(){
@@ -92,15 +89,15 @@ function canDisplayInterstitial() {
 }
 
 function watchRewardVideo() {
-	admob.rewardvideo.show();
+	admob.rewardvideo.config({
+		id: admobid.reward_video,
+		autoShow: true
+	});
+	admob.rewardvideo.prepare();
+	$("#reward").hide();
 }
 
-document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
-	$("#reward").show();
-});
-
 document.addEventListener('admob.rewardvideo.events.START', function(event) {
-	$("#reward").hide();
 	setTimeout(function(){
 		admob.rewardvideo.prepare();
 	}, 45000);
