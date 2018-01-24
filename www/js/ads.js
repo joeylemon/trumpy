@@ -28,7 +28,10 @@ function onDeviceReady() {
 			document.addEventListener('admob.banner.events.LOAD', function(event) {
 				moveBannerHTML();
 				admob.banner.show();
-				$("#reward").show();
+				
+				setTimeout(function(){
+					$("#reward").show();
+				}, 1000);
 			});
 		}, 5000);
 		
