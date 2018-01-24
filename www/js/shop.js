@@ -64,6 +64,20 @@ var default_purchases = {
 		size: 28,
 		circle: false,
 		add_delay: 1000 / 25
+	}),
+	martial_law: new Purchase('martial_law', 75000000000, 'agent', {
+		delay: 1000 / 1600000,
+		color: '#41b5f4',
+		size: 28,
+		circle: false,
+		add_delay: 1000 / 25
+	}),
+	military_deployment: new Purchase('military_deployment', 1000000000000, 'agent', {
+		delay: 1000 / 10000000,
+		color: '#41b5f4',
+		size: 28,
+		circle: false,
+		add_delay: 1000 / 25
 	})
 };
 var purchases = default_purchases;
@@ -162,7 +176,7 @@ function buy(e, id){
 			document.getElementById("count").innerHTML = deported.toFixed(0);
 			
 			total_perclick += item.options.rate;
-			document.getElementById("perclick").innerHTML = total_perclick.toFixed(1);
+			updateCounts();
 			
 			if(item.current == 1){
 				updateNews("Unknown entity is assisting in the war on illegals--large amounts of immigrants exiting the country for no apparent reason.");
@@ -187,7 +201,7 @@ function buy(e, id){
 		
 		if(item.type == 'agent'){
 			total_persecond += (1000 / item.options.delay);
-			document.getElementById("persecond").innerHTML = total_persecond.toFixed(1);
+			updateCounts();
 			
 			if(total_persecond > milestones[0]){
 				updateNews("Deportation totals are soaring, reaching a record high of " + milestones[0] + " illegals deported per second.");

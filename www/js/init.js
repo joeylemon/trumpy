@@ -67,7 +67,7 @@ var faces_to_remove = new Array();
 var total_persecond = 0;
 var total_perclick = 0;
 
-var deported = 5100000000;
+var deported = Number.MAX_SAFE_INTEGER / 2;
 var videosWatched = 0;
 var alertShown = 0;
 var lastRemove = 0;
@@ -132,11 +132,9 @@ function getData() {
 		
 		deported = data.deported;
 
-		total_persecond = Math.round(data.total_persecond * 10) / 10;
-		$("#persecond").html(total_persecond);
-
-		total_perclick = Math.round(data.total_perclick * 10) / 10;
-		$("#perclick").html(total_perclick);
+		total_persecond = data.total_persecond;
+		total_perclick = data.total_perclick;
+		updateCounts();
 		
 		addToTotalSinceTime(data.closed);
 		
@@ -288,6 +286,19 @@ function resetCount(){
 	$("#count").html(deported.toFixed(0));
 }
 
+setTimeout(updateCounts, 0);
+/* Update the counts at the bottom of the screen */
+function updateCounts(){
+	$("#pers").css({fontSize: "15px"});
+	
+	$("#persecond").html(getNumberWithCommas(roundNumber(total_persecond)));
+	$("#perclick").html(getNumberWithCommas(roundNumber(total_perclick)));
+	
+	if($("#pers").width() > 305){
+		$("#pers").css({fontSize: "12.5px"});
+	}
+}
+
 /* Add a new string to the news at the top of the page */
 function updateNews(string) {
 	if (news.length > 5) {
@@ -359,6 +370,11 @@ function capitalize(str) {
 /* Get a number with commas */
 function getNumberWithCommas(number) {
 	return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+/* Round a number to the tenth */
+function roundNumber(num){
+	return Math.round(num * 10) / 10;
 }
 
 /* Get a random whole number in the range */

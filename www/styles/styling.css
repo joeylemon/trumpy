@@ -140,7 +140,7 @@ body {
 	bottom: 5px;
 	left: 8px;
 	font-family: bigfont;
-	font-size: 20px;
+	font-size: 19px;
 	color: #fff;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 	user-select: none;
@@ -377,8 +377,7 @@ body {
 .shop-menu h1 {
 	width: 280px;
 	font-size: 35px;
-	margin: 5px;
-	margin-left: 0px;
+	margin-top: 5px;
 	font-family: profont;
 	text-align: center;
 	padding-bottom: 3px;
@@ -392,12 +391,12 @@ body {
 	margin-left: 0px;
 	padding-left: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-	font-size: 20px !important;
+	font-size: 18px !important;
 	user-select: none;
 }
 
 .shop-menu .shop-item:active {
-	font-size: 20.5px !important;
+	font-size: 18.5px !important;
 }
 
 .shop-menu .shop-item img {
@@ -408,8 +407,8 @@ body {
 
 .shop-menu .shop-item .desc {
 	display: inline-block;
-	margin-top: 3px;
-	margin-left: 15px;
+	margin-top: 8px;
+	margin-left: 20px;
 	height: 100%;
 	text-align: left;
 	font-family: bigfont;
@@ -423,7 +422,7 @@ body {
 
 .shop-menu .shop-item .desc .more {
 	font-family: profont;
-	font-size: 16px;
+	font-size: 15px;
 	color: rgba(0, 0, 0, 0.65);
 }
 
