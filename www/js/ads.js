@@ -38,9 +38,11 @@ function onDeviceReady() {
 			});
 			admob.interstitial.prepare();
 			document.addEventListener('admob.interstitial.events.LOAD', function(event) {
-				lastInterstitial = 1;
+				if(lastInterstitial == 0){
+					lastInterstitial = 1;
+				}
 			});
-		}, 10000);
+		}, 15000);
 		
 		slideout.on('open', function () {
 			if (canDisplayInterstitial()) {
@@ -70,7 +72,7 @@ function onDeviceReady() {
 				id: admobid.reward_video
 			});
 			admob.rewardvideo.prepare();
-		}, 15000);
+		}, 25000);
 	} catch (e) {}
 	
 	setTimeout(function(){
