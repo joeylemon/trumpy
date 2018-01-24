@@ -35,6 +35,7 @@
 			</div>
 			
 			<canvas class="canvas" id="canvas"></canvas>
+			<canvas class="canvas" id="canvas_agents"></canvas>
 			
 			<img class="shop-img" id="shop-img" src="images/shop.png" ontouchend="slideout.open();">
 			<div id="reward" ontouchend="watchRewardVideo();" style="display: none;">
@@ -62,7 +63,7 @@
 				<div class="shop-container" id="shop"></div>
 				<div class="settings" id="settings" style="display: none;">
 					<h1>Settings</h1>
-					<p ontouchend="admob.banner.hide();clearData();">Restart</p>
+					<p ontouchend="clearData();">Restart</p>
 					<p ontouchend="resetCount();">Reset count</p>
 					<p ontouchend="showAlert('Mexico has begun showing signs of aggression against the United States. Is war eminent?');">Test alert</p>
 					<p ontouchend="togglePaused();">Toggle pause</p>

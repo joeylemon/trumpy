@@ -9,7 +9,11 @@ var Agent = function(id, loc, size, circle){
 	this.id = id;
 	
 	if(id){
-		this.delay = purchases[id].options.delay;
+		if(purchases[id].options.add_delay){
+			this.delay = purchases[id].options.add_delay;
+		}else{
+			this.delay = purchases[id].options.delay;
+		}
 		this.color = purchases[id].options.color;
 		this.circle = purchases[id].options.circle;
 		this.max = purchases[id].options.max;
@@ -64,49 +68,18 @@ Agent.prototype.setRandomLocation = function(){
 	*/
 };
 
-Agent.prototype.canDeport = function(){
-	var max = 1;
-	if(this.max){
-		max = this.max;
-	}
-	return (this.deport_total >= max && people.length < settings.max_people);
+Agent.prototype.canDeport = function(now){
+	return (now - this.lastAdd > this.delay && people.length < settings.max_people);
 };
 
 Agent.prototype.deport = function(){
 	var now = Date.now();
-	
-	if(this.canDeport()){
+	if(this.canDeport(now)){
 		addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10)});
-		this.deport_total = 0;
+		this.lastAdd = now;
 	}
-
-	var diff = now - this.lastAdd;
-	var add = diff / this.delay;
-	deported += add;
-	this.deport_total += add;
-	
-	this.lastAdd = now;
 };
 
 Agent.prototype.draw = function(){
-	/*
-	ctx.fillStyle = this.color;
-	if(this.circle){
-		ctx.beginPath();
-		ctx.arc(this.x, this.y, this.size.width, 0, 2 * Math.PI);
-		ctx.fill();
-	}else{
-		var multiplier = 1.6;
-		if(this.id == "wall"){
-			multiplier = 1;
-		}
-		var width = this.size.width * multiplier;
-		var height = this.size.height * multiplier;
-		ctx.fillRect(this.x - (width / 2), this.y - (height / 2), width, height);
-	}
-	*/
-	
-	ctx.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
-	
-	this.deport();
+	ctx_agents.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
 };

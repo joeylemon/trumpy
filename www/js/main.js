@@ -1,10 +1,11 @@
-draw();
+var lastUpdate = Date.now();
 
+draw();
 /* Draw the game */
 function draw(){
 	if(!gamePaused){
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		ctx_bg.clearRect(0, 0, canvas.width, canvas.height);
+		ctx_bg.clearRect(0, 0, canvas_bg.width, canvas_bg.height);
 		
 		clearPeople();
 		clearFaces();
@@ -13,16 +14,18 @@ function draw(){
 			faces[i].draw();
 		}
 		
+		for(var i = 0; i < agents.length; i++){
+			var agent = agents[i];
+			agent.deport();
+		}
+		
 		for(var i = 0; i < people.length; i++){
 			people[i].draw();
 		}
 		
-		ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-		for(var i = 0; i < agents.length; i++){
-			var agent = agents[i];
-			agent.draw();
-		}
-		ctx.shadowColor = "transparent";
+		var now = Date.now();
+		deported += ((now - lastUpdate) / 1000) * total_persecond;
+		lastUpdate = now;
 		
 		news_left -= 0.5;
 		if(news_left < min_left){

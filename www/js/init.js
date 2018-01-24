@@ -8,7 +8,7 @@ function onDeviceReady() {
 	getData();
 }
 
-/* Initialize canvas */
+/* Initialize person canvas */
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth * 2;
@@ -17,11 +17,21 @@ canvas.style.width = window.innerWidth;
 canvas.style.height = window.innerHeight;
 ctx.scale(2, 2);
 
-ctx.shadowBlur = 7;
-ctx.shadowOffsetX = 2;
-ctx.shadowOffsetY = 2;
+/* Initialize agent canvas */
+var canvas_agents = document.getElementById("canvas_agents");
+var ctx_agents = canvas_agents.getContext("2d");
+canvas_agents.width = window.innerWidth * 2;
+canvas_agents.height = window.innerHeight * 2;
+canvas_agents.style.width = window.innerWidth;
+canvas_agents.style.height = window.innerHeight;
+ctx_agents.scale(2, 2);
 
+ctx_agents.shadowBlur = 7;
+ctx_agents.shadowOffsetX = 2;
+ctx_agents.shadowOffsetY = 2;
+ctx_agents.shadowColor = 'rgba(0, 0, 0, 0.5)';
 
+/* Initialize face canvas */
 var canvas_bg = document.getElementById("canvas_bg");
 var ctx_bg = canvas_bg.getContext("2d");
 ctx_bg.canvas.width = window.innerWidth;
@@ -36,16 +46,6 @@ var face_bottom = $("#face-div").css("bottom");
 /* Load face image */
 var face = new Image();
 face.src = "images/small_face.png";
-
-var middle_y = 148;
-
-/* Define bounds */
-var bounds = {
-	top_left_x: (canvas.width / 4) - 166,
-	top_left_y: middle_y - 89,
-	top_right_x: (canvas.width / 4) + 120,
-	bottom_right_y: middle_y + 57
-}
 
 /* Define settings */
 var settings = {
@@ -68,18 +68,16 @@ var total_persecond = 0;
 var total_perclick = 0;
 
 var deported = 5100000000;
+var videosWatched = 0;
+var alertShown = 0;
 var lastRemove = 0;
+var middle_y = 148;
 var lastId = 0;
 var total = 0;
 
-var videosWatched = 0;
-
 var shopOpen = false;
 var settingsOpen = false;
-
 var gamePaused = false;
-
-var alertShown = 0;
 
 var news_left = 0;
 var news = [
@@ -94,8 +92,6 @@ var milestones = [
 	300,
 	1000
 ];
-
-/* Declare functions */
 
 /* Save progress every 5 seconds */
 setInterval(saveData, 5000);
@@ -123,6 +119,9 @@ function saveData() {
 function clearData() {
 	window.localStorage.clear();
 	window.location.reload(true);
+	if(admob){
+		admob.banner.hide();
+	}
 }
 
 /* Retrieve the progress and add it to game */
@@ -173,6 +172,7 @@ function getData() {
 					agents.push(agent);
 				}
 			}
+			updateAgentCanvas();
 
 			var purchases_json = $.parseJSON(data.purchases);
 			for (var key in purchases_json) {

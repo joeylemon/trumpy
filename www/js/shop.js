@@ -20,50 +20,50 @@ var default_purchases = {
 		delay: 1000 / 8,
 		color: '#30afe5',
 		size: 20,
-		max: 2,
-		circle: true
+		circle: true,
+		add_delay: 1000 / 4
 	}),
 	wall: new Purchase('wall', 13000, 'agent', {
 		delay: 1000 / 45,
 		color: '#DD8500',
 		size: settings.illegal_size + 6,
-		max: 6,
-		circle: false
+		circle: false,
+		add_delay: 1000 / 5
 	}),
 	executive_order: new Purchase('executive_order', 140000, 'agent', {
 		delay: 1000 / 260,
 		color: '#787878',
 		size: 22,
-		max: 30,
-		circle: false
+		circle: false,
+		add_delay: 1000 / 7
 	}),
 	local_law: new Purchase('local_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
 		color: '#21C800',
 		size: 22,
-		max: 110,
-		circle: false
+		circle: false,
+		add_delay: 1000 / 10
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		color: '#f4d442',
 		size: 20,
-		max: 400,
-		circle: false
+		circle: false,
+		add_delay: 1000 / 13
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
 		color: '#f48341',
 		size: 25,
-		max: 1000,
-		circle: false
+		circle: false,
+		add_delay: 1000 / 17
 	}),
 	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
 		delay: 1000 / 260000,
 		color: '#41b5f4',
 		size: 28,
-		max: 5000,
-		circle: false
+		circle: false,
+		add_delay: 1000 / 25
 	})
 };
 var purchases = default_purchases;
@@ -174,6 +174,7 @@ function buy(e, id){
 			updateItemCosts();
 			updateObscuredItems();
 			
+			updateAgentCanvas();
 			saveData();
 			
 			return;
@@ -222,6 +223,16 @@ function buy(e, id){
 			}
 		}
 		
+		updateAgentCanvas();
 		saveData();
+	}
+}
+
+/* Update the agents canvas */
+function updateAgentCanvas(){
+	ctx_agents.clearRect(0, 0, canvas_agents.width, canvas_agents.height);
+	for(var i = 0; i < agents.length; i++){
+		var agent = agents[i];
+		agent.draw();
 	}
 }
