@@ -32,7 +32,7 @@ function onDeviceReady() {
 			});
 		}, 5000);
 		
-		setTimeout(function(){
+		slideout.on('open', function () {
 			admob.interstitial.config({
 				id: admobid.interstitial,
 				autoShow: false
@@ -43,9 +43,7 @@ function onDeviceReady() {
 					lastInterstitial = 1;
 				}
 			});
-		}, 15000);
-		
-		slideout.on('open', function () {
+			
 			if (canDisplayInterstitial()) {
 				admob.interstitial.show();
 				shown = true;
