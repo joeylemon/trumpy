@@ -24,12 +24,16 @@ function onDeviceReady() {
 			autoShow: true
 		});
 		admob.banner.prepare();
-
-		admob.interstitial.config({
-			id: admobid.interstitial,
-			autoShow: false
-		});
-		admob.interstitial.prepare();
+		
+		setTimeout(function(){
+			admob.interstitial.config({
+				id: admobid.interstitial,
+				autoShow: false
+			});
+			admob.interstitial.prepare();
+			
+			lastInterstitial = 1;
+		}, 2000);
 		
 		slideout.on('open', function () {
 			if (canDisplayInterstitial()) {
@@ -53,11 +57,13 @@ function onDeviceReady() {
 				toggleSettings();
 			}
 		});
-
-		admob.rewardvideo.config({
-			id: admobid.reward_video
-		});
-		admob.rewardvideo.prepare();
+		
+		setTimeout(function(){
+			admob.rewardvideo.config({
+				id: admobid.reward_video
+			});
+			admob.rewardvideo.prepare();
+		}, 7500);
 	} catch (e) {}
 	
 	setTimeout(function(){
@@ -67,7 +73,7 @@ function onDeviceReady() {
 }
 
 function canDisplayInterstitial() {
-	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4;
+	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4 && lastInterstitial == 1;
 }
 
 function watchRewardVideo() {
