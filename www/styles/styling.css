@@ -294,6 +294,14 @@ body {
 	user-select: none;
 }
 
+.video-loading {
+	display: none;
+	position: fixed;
+	bottom: 138px;
+	right: 9px;
+	width: 45px;
+}
+
 .shop-img {
 	position: fixed;
 	bottom: 7px;

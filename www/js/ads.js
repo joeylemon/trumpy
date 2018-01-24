@@ -69,7 +69,7 @@ function onDeviceReady() {
 		
 		setTimeout(function(){
 			$("#reward").show();
-		}, 6000);
+		}, 8000);
 	} catch (e) {}
 	
 	setTimeout(function(){
@@ -95,11 +95,16 @@ function watchRewardVideo() {
 	});
 	admob.rewardvideo.prepare();
 	$("#reward").hide();
+	$("#video-loading").show();
 }
+
+document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
+	$("#video-loading").hide();
+});
 
 document.addEventListener('admob.rewardvideo.events.START', function(event) {
 	setTimeout(function(){
-		admob.rewardvideo.prepare();
+		$("#reward").show();
 	}, 45000);
 });
 
