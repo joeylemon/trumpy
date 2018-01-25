@@ -35,7 +35,7 @@ Purchase.prototype.getDescription = function(){
 		}
 		return getNumberWithCommas(per) + " per second";
 	}else if(this.type == "upgrade"){
-		return "+" + this.options.rate.toFixed(1) + " per click";
+		return "+" + getNumberWithCommas(roundNumber(this.options.rate)) + " per click";
 	}
 };
 
