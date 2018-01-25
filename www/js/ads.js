@@ -6,10 +6,7 @@ var admobid = {
 var lastInterstitial = 0;
 var shown = false;
 
-setTimeout(function(){
-	$("#loading-ad").hide();
-}, 5000);
-
+/* Listen for device ready event */
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
@@ -19,6 +16,7 @@ function onDeviceReady() {
 			isTesting: true
 		});
 		
+		/* Load banner ad after five seconds */
 		setTimeout(function(){
 			admob.banner.config({
 				id: admobid.banner,
@@ -35,6 +33,7 @@ function onDeviceReady() {
 			});
 		}, 5000);
 		
+		/* Show interstitial ad on slideout open */
 		slideout.on('open', function () {
 			if(lastInterstitial == 0){
 				admob.interstitial.config({
@@ -53,6 +52,8 @@ function onDeviceReady() {
 				lastInterstitial = Date.now();
 			}
 		});
+		
+		/* Refresh interstitial ad on slideout close */
 		slideout.on('close', function () {
 			if (shown) {
 				admob.interstitial.config({
@@ -76,16 +77,19 @@ function onDeviceReady() {
 	getData();
 }
 
+/* Move elements up when banner is loaded */
 function moveBannerHTML(){
 	$("#count-div").css({bottom: "55px"});
 	$("#shop-img").css({bottom: "56px"});
 	$("#added").css({bottom: "100px"});
 }
 
+/* Check if an interstitial ad can be displayed */
 function canDisplayInterstitial() {
 	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4 && lastInterstitial != 0;
 }
 
+/* Load and open a reward video */
 function watchRewardVideo() {
 	admob.rewardvideo.config({
 		id: admobid.reward_video,
@@ -99,16 +103,19 @@ function watchRewardVideo() {
 	}, 7000);
 }
 
+/* Listen for reward video load event */
 document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 	$("#video-loading").hide();
 });
 
+/* Listen for reward video play event */
 document.addEventListener('admob.rewardvideo.events.START', function(event) {
 	setTimeout(function(){
 		$("#reward").show();
 	}, 45000);
 });
 
+/* Listen for reward video finish event */
 document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
 	showAdded(getRewardAmount());
 	deported += getRewardAmount();
@@ -118,14 +125,17 @@ document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
 	$("#vid-reward").html("+" + getProperRewardAmount());
 });
 
+/* Get the amount to reward for watching the video */
 function getRewardAmount(){
 	return 1000 + (videosWatched * 2000) + (deported / 10);
 }
 
+/* Get the shortened reward amount */
 function getProperRewardAmount(){
 	return getShortenedNumber(getRewardAmount());
 }
 
+/* Shorten a number with letter endings */
 function getShortenedNumber(num){
 	var dividers = [
 		{div: 1000000000000000, ext: "Q"},
