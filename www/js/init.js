@@ -67,7 +67,7 @@ var faces_to_remove = new Array();
 var total_persecond = 0;
 var total_perclick = 0;
 
-var deported = Number.MAX_SAFE_INTEGER / 2;
+var deported = Number.MAX_SAFE_INTEGER / 20;
 var videosWatched = 0;
 var alertShown = 0;
 var lastRemove = 0;
