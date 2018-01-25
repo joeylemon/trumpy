@@ -42,7 +42,7 @@ time, mark, audio, video {
 
 body {
 	/* Background color for shop */
-	background-color: #fff;
+	background-color: #2280BA;
 	
 	overflow: scroll;
     overflow-x: hidden;
@@ -60,27 +60,6 @@ body {
 	right: 0px;
 	bottom: 0px;
 	/*box-shadow: inset 0 0 200px #0B5888;*/
-}
-
-.center-container {
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	bottom: 0px;
-	left: 0px;
-
-	text-align: center;
-
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	-webkit-box-align: center;
-
-	align-items: center;
-	justify-content: center;
 }
 
 .news {
@@ -252,7 +231,7 @@ body {
 	position: relative;
 	z-index: 1;
 	will-change: transform;
-	background-color: #FFF; /* A background-color is required */
+	background-color: #FFF;
 	min-height: 100vh;
 }
 

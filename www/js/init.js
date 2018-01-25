@@ -8,6 +8,11 @@ function onDeviceReady() {
 	getData();
 }
 
+setTimeout(function(){
+	$("body").css({backgroundColor: "#fff"});
+	$("#shop-hide").show();
+}, 100);
+
 /* Initialize person canvas */
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
