@@ -74,9 +74,6 @@ Agent.prototype.deport = function(){
 	
 	if(this.canDeport()){
 		addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10)});
-		if(this.delay >= 1000){
-			deported++;
-		}
 		this.deport_total = 0;
 	}
 
