@@ -1,6 +1,5 @@
-var lastUpdate = Date.now();
-
 draw();
+
 /* Draw the game */
 function draw(){
 	if(!gamePaused){
@@ -22,10 +21,6 @@ function draw(){
 		for(var i = 0; i < people.length; i++){
 			people[i].draw();
 		}
-		
-		var now = Date.now();
-		deported += ((now - lastUpdate) / 1000) * total_persecond;
-		lastUpdate = now;
 		
 		news_left -= 0.5;
 		if(news_left < min_left){
@@ -108,6 +103,14 @@ $(window).bind('touchend', function(e){
 		$("#face-div").css({bottom: face_bottom});
 	}
 });
+
+/*
+var last_deported = deported;
+setInterval(function(){
+	console.log((deported - last_deported).toFixed(1) + " per second");
+	last_deported = deported;
+}, 1000);
+*/
 
 /*
 var temp_locs = new Array();

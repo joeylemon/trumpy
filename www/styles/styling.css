@@ -49,6 +49,21 @@ time, mark, audio, video {
 	}
 }
 
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(2deg);
+	}
+	75% {
+		transform: rotate(-2deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
 body {
 	/* Background color for shop */
 	background-color: #2280BA;
@@ -143,6 +158,7 @@ body {
 
 .face img {
 	width: 185px;
+	animation: rotate 3s infinite linear;
 }
 
 .count {

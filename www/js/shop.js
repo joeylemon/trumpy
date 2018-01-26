@@ -2,82 +2,59 @@
 var default_purchases = {
 	republican: new Purchase('republican', 10, 'agent', {
 		delay: 1000 / 0.2,
-		color: '#A20000',
-		size: 15,
-		circle: true
+		size: 15
 	}),
 	click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
 		rate: .10
 	}),
-	agent: new Purchase('agent', 100, 'agent', {
-		name: "i.c.e. agent",
+	ice_agent: new Purchase('ice_agent', 100, 'agent', {
 		delay: 1000 / 1,
-		color: '#000',
-		size: 18,
-		circle: true
+		size: 18
 	}),
 	border_agent: new Purchase('border_agent', 1100, 'agent', {
 		delay: 1000 / 8,
-		color: '#30afe5',
 		size: 20,
-		circle: true,
-		add_delay: 1000 / 4
+		max: 2
 	}),
 	wall: new Purchase('wall', 13000, 'agent', {
 		delay: 1000 / 45,
-		color: '#DD8500',
 		size: settings.illegal_size + 6,
-		circle: false,
-		add_delay: 1000 / 5
+		max: 6
 	}),
 	executive_order: new Purchase('executive_order', 140000, 'agent', {
 		delay: 1000 / 260,
-		color: '#787878',
 		size: 22,
-		circle: false,
-		add_delay: 1000 / 7
+		max: 30
 	}),
 	local_law: new Purchase('local_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
-		color: '#21C800',
 		size: 22,
-		circle: false,
-		add_delay: 1000 / 10
+		max: 110
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
-		color: '#f4d442',
 		size: 20,
-		circle: false,
-		add_delay: 1000 / 13
+		max: 400
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
-		color: '#f48341',
 		size: 25,
-		circle: false,
-		add_delay: 1000 / 17
+		max: 1000
 	}),
 	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
 		delay: 1000 / 260000,
-		color: '#41b5f4',
 		size: 28,
-		circle: false,
-		add_delay: 1000 / 25
+		max: 5000
 	}),
 	martial_law: new Purchase('martial_law', 75000000000, 'agent', {
 		delay: 1000 / 1600000,
-		color: '#41b5f4',
 		size: 28,
-		circle: false,
-		add_delay: 1000 / 25
+		max: 5000
 	}),
 	military_deployment: new Purchase('military_deployment', 1000000000000, 'agent', {
 		delay: 1000 / 10000000,
-		color: '#41b5f4',
 		size: 28,
-		circle: false,
-		add_delay: 1000 / 25
+		max: 5000
 	})
 };
 var purchases = default_purchases;

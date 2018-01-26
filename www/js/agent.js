@@ -1,4 +1,4 @@
-var Agent = function(id, loc, size, circle){
+var Agent = function(id, loc, size){
 	if(!loc){
 		this.setRandomLocation();
 	}else{
@@ -9,13 +9,8 @@ var Agent = function(id, loc, size, circle){
 	this.id = id;
 	
 	if(id){
-		if(purchases[id].options.add_delay){
-			this.delay = purchases[id].options.add_delay;
-		}else{
-			this.delay = purchases[id].options.delay;
-		}
+		this.delay = purchases[id].options.delay;
 		this.color = purchases[id].options.color;
-		this.circle = purchases[id].options.circle;
 		this.max = purchases[id].options.max;
 		this.img = purchases[id].img;
 	}
@@ -43,8 +38,6 @@ Agent.prototype.fromData = function(data){
 	
 	this.size = data.size;
 	
-	this.circle = data.circle;
-	
 	this.max = data.max;
 	
 	this.deport_total = unroundedRand(0, 1);
@@ -68,16 +61,31 @@ Agent.prototype.setRandomLocation = function(){
 	*/
 };
 
-Agent.prototype.canDeport = function(now){
-	return (now - this.lastAdd > this.delay && people.length < settings.max_people);
+Agent.prototype.canDeport = function(){
+	var max = 1;
+	if(this.max){
+		max = this.max;
+	}
+	return (this.deport_total >= max && people.length < settings.max_people);
 };
 
 Agent.prototype.deport = function(){
 	var now = Date.now();
-	if(this.canDeport(now)){
+	
+	if(this.canDeport()){
 		addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10)});
-		this.lastAdd = now;
+		if(this.delay >= 1000){
+			deported++;
+		}
+		this.deport_total = 0;
 	}
+
+	var diff = now - this.lastAdd;
+	var add = diff / this.delay;
+	deported += add;
+	this.deport_total += add;
+	
+	this.lastAdd = now;
 };
 
 Agent.prototype.draw = function(){
