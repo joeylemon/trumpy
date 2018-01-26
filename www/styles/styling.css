@@ -53,12 +53,37 @@ body {
 	background: transparent;
 }
 
+.bg {
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+
+.bg img {
+	position: relative;
+	width: 1450;
+	height: 1500;
+	left: -540;
+	top: -385;
+	transform: rotate(3deg);
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+}
+
 .canvas {
 	position: fixed;
 	top: 0px;
 	left: 0px;
 	right: 0px;
 	bottom: 0px;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
 	/*box-shadow: inset 0 0 200px #0B5888;*/
 }
 
