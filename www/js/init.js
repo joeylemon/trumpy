@@ -58,7 +58,9 @@ var settings = {
 	fade_dist: 10,
 	max_people: 1000,
 	max_faces: 75,
-	click_factor: 7
+	click_factor: 7,
+	shorten_min: 100000,
+	counts_shorten_min: 10000
 }
 
 /* Declare global variables */
@@ -296,8 +298,21 @@ setTimeout(updateCounts, 0);
 function updateCounts(){
 	$("#pers").css({fontSize: "15px"});
 	
-	$("#persecond").html(getNumberWithCommas(roundNumber(total_persecond)));
-	$("#perclick").html(getNumberWithCommas(roundNumber(total_perclick)));
+	var persecond;
+	if(total_persecond > settings.counts_shorten_min){
+		persecond = getShortenedNumber(total_persecond);
+	}else{
+		persecond = getNumberWithCommas(roundNumber(total_persecond));
+	}
+	$("#persecond").html(persecond);
+	
+	var perclick;
+	if(total_perclick > settings.counts_shorten_min){
+		perclick = getShortenedNumber(total_perclick);
+	}else{
+		perclick = getNumberWithCommas(roundNumber(total_perclick));
+	}
+	$("#perclick").html(perclick);
 	
 	if($("#pers").width() > 305){
 		$("#pers").css({fontSize: "12.5px"});

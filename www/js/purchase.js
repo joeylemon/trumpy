@@ -14,7 +14,13 @@ var Purchase = function(id, cost, type, options){
 };
 
 Purchase.prototype.getProperCost = function(){
-	return getNumberWithCommas(this.cost.toFixed(0));
+	var proper;
+	if(this.cost > settings.shorten_min){
+		proper = getShortenedNumber(this.cost, true);
+	}else{
+		proper = getNumberWithCommas(this.cost.toFixed(0))
+	}
+	return proper;
 };
 
 Purchase.prototype.getProperID = function(){
@@ -27,15 +33,19 @@ Purchase.prototype.getProperID = function(){
 
 Purchase.prototype.getDescription = function(){
 	if(this.type == "agent"){
-		var per = (1000 / this.options.delay);
-		if(per % 1 >= 0.1){
-			per = per.toFixed(1);
-		}else{
-			per = per.toFixed(0);
+		var per = roundNumber(1000 / this.options.delay);
+		if(per > settings.shorten_min){
+			per = getShortenedNumber(roundNumber(1000 / this.options.delay));
 		}
+		
 		return getNumberWithCommas(per) + " per second";
 	}else if(this.type == "upgrade"){
-		return "+" + getNumberWithCommas(roundNumber(this.options.rate)) + " per click";
+		var per = roundNumber(this.options.rate);
+		if(per > settings.shorten_min){
+			per = getShortenedNumber(roundNumber(this.options.rate));
+		}
+		
+		return "+" + getNumberWithCommas(per) + " per click";
 	}
 };
 

@@ -112,7 +112,7 @@ document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 document.addEventListener('admob.rewardvideo.events.START', function(event) {
 	setTimeout(function(){
 		$("#reward").show();
-	}, 45000);
+	}, 80000);
 });
 
 /* Listen for reward video finish event */
@@ -136,20 +136,25 @@ function getProperRewardAmount(){
 }
 
 /* Shorten a number with letter endings */
-function getShortenedNumber(num){
+function getShortenedNumber(num, longEnding){
 	var dividers = [
-		{div: 1000000000000000, ext: "Q"},
-		{div: 1000000000000, ext: "T"},
-		{div: 1000000000, ext: "B"},
-		{div: 1000000, ext: "M"},
-		{div: 1000, ext: "K"}
+		{div: 1000000000000000, ext: "Q", longEnd: " quadrillion"},
+		{div: 1000000000000, ext: "T", longEnd: " trillion"},
+		{div: 1000000000, ext: "B", longEnd: " billion"},
+		{div: 1000000, ext: "M", longEnd: " million"},
+		{div: 1000, ext: "K", longEnd: " thousand"}
 	];
 	
 	for(var i = 0; i < dividers.length; i++){
 		var entry = dividers[i];
 		if(num >= entry.div){
+			var ending = entry.ext;
+			if(longEnding){
+				ending = entry.longEnd;
+			}
+			
 			var fixed = (num / entry.div) % 1 == 0 ? (num / entry.div).toFixed(0) : (num / entry.div).toFixed(1);
-			return (fixed + entry.ext).replace(".0", "");
+			return (fixed + ending).replace(".0", "");
 		}
 	}
 	
