@@ -59,7 +59,7 @@ var settings = {
 	max_people: 1000,
 	max_faces: 75,
 	click_factor: 7,
-	shorten_min: 100000,
+	shorten_min: 10000,
 	counts_shorten_min: 10000
 }
 

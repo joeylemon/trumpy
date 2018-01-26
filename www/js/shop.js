@@ -125,14 +125,18 @@ function updateObscuredItems() {
 	if (total_persecond > (settings.click_factor / 10)) {
 		var new_rate = total_persecond / settings.click_factor;
 		
-		purchases.click_multiplier.cost = (new_rate * 95);
-		for(var i = 0; i < purchases.click_multiplier.current; i++){
-			purchases.click_multiplier.cost += Math.round(purchases.click_multiplier.cost / 20);
+		if(new_rate != purchases.click_multiplier.options.rate){
+			console.log("change");
+			
+			purchases.click_multiplier.cost = (new_rate * 95);
+			for(var i = 0; i < purchases.click_multiplier.current; i++){
+				purchases.click_multiplier.cost += Math.round(purchases.click_multiplier.cost / 20);
+			}
+			
+			purchases.click_multiplier.options.rate = new_rate;
+			$("#click_multiplier-per").html(purchases.click_multiplier.getDescription());
+			$("#click_multiplier-cost").html(purchases.click_multiplier.getProperCost());
 		}
-		
-		purchases.click_multiplier.options.rate = new_rate;
-		$("#click_multiplier-per").html(purchases.click_multiplier.getDescription());
-		$("#click_multiplier-cost").html(purchases.click_multiplier.getProperCost());
 	}
 }
 
