@@ -9,7 +9,9 @@ function onDeviceReady() {
 }
 
 var size = window.innerHeight * 1.5;
-$("#rays").css({width: size + "px", height: size + "px", left: -(size / 4) + "px"});
+$("#rays").html('<li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>');
+$("#rays").css({width: size + "px", height: size + "px", margin: "-" + (size / 2) + "px 0 0 -" + (size / 2) + "px"});
+
 setTimeout(function(){
 	$("body").css({backgroundColor: "#fff"});
 	$("#shop-hide").show();

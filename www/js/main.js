@@ -1,5 +1,4 @@
 var lastUpdate = Date.now();
-var deg = 0;
 
 draw();
 /* Draw the game */
@@ -33,12 +32,6 @@ function draw(){
 			news_left = $(window).width();
 		}
 		$("#news").css({left: news_left});
-		
-		deg += 0.05;
-		if(deg >= 360){
-			deg = 0;
-		}
-		$("#rays").css({transform: "rotate(" + deg + "deg)"});
 	}
 	window.requestAnimationFrame(draw);
 }
