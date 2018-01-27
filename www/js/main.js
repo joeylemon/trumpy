@@ -102,7 +102,7 @@ $(window).bind('touchend', function(e){
 	var y = e.changedTouches[0].pageY;
 	
 	if(click){
-		if(distance(touchpos, {x: x, y: y}) < 20){
+		if(distance(touchpos, {x: x, y: y}) < 30){
 			addPerson(undefined, true);
 			playSound("pop");
 		}
