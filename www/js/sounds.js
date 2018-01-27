@@ -5,7 +5,7 @@ var audio = {
 	error: new Howl({src: ["sounds/error.wav"]})
 };
 
-Howler.volume(0.5);
+Howler.volume(0.3);
 
 function playSound(sound){
 	audio[sound].seek(0);
