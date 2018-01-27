@@ -27,16 +27,11 @@ function onDeviceReady() {
 			id: admobid.reward_video,
 			autoShow: false
 		});
-		$("#reward").show();
-		
 		
 		/* Load banner ad after five seconds */
 		setTimeout(function(){
 			admob.banner.prepare();
-			document.addEventListener('admob.banner.events.LOAD', function(event) {
-				moveBannerHTML();
-				admob.banner.show();
-			});
+			document.addEventListener('admob.banner.events.LOAD', onBannerLoad);
 		}, 5000);
 		
 		/* Show interstitial ad on slideout open */
@@ -59,6 +54,15 @@ function onDeviceReady() {
 		navigator.splashscreen.hide();
 	}, 1000);
 	getData();
+}
+
+/* Fired when the banner loads */
+function onBannerLoad(){
+	$("#reward").show();
+	moveBannerHTML();
+	admob.banner.show();
+	
+	document.removeEventListener('admob.banner.events.LOAD', onBannerLoad);
 }
 
 /* Move elements up when banner is loaded */
