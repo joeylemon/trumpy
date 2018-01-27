@@ -51,7 +51,7 @@ var default_purchases = {
 		size: 28,
 		max: 5000
 	}),
-	military_deployment: new Purchase('military_deployment', 1000000000000, 'agent', {
+	army_deployment: new Purchase('army_deployment', 1000000000000, 'agent', {
 		delay: 1000 / 10000000,
 		size: 28,
 		max: 5000

@@ -26,9 +26,9 @@ Purchase.prototype.getProperCost = function(){
 
 Purchase.prototype.getProperID = function(){
 	if(this.options.name){
-		return this.options.name;
+		return this.options.name.toUpperCase();;
 	}else{
-		return this.id.replace("_", " ");
+		return this.id.replace("_", " ").toUpperCase();;
 	}
 };
 

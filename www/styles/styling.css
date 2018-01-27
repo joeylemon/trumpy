@@ -40,6 +40,11 @@ time, mark, audio, video {
     src: url(Gobold-Bold.ttf);
 }
 
+@font-face {
+    font-family: pixel;
+    src: url(Pixeled.ttf);
+}
+
 @keyframes spin {
 	0% {
 		transform: rotate(0deg);
@@ -425,12 +430,12 @@ body {
 	margin-left: 0px;
 	padding-left: 15px;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-	font-size: 18px !important;
+	font-size: 11px !important;
 	user-select: none;
 }
 
 .shop-menu .shop-item:active {
-	font-size: 18.5px !important;
+	font-size: 11.5px !important;
 }
 
 .shop-menu .shop-item img {
@@ -445,7 +450,7 @@ body {
 
 .shop-menu .shop-item .desc {
 	display: inline-block;
-	margin-top: 7px;
+	margin-top: 0px;
 	margin-left: 20px;
 	height: 100%;
 	text-align: left;
@@ -455,7 +460,8 @@ body {
 }
 
 .shop-menu .shop-item .desc .name {
-	font-family: bigfont;
+	font-family: pixel;
+	font-weight: bold;
 }
 
 .shop-menu .shop-item .desc .more {
