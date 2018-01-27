@@ -274,13 +274,17 @@ function openShop() {
 }
 
 /* Toggle the settings page */
-function toggleSettings() {
+function toggleSettings(manual) {
 	if (!settingsOpen) {
 		$("#settings").show();
 	} else {
 		$("#settings").hide();
 	}
-	playSound("touch");
+	
+	if(manual) {
+		playSound("touch");
+	}
+	
 	settingsOpen = !settingsOpen;
 }
 
