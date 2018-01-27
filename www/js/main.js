@@ -98,6 +98,7 @@ $(window).bind('touchstart', function(e){
 $(window).bind('touchend', function(e){
 	if(click){
 		addPerson(undefined, true);
+		playSound("pop");
 		click = false;
 		$("#face").css({filter: "brightness(1)", width: face_width});
 		$("#face-div").css({bottom: face_bottom});

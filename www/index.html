@@ -41,7 +41,7 @@
 			<canvas class="canvas" id="canvas"></canvas>
 			<canvas class="canvas" id="canvas_agents"></canvas>
 			
-			<img class="shop-img" id="shop-img" src="images/shop.png" ontouchend="slideout.open();">
+			<img class="shop-img" id="shop-img" src="images/shop.png" ontouchend="openShop();">
 			<div id="reward" ontouchend="watchRewardVideo();" style="display: none;">
 				<img class="vid-img" id="vid-img" src="images/video.png">
 				<p class="vid-reward" id="vid-reward">+1K</p>
@@ -55,7 +55,7 @@
 					<p>breaking news</p>
 				</div>
 				<div class="message">
-					<p id="alert-message"></p>
+					<p id="alert-message">Mexico has declared war against the United States! Get ready to go to war in<br>9 seconds.</p>
 				</div>
 				<div class="exit" ontouchend="exitAlert();">x</div>
 			</div>
@@ -94,6 +94,7 @@
 	
 	<script src="js/purchase.js"></script>
 	<script src="js/ads.js"></script>
+	<script src="js/sounds.js"></script>
 	<script src="js/init.js"></script>
 	<script src="js/shop.js"></script>
 	<script src="js/locs.js"></script>

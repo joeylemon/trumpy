@@ -267,6 +267,12 @@ function showAdded(added) {
 	}, 4000);
 }
 
+/* Open the shop */
+function openShop() {
+	slideout.open();
+	playSound("touch");
+}
+
 /* Toggle the settings page */
 function toggleSettings() {
 	if (!settingsOpen) {
@@ -274,6 +280,7 @@ function toggleSettings() {
 	} else {
 		$("#settings").hide();
 	}
+	playSound("touch");
 	settingsOpen = !settingsOpen;
 }
 

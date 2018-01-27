@@ -193,6 +193,7 @@ function buy(e, id){
 	
 	var item = purchases[id];
 	if(deported >= item.cost){
+		playSound("buy");
 		flipIcon(id);
 		
 		if(id == "click_multiplier"){
@@ -266,6 +267,8 @@ function buy(e, id){
 		
 		updateAgentCanvas();
 		saveData();
+	}else{
+		playSound("error");
 	}
 }
 

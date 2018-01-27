@@ -184,7 +184,6 @@ body {
 	padding: 0px;
 	margin: 0px;
 	text-align: center;
-	user-select: none;
 }
 
 .map {
@@ -213,7 +212,6 @@ body {
 	font-size: 19px;
 	color: #fff;
 	text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-	user-select: none;
 	text-decoration: none;
 }
 
@@ -346,7 +344,6 @@ body {
 	width: 45px;
 	height: auto;
 	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
-	user-select: none;
 }
 
 .vid-img:active {
@@ -368,7 +365,6 @@ body {
 	font-family: profont;
 	color: #fff;
 	text-align: right;
-	user-select: none;
 }
 
 .video-loading {
@@ -386,7 +382,6 @@ body {
 	width: 50px;
 	height: auto;
 	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
-	user-select: none;
 }
 
 .shop-img:active {
@@ -471,7 +466,6 @@ body {
     margin-left: -10px;
     padding-left: 25px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-    user-select: none;
 }
 
 .shop-menu .shop-item:active {
@@ -491,24 +485,22 @@ body {
 
 .shop-menu .shop-item .desc {
 	display: inline-block;
-	margin-top: 0px;
+	margin-top: 11px;
 	margin-left: 20px;
 	height: 100%;
 	text-align: left;
 	font-family: bigfont;
 	vertical-align: top;
-	user-select: none;
 }
 
 .shop-menu .shop-item .desc .name {
 	font-family: pixel;
-	font-weight: bold;
-	font-size: 11px;
+	font-size: 18px;
 }
 
 .shop-menu .shop-item .desc .more {
 	font-family: profont;
-	font-size: 15px;
+	font-size: 16px;
 	color: rgba(0, 0, 0, 0.65);
 }
 
