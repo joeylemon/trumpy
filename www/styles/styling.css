@@ -84,6 +84,7 @@ time, mark, audio, video {
 	}
 	50% {
 		transform: scale(1.4, 1.4);
+		filter: drop-shadow(10px 10px 1px rgba(0, 0, 0, 0.1));
 	}
 	100% {
 		transform: scale(1, 1);

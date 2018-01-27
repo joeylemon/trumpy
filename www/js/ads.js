@@ -28,11 +28,9 @@ function onDeviceReady() {
 			autoShow: false
 		});
 		
-		/* Load banner ad after five seconds */
-		setTimeout(function(){
-			admob.banner.prepare();
-			document.addEventListener('admob.banner.events.LOAD', onBannerLoad);
-		}, 5000);
+		/* Load banner ad */
+		admob.banner.prepare();
+		document.addEventListener('admob.banner.events.LOAD', onBannerLoad);
 		
 		/* Show interstitial ad on slideout open */
 		slideout.on('open', function () {
@@ -63,7 +61,7 @@ function onBannerLoad(){
 	
 	setTimeout(function(){
 		showVideoButton();
-	}, 3000);
+	}, 5000);
 	
 	document.removeEventListener('admob.banner.events.LOAD', onBannerLoad);
 }
