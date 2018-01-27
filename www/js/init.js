@@ -63,13 +63,12 @@ face.src = "images/small_face.png";
 
 /* Define settings */
 var settings = {
-	person_size: 3.5,
+	person_size: 3.25,
 	fade_dist: 10,
-	max_people: 1000,
+	max_people: 1500,
 	max_faces: 75,
 	click_factor: 7,
-	shorten_min: 10000,
-	counts_shorten_min: 10000
+	shorten_min: 10000
 }
 
 /* Declare global variables */
@@ -290,7 +289,7 @@ function updateCounts(){
 	$("#pers").css({fontSize: "15px"});
 	
 	var persecond;
-	if(total_persecond > settings.counts_shorten_min){
+	if(total_persecond > settings.shorten_min){
 		persecond = getShortenedNumber(total_persecond);
 	}else{
 		persecond = getNumberWithCommas(roundNumber(total_persecond));
@@ -298,7 +297,7 @@ function updateCounts(){
 	$("#persecond").html(persecond);
 	
 	var perclick;
-	if(total_perclick > settings.counts_shorten_min){
+	if(total_perclick > settings.shorten_min){
 		perclick = getShortenedNumber(total_perclick);
 	}else{
 		perclick = getNumberWithCommas(roundNumber(total_perclick));

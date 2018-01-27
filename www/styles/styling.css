@@ -449,6 +449,13 @@ body {
 	border: 2px solid rgba(0, 0, 0, 0.4);
 }
 
+.shop-menu .settings .text {
+	width: 270px;
+	text-align: center;
+	font-family: profont;
+	font-size: 15px;
+}
+
 .shop-menu h1 {
 	width: 280px;
     font-size: 35px;

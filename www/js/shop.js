@@ -29,12 +29,12 @@ var default_purchases = {
 	local_law: new Purchase('local_law', 1500000, 'agent', {
 		delay: 1000 / 1400,
 		size: 22,
-		max: 110
+		max: 100
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		size: 20,
-		max: 500
+		max: 400
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
