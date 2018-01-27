@@ -74,7 +74,7 @@ function initShop() {
 function getPurchaseHTML(details) {
 	return `
 		<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
-			<img src="` + details.image + `">
+			<img id="` + details.id + `-img" src="` + details.image + `">
 			<div class="desc" id="` + details.id + `-desc">
 				<p class="name">` + details.title + `</p>
 				<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
@@ -93,9 +93,15 @@ function updateObscuredItems() {
 	for (var key in purchases) {
 		var item = purchases[key];
 		if (deported < item.cost) {
-			$("#" + key).css("opacity", "0.3");
+			if(!item.hidden){
+				$("#" + key).css("opacity", "0.3");
+				item.hidden = true;
+			}
 		} else {
-			$("#" + key).css("opacity", "1");
+			if(item.hidden){
+				$("#" + key).css("opacity", "1");
+				item.hidden = false;
+			}
 		}
 	}
 
@@ -125,6 +131,45 @@ function updateItemCosts() {
 	}
 }
 
+var tasks = [];
+
+/* Flip an icon in the shop */
+function flipIcon(id){
+	if(taskExists(id)){
+		$("#" + id + "-img").removeClass("flip");
+		removeTask(id);
+	}
+	
+	setTimeout(function(){
+		$("#" + id + "-img").addClass("flip");
+		var task = setTimeout(function(){
+			$("#" + id + "-img").removeClass("flip");
+			removeTask(id);
+		}, 500);
+		tasks.push({id: id, task: task});
+	}, 0);
+}
+
+/* Remove and cancel a task from the array */
+function removeTask(id){
+	for(var i = 0; i < tasks.length; i++){
+		var task = tasks[i];
+		clearInterval(task.task);
+		tasks.splice(i, 1);
+	}
+}
+
+/* Check if a task exists in the array */
+function taskExists(id){
+	for(var i = 0; i < tasks.length; i++){
+		var task = tasks[i];
+		if(task.id == id){
+			return true;
+		}
+	}
+	return false;
+}
+
 /* Add a wall to the map */
 function addWall(){
 	agents.push(new Agent("wall", getRandomBorder(), {width: 20, height: 10}));
@@ -148,6 +193,7 @@ function buy(e, id){
 	
 	var item = purchases[id];
 	if(deported >= item.cost){
+		flipIcon(id);
 		
 		if(id == "click_multiplier"){
 			/* Seperate buy function, otherwise deport total becomes NaN? */

@@ -4,6 +4,7 @@ var Purchase = function(id, cost, type, options){
 	this.cost = cost;
 	this.type = type;
 	this.options = options;
+	this.hidden = false;
 	this.img = new Image();
 	
 	var img_id = id;
