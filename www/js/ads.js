@@ -4,42 +4,44 @@ var admobid = {
 	reward_video: 'ca-app-pub-3849622190274333/6461087910'
 };
 var lastInterstitial = 0;
-var shown = false;
 
 /* Listen for device ready event */
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	try {
+		/* Set ad configs */
 		admob.setOptions({
 			publisherId: admobid.banner,
 			overlap: true,
 			isTesting: true
 		});
+		admob.banner.config({
+			id: admobid.banner,
+			autoShow: false
+		});
+		admob.interstitial.config({
+			id: admobid.interstitial,
+			autoShow: false
+		});
+		admob.rewardvideo.config({
+			id: admobid.reward_video,
+			autoShow: false
+		});
+		$("#reward").show();
+		
 		
 		/* Load banner ad after five seconds */
 		setTimeout(function(){
-			admob.banner.config({
-				id: admobid.banner,
-				autoShow: false
-			});
 			admob.banner.prepare();
 			document.addEventListener('admob.banner.events.LOAD', function(event) {
 				moveBannerHTML();
 				admob.banner.show();
-				
-				setTimeout(function(){
-					$("#reward").show();
-				}, 1000);
 			});
 		}, 5000);
 		
 		/* Show interstitial ad on slideout open */
 		slideout.on('open', function () {
 			if(lastInterstitial == 0){
-				admob.interstitial.config({
-					id: admobid.interstitial,
-					autoShow: false
-				});
 				admob.interstitial.prepare();
 				setTimeout(function(){
 					lastInterstitial = 1;
@@ -48,25 +50,7 @@ function onDeviceReady() {
 			
 			if (canDisplayInterstitial()) {
 				admob.interstitial.show();
-				shown = true;
 				lastInterstitial = Date.now();
-			}
-		});
-		
-		/* Refresh interstitial ad on slideout close */
-		slideout.on('close', function () {
-			if (shown) {
-				admob.interstitial.config({
-					id: admobid.interstitial,
-					autoShow: false
-				});
-				admob.interstitial.prepare();
-				
-				shown = false;
-			}
-			
-			if (settingsOpen) {
-				toggleSettings();
 			}
 		});
 	} catch (e) {}
@@ -89,13 +73,15 @@ function canDisplayInterstitial() {
 	return (Date.now() - lastInterstitial > 100000) && Math.random() <= 0.4 && lastInterstitial != 0;
 }
 
+/* Listen for interstitial close event */
+document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
+	admob.interstitial.prepare();
+});
+
 /* Load and open a reward video */
 function watchRewardVideo() {
-	admob.rewardvideo.config({
-		id: admobid.reward_video,
-		autoShow: true
-	});
 	admob.rewardvideo.prepare();
+	
 	$("#reward").hide();
 	$("#video-loading").show();
 	setTimeout(function(){
@@ -105,6 +91,7 @@ function watchRewardVideo() {
 
 /* Listen for reward video load event */
 document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
+	admob.rewardvideo.show();
 	$("#video-loading").hide();
 });
 
@@ -127,7 +114,7 @@ document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
 
 /* Get the amount to reward for watching the video */
 function getRewardAmount(){
-	return 1000 + (videosWatched * 2000) + (deported / 10);
+	return 1000 + (videosWatched * 2000) + (total_persecond * 120) + (deported / 12);
 }
 
 /* Get the shortened reward amount */

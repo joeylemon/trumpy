@@ -8,6 +8,12 @@ function onDeviceReady() {
 	getData();
 }
 
+slideout.on('close', function () {
+	if (settingsOpen) {
+		toggleSettings();
+	}
+});
+
 var size = window.innerHeight * 1.5;
 $("#rays").css({width: size + "px", height: size + "px", margin: "-" + (size / 2) + "px 0 0 -" + (size / 2) + "px"});
 
