@@ -58,9 +58,12 @@ function onDeviceReady() {
 
 /* Fired when the banner loads */
 function onBannerLoad(){
-	$("#reward").show();
 	moveBannerHTML();
 	admob.banner.show();
+	
+	setTimeout(function(){
+		showVideoButton();
+	}, 3000);
 	
 	document.removeEventListener('admob.banner.events.LOAD', onBannerLoad);
 }
@@ -82,6 +85,15 @@ document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
 	admob.interstitial.prepare();
 });
 
+/* Show the reward video button */
+function showVideoButton() {
+	$("#reward").show();
+	$("#vid-img").addClass("vid-animate");
+	setTimeout(function(){
+		$("#vid-img").removeClass("vid-animate");
+	}, 1000);
+}
+
 /* Load and open a reward video */
 function watchRewardVideo() {
 	admob.rewardvideo.prepare();
@@ -102,7 +114,7 @@ document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 /* Listen for reward video play event */
 document.addEventListener('admob.rewardvideo.events.START', function(event) {
 	setTimeout(function(){
-		$("#reward").show();
+		showVideoButton();
 	}, 80000);
 });
 

@@ -206,7 +206,7 @@ function buy(e, id){
 			updateCounts();
 			
 			if(item.current == 1){
-				updateNews("Unknown entity is assisting in the war on illegals--large amounts of immigrants exiting the country for no apparent reason.");
+				updateNews("Unknown entity is assisting in the war on illegals &mdash; large amounts of immigrants exiting the country for no apparent reason.");
 			}
 			
 			document.getElementById(id + "-amount").innerHTML = item.current;

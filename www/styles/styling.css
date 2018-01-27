@@ -78,6 +78,18 @@ time, mark, audio, video {
 	}
 }
 
+@keyframes vidzoom {
+	0% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(1.4, 1.4);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+
 body {
 	/* Background color for shop */
 	background-color: #2280BA;
@@ -318,6 +330,10 @@ body {
 
 .vid-img:active {
 	width: 41px;
+}
+
+.vid-animate {
+	animation: vidzoom 1s;
 }
 
 .vid-reward {
