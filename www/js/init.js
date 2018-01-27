@@ -258,32 +258,14 @@ function togglePaused() {
 
 /* Display an animate the amount added after starting app */
 function showAdded(added) {
-	var left = 5;
-	$("#added").show();
-	$("#added").css({left: left});
-	
 	$("#added").html("+" + getShortenedNumber(added));
-	var opacity = parseFloat($("#added").css("opacity"));
+	$("#added").show();
 	
-	var task = setInterval(function(){
-		left += 0.5;
-		$("#added").css({left: left});
-		
-		if(left > 55){
-			if(opacity > 0){
-				opacity -= 0.02;
-				$("#added").css({opacity: opacity});
-			}else{
-				$("#added").hide();
-				clearInterval(task);
-			}
-		}else{
-			if(opacity < 1){
-				opacity += 0.04;
-				$("#added").css({opacity: opacity});
-			}
-		}
-	}, 15);
+	$("#added").addClass("added-animate");
+	setTimeout(function(){
+		$("#added").hide();
+		$("#added").removeClass("added-animate");
+	}, 3000);
 }
 
 /* Toggle the settings page */
