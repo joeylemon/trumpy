@@ -57,13 +57,13 @@ Person.prototype.draw = function(){
 		this.y += (ty / dist) * this.speed;
 		
 		ctx.fillStyle = "rgba(" + this.color + ", 1)";
-		ctx.fillRect(this.x, this.y, settings.illegal_size, settings.illegal_size);
+		ctx.fillRect(this.x, this.y, settings.person_size, settings.person_size);
 	}else if(dist > 1){
 		this.x += (tx / dist) * this.speed;
 		this.y += (ty / dist) * this.speed;
 		
 		ctx.fillStyle = "rgba(" + this.color + ", " + (dist / settings.fade_dist) + ")";
-		ctx.fillRect(this.x, this.y, settings.illegal_size, settings.illegal_size);
+		ctx.fillRect(this.x, this.y, settings.person_size, settings.person_size);
 	}else{
 		people_to_remove.push(this.id);
 	}

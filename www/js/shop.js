@@ -18,7 +18,7 @@ var default_purchases = {
 	}),
 	wall: new Purchase('wall', 13000, 'agent', {
 		delay: 1000 / 45,
-		size: settings.illegal_size + 6,
+		size: 9,
 		max: 6
 	}),
 	executive_order: new Purchase('executive_order', 140000, 'agent', {
@@ -34,27 +34,27 @@ var default_purchases = {
 	state_law: new Purchase('state_law', 20000000, 'agent', {
 		delay: 1000 / 7800,
 		size: 20,
-		max: 400
+		max: 500
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
 		delay: 1000 / 44000,
 		size: 25,
-		max: 1000
+		max: 3000
 	}),
 	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
 		delay: 1000 / 260000,
 		size: 28,
-		max: 5000
+		max: 10000
 	}),
 	martial_law: new Purchase('martial_law', 75000000000, 'agent', {
 		delay: 1000 / 1600000,
 		size: 28,
-		max: 5000
+		max: 70000
 	}),
-	army_deployment: new Purchase('army_deployment', 1000000000000, 'agent', {
+	national_guard: new Purchase('national_guard', 1000000000000, 'agent', {
 		delay: 1000 / 10000000,
 		size: 28,
-		max: 5000
+		max: 250000
 	})
 };
 var purchases = default_purchases;

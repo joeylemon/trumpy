@@ -83,8 +83,8 @@ time, mark, audio, video {
 		transform: scale(1, 1);
 	}
 	50% {
-		transform: scale(1.4, 1.4);
-		filter: drop-shadow(10px 10px 1px rgba(0, 0, 0, 0.1));
+		transform: scale(1.6, 1.6);
+		filter: drop-shadow(14px 14px 1px rgba(0, 0, 0, 0.1));
 	}
 	100% {
 		transform: scale(1, 1);
@@ -234,7 +234,7 @@ body {
 }
 
 .added-animate {
-	animation: addmove 3s linear;
+	animation: addmove 4s linear;
 }
 
 .overlay {
@@ -354,7 +354,7 @@ body {
 }
 
 .vid-animate {
-	animation: vidzoom 1s;
+	animation: vidzoom 0.8s;
 }
 
 .vid-reward {

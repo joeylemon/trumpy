@@ -63,7 +63,7 @@ face.src = "images/small_face.png";
 
 /* Define settings */
 var settings = {
-	illegal_size: 3,
+	person_size: 3.5,
 	fade_dist: 10,
 	max_people: 1000,
 	max_faces: 75,
@@ -265,7 +265,7 @@ function showAdded(added) {
 	setTimeout(function(){
 		$("#added").hide();
 		$("#added").removeClass("added-animate");
-	}, 3000);
+	}, 4000);
 }
 
 /* Toggle the settings page */
