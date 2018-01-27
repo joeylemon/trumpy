@@ -77,6 +77,7 @@ function addPerson(start, click){
 }
 
 var click = false;
+var touchpos;
 
 /* Listen for the touch start to begin adding a person */
 $(window).bind('touchstart', function(e){
@@ -89,6 +90,7 @@ $(window).bind('touchstart', function(e){
 	
 	if(!click && !slideout.isOpen() && !isAlertOpen()){
 		click = true;
+		touchpos = {x: x, y: y};
 		$("#face").css({filter: "brightness(0.8)", width: expanded_face});
 		$("#face-div").css({bottom: "103px"});
 	}
@@ -96,12 +98,17 @@ $(window).bind('touchstart', function(e){
 
 /* Listen for the touch end to add the person */
 $(window).bind('touchend', function(e){
+	var x = e.changedTouches[0].pageX;
+	var y = e.changedTouches[0].pageY;
+	
 	if(click){
-		addPerson(undefined, true);
-		playSound("pop");
-		click = false;
+		if(distance(touchpos, {x: x, y: y}) < 20){
+			addPerson(undefined, true);
+			playSound("pop");
+		}
 		$("#face").css({filter: "brightness(1)", width: face_width});
 		$("#face-div").css({bottom: face_bottom});
+		click = false;
 	}
 });
 
