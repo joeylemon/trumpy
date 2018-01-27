@@ -215,6 +215,16 @@ body {
 	text-decoration: none;
 }
 
+.count .num {
+	text-decoration: none;
+	color: #fff;
+}
+
+.count .num a {
+	text-decoration: none;
+	color: #fff;
+}
+
 .count .pers {
 	font-family: profont;
 	font-size: 15px;

@@ -58,6 +58,7 @@ function onDeviceReady() {
 function onBannerLoad(){
 	moveBannerHTML();
 	admob.banner.show();
+	updateItemCosts();
 	
 	setTimeout(function(){
 		showVideoButton();
