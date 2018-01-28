@@ -480,7 +480,7 @@ body {
 
 .shop-menu .shop-item:active {
 	transform: scale(0.95, 0.95);
-	box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0px 0px 25px rgba(0, 0, 0, 0.1);
 }
 
 .shop-menu .shop-item img {
