@@ -8,42 +8,44 @@ var lastInterstitial = 0;
 /* Listen for device ready event */
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-	try {
-		/* Set ad configs */
-		admob.setOptions({
-			publisherId: admobid.banner,
-			overlap: true,
-			isTesting: true
-		});
-		admob.banner.config({
-			id: admobid.banner,
-			autoShow: false
-		});
-		admob.interstitial.config({
-			id: admobid.interstitial,
-			autoShow: false
-		});
-		admob.rewardvideo.config({
-			id: admobid.reward_video,
-			autoShow: false
-		});
-		
-		/* Load banner ad */
-		admob.banner.prepare();
-		document.addEventListener('admob.banner.events.LOAD', onBannerLoad);
-		
-		/* Load interstitial ad */
-		admob.interstitial.prepare();
-		document.addEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
-		
-		/* Show interstitial ad on slideout open */
-		slideout.on('open', function () {
-			if (canDisplayInterstitial()) {
-				admob.interstitial.show();
-				lastInterstitial = Date.now();
-			}
-		});
-	} catch (e) {}
+	setTimeout(function(){
+		try {
+			/* Set ad configs */
+			admob.setOptions({
+				publisherId: admobid.banner,
+				overlap: true,
+				isTesting: true
+			});
+			admob.banner.config({
+				id: admobid.banner,
+				autoShow: false
+			});
+			admob.interstitial.config({
+				id: admobid.interstitial,
+				autoShow: false
+			});
+			admob.rewardvideo.config({
+				id: admobid.reward_video,
+				autoShow: false
+			});
+			
+			/* Load banner ad */
+			admob.banner.prepare();
+			document.addEventListener('admob.banner.events.LOAD', onBannerLoad);
+			
+			/* Load interstitial ad */
+			admob.interstitial.prepare();
+			document.addEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
+			
+			/* Show interstitial ad on slideout open */
+			slideout.on('open', function () {
+				if (canDisplayInterstitial()) {
+					admob.interstitial.show();
+					lastInterstitial = Date.now();
+				}
+			});
+		} catch (e) {}
+	}, 0);
 	
 	setTimeout(function(){
 		navigator.splashscreen.hide();

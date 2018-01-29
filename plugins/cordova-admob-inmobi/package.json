@@ -1,0 +1,66 @@
+{
+  "_from": "cordova-admob-inmobi",
+  "_id": "cordova-admob-inmobi@0.0.4",
+  "_inBundle": false,
+  "_integrity": "sha1-k2zaGJVPLPZewjYn6UdMmdZP1zc=",
+  "_location": "/cordova-admob-inmobi",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "cordova-admob-inmobi",
+    "name": "cordova-admob-inmobi",
+    "escapedName": "cordova-admob-inmobi",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/cordova-admob-inmobi/-/cordova-admob-inmobi-0.0.4.tgz",
+  "_shasum": "936cda18954f2cf65ec23627e9474c99d64fd737",
+  "_spec": "cordova-admob-inmobi",
+  "_where": "C:\\Users\\Joey\\Desktop\\Apps\\trumpy",
+  "author": {
+    "name": "Ratson"
+  },
+  "bugs": {
+    "url": "https://github.com/rehy/cordova-admob-mediation/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-admob-inmobi",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "Cordova AdMob Mediation Plugin for InMobi",
+  "files": [
+    "*.md",
+    "*.xml",
+    "src"
+  ],
+  "homepage": "https://github.com/rehy/cordova-admob-mediation#readme",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "admob",
+    "inmobi",
+    "ad"
+  ],
+  "license": "MIT",
+  "name": "cordova-admob-inmobi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rehy/cordova-admob-mediation.git"
+  },
+  "scripts": {
+    "version": "sync-package-version --cordova-plugin"
+  },
+  "version": "0.0.4"
+}

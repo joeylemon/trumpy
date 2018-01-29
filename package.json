@@ -10,10 +10,12 @@
       "cordova-plugin-webviewcolor": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-admob-free": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-admob-inmobi": {}
     }
   },
   "dependencies": {
+    "cordova-admob-inmobi": "0.0.4",
     "cordova-ios": "~4.4.0",
     "cordova-plugin-admob-free": "0.13.0",
     "cordova-plugin-splashscreen": "^5.0.1",
