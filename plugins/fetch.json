@@ -54,5 +54,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-admob-mediation-inmobi": {
+    "source": {
+      "type": "registry",
+      "id": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

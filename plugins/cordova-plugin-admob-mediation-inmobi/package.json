@@ -1,0 +1,57 @@
+{
+  "_from": "git+https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+  "_id": "cordova-plugin-admob-mediation-inmobi@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-7DeNOOuHgzO/aHH07/kbqEmmcIk=",
+  "_location": "/cordova-plugin-admob-mediation-inmobi",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+    "rawSpec": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+    "saveSpec": "git+https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+    "fetchSpec": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+    "gitCommittish": "master"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git#90be0c780846af044bba792969dddd26e64321c8",
+  "_spec": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
+  "_where": "C:\\Users\\Joey\\Desktop\\Apps\\trumpy",
+  "author": {
+    "name": "rebrandsoftware"
+  },
+  "bugs": {
+    "url": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "cordova-plugin-admob-mediation-InMobi",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "deprecated": false,
+  "description": "AdMob Mediation Adapter for InMobi",
+  "homepage": "https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios",
+    "cordova",
+    "plugin",
+    "admob",
+    "inmobi",
+    "mediation"
+  ],
+  "license": "MIT",
+  "name": "cordova-plugin-admob-mediation-inmobi",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git"
+  },
+  "version": "1.0.0"
+}
