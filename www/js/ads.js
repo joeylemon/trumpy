@@ -32,15 +32,12 @@ function onDeviceReady() {
 		admob.banner.prepare();
 		document.addEventListener('admob.banner.events.LOAD', onBannerLoad);
 		
+		/* Load interstitial ad */
+		admob.interstitial.prepare();
+		document.addEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
+		
 		/* Show interstitial ad on slideout open */
 		slideout.on('open', function () {
-			if(lastInterstitial == 0){
-				admob.interstitial.prepare();
-				setTimeout(function(){
-					lastInterstitial = 1;
-				}, 2000);
-			}
-			
 			if (canDisplayInterstitial()) {
 				admob.interstitial.show();
 				lastInterstitial = Date.now();
@@ -65,6 +62,11 @@ function onBannerLoad(){
 	}, 5000);
 	
 	document.removeEventListener('admob.banner.events.LOAD', onBannerLoad);
+}
+
+/* Fired when the interstitial ad loads */
+function onInterstitialLoad(){
+	lastInterstitial = 1;
 }
 
 /* Move elements up when banner is loaded */
