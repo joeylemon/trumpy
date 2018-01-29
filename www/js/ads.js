@@ -67,6 +67,8 @@ function onBannerLoad(){
 /* Fired when the interstitial ad loads */
 function onInterstitialLoad(){
 	lastInterstitial = 1;
+	
+	document.removeEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
 }
 
 /* Move elements up when banner is loaded */
