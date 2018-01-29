@@ -474,7 +474,7 @@ body {
     width: 290px;
     height: 70px;
     margin-left: -10px;
-    padding-left: 25px;
+    padding-left: 23px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
@@ -484,9 +484,9 @@ body {
 }
 
 .shop-menu .shop-item img {
-	width: 50px;
-	height: 50px;
-	margin-top: 8px;
+	width: 55px;
+	height: 55px;
+	margin-top: 5px;
 }
 
 .shop-menu .shop-item .flip {
@@ -528,7 +528,7 @@ body {
 
 .shop-menu .shop-item .amount {
 	position: absolute;
-	left: 35px;
+	left: 39px;
 	bottom: 0px;
 	width: 50px;
 	font-size: 14px;
