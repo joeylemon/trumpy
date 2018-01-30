@@ -142,12 +142,13 @@ body {
 .debug {
 	display: none;
 	position: fixed;
-	bottom: 0px;
+	bottom: 50px;
 	left: 0px;
 	right: 0px;
 	height: 100px;
 	background-color: rgba(0, 0, 0, 0.5);
-	padding-top: 5px;
+	padding-top: 7px;
+	padding-left: 5px;
 	font-family: profont;
 	font-size: 15px;
 	color: #fff;

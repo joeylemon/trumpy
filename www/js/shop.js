@@ -200,10 +200,14 @@ function toggleAbout(id){
 	
 	var open = $("#" + id).hasClass("expand") ? true : false;
 	if(!open){
-		expandAbout(id);
+		setTimeout(function(){
+			expandAbout(id);
+		}, 0);
 		debug("was not open");
 	}else{
-		retractAbout(id);
+		setTimeout(function(){
+			retractAbout(id);
+		}, 0);
 		debug("was open");
 	}
 }

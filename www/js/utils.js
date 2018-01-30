@@ -149,11 +149,14 @@ function isAlertOpen(){
 }
 
 var debugMessages = new Array();
+var debugId = 1;
 /* Add a debug message */
 function debug(message){
 	$("#debug-div").show();
 	
-	debugMessages.push(message);
+	debugMessages.push(debugId + ": " + message);
+	debugId++;
+	
 	if(debugMessages.length > 6){
 		debugMessages.splice(0, 1);
 	}
