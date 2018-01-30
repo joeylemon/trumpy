@@ -5,6 +5,9 @@ function draw(){
 	if(!gamePaused){
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		ctx_bg.clearRect(0, 0, canvas_bg.width, canvas_bg.height);
+		if(agentsAnimating){
+			ctx_agents.clearRect(0, 0, canvas.width, canvas.height);
+		}
 		
 		clearPeople();
 		clearFaces();
@@ -16,6 +19,9 @@ function draw(){
 		for(var i = 0; i < agents.length; i++){
 			var agent = agents[i];
 			agent.deport();
+			if(agentsAnimating){
+				agent.draw();
+			}
 		}
 		
 		for(var i = 0; i < people.length; i++){

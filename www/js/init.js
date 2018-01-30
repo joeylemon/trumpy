@@ -64,6 +64,8 @@ face.src = "images/small_face.png";
 /* Define settings */
 var settings = {
 	person_size: 3.25,
+	agent_animation_steps: 30,
+	agent_animation_factor: 5,
 	fade_dist: 10,
 	max_people: 1500,
 	max_faces: 75,
@@ -93,6 +95,8 @@ var total = 0;
 var shopOpen = false;
 var settingsOpen = false;
 var gamePaused = false;
+var agentsAnimating = false;
+var agentCancelTask;
 
 var news_left = 0;
 var news = [
