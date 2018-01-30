@@ -194,7 +194,6 @@ function retractAbout(id){
 /* Toggle the about description for the item */
 function toggleAbout(id){
 	if(current_about && current_about != id){
-		debug("retract currently opened " + current_about);
 		retractAbout(current_about);
 	}
 	
@@ -203,12 +202,10 @@ function toggleAbout(id){
 		setTimeout(function(){
 			expandAbout(id);
 		}, 0);
-		debug("was not open");
 	}else{
 		setTimeout(function(){
 			retractAbout(id);
 		}, 0);
-		debug("was open");
 	}
 }
 
