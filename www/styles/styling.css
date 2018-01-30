@@ -496,6 +496,7 @@ body {
 
 .shop-menu h1 {
 	width: 280px;
+	background-color: #fff;
     font-size: 35px;
     font-family: profont;
     text-align: center;
@@ -511,6 +512,7 @@ body {
     padding-left: 23px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 	overflow: hidden;
+	background-color: #fff;
 }
 
 .shop-menu .shop-item:active {
@@ -579,7 +581,6 @@ body {
 	width: 18px;
 	height: 18px;
 	opacity: 0.8;
-	z-index: -1;
 }
 
 .shop-menu .shop-item .about-desc {
@@ -594,12 +595,12 @@ body {
 }
 
 .shop-menu .expand {
-	animation: expand 0.5s;
+	animation: expand 0.3s;
 	animation-fill-mode: forwards;
 }
 
 .shop-menu .retract {
-	animation: retract 0.5s;
+	animation: retract 0.3s;
 }
 
 .light {
