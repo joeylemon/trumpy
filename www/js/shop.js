@@ -194,14 +194,17 @@ function retractAbout(id){
 /* Toggle the about description for the item */
 function toggleAbout(id){
 	if(current_about && current_about != id){
+		debug("retract currently opened " + current_about);
 		retractAbout(current_about);
 	}
 	
 	var open = $("#" + id).hasClass("expand") ? true : false;
 	if(!open){
 		expandAbout(id);
+		debug("was not open");
 	}else{
 		retractAbout(id);
+		debug("was open");
 	}
 }
 
@@ -262,15 +265,14 @@ function buy(e, id){
 	var pos = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY};
 	var truePos = {x: e.changedTouches[0].pageX - $("#" + id).offset().left, y: e.changedTouches[0].pageY - $("#" + id).offset().top};
 	
+	if(!buyPos || distance(buyPos, pos) > 20){
+		return;
+	}
+	
 	if(distance(truePos, {x: 270, y: 56}) < 25){
 		toggleAbout(id);
 		return;
 	}
-	
-	if(!buyPos || distance(buyPos, pos) > 20){
-		return;
-	}
-	buyPos = undefined;
 	
 	var item = purchases[id];
 	if(deported >= item.cost){

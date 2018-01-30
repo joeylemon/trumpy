@@ -148,6 +148,23 @@ function isAlertOpen(){
 	return (alertShown != 0);
 }
 
+var debugMessages = new Array();
+/* Add a debug message */
+function debug(message){
+	$("#debug-div").show();
+	
+	debugMessages.push(message);
+	if(debugMessages.length > 6){
+		debugMessages.splice(0, 1);
+	}
+	
+	$("#debug").html("");
+	for(var i = 0; i < debugMessages.length; i++){
+		var msg = debugMessages[i];
+		$("#debug").append(msg + "<br>");
+	}
+}
+
 var colors = [
 	"132, 92, 0",
 	"139, 69, 19",

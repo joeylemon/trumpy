@@ -139,6 +139,20 @@ body {
 	background: transparent;
 }
 
+.debug {
+	display: none;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: 100px;
+	background-color: rgba(0, 0, 0, 0.5);
+	padding-top: 5px;
+	font-family: profont;
+	font-size: 15px;
+	color: #fff;
+}
+
 .bg {
 	overflow: hidden;
 	width: 100%;
