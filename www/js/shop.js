@@ -167,6 +167,10 @@ function expandAbout(id){
 	$("#about-desc-" + id).show();
 	$("#" + id).removeClass("retract");
 	$("#" + id).addClass("expand");
+	
+	if(taskExists(id)){
+		removeTask(id);
+	}
 }
 
 /* Close the about description for the item */
@@ -174,10 +178,17 @@ function retractAbout(id){
 	current_about = undefined;
 	$("#" + id).removeClass("expand");
 	$("#" + id).addClass("retract");
-	setTimeout(function(){
+	
+	if(taskExists(id)){
+		removeTask(id);
+	}
+	
+	var task = setTimeout(function(){
 		$("#about-desc-" + id).hide();
 		$("#" + id).removeClass("retract");
+		removeTask(id);
 	}, 1000);
+	tasks.push({id: id, task: task});
 }
 
 /* Toggle the about description for the item */

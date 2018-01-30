@@ -449,9 +449,10 @@ body {
 	position: absolute;
 	top: 0px;
 	right: 0px;
-	bottom: -200px;
+	bottom: -400px;
 	left: 0px;
 	background-color: #fff;
+	overflow: hidden;
 }
 
 .shop-menu .settings p {
