@@ -267,6 +267,14 @@ function showAdded(added) {
 	}, 4000);
 }
 
+/* Make an element pop on the screen */
+function popElement(element){
+	$("#" + element).addClass("pop-animate");
+	setTimeout(function(){
+		$("#" + element).removeClass("pop-animate");
+	}, 1000);
+}
+
 /* Open the shop */
 function openShop() {
 	slideout.open();

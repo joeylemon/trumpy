@@ -96,10 +96,7 @@ document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
 /* Show the reward video button */
 function showVideoButton() {
 	$("#reward").show();
-	$("#vid-img").addClass("vid-animate");
-	setTimeout(function(){
-		$("#vid-img").removeClass("vid-animate");
-	}, 1000);
+	popElement("vid-img");
 }
 
 /* Load and open a reward video */
