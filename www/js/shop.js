@@ -93,20 +93,18 @@ function initShop() {
 /* Get the shop html for a purchase */
 function getPurchaseHTML(details) {
 	return `
-		<div style="position: relative;">
-			<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
-				<img id="` + details.id + `-img" src="` + details.image + `">
-				<div class="desc" id="` + details.id + `-desc">
-					<p class="name">` + details.title + `</p>
-					<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
-					<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
-				</div>
-				<div class="amount">
-					<p id="` + details.id + `-amount">` + details.amount + `</p>
-				</div>
-				<div class="about-desc" id="about-desc-` + details.id + `">
-					<p>` + details.about + `</p>
-				</div>
+		<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
+			<img id="` + details.id + `-img" src="` + details.image + `">
+			<div class="desc" id="` + details.id + `-desc">
+				<p class="name">` + details.title + `</p>
+				<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
+				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
+			</div>
+			<div class="amount">
+				<p id="` + details.id + `-amount">` + details.amount + `</p>
+			</div>
+			<div class="about-desc" id="about-desc-` + details.id + `">
+				<p>` + details.about + `</p>
 			</div>
 			<img class="about" id="about-img-` + details.id + `" src="images/about.png" ontouchend="toggleAbout('` + details.id + `')">
 		</div>
@@ -251,7 +249,14 @@ function attemptBuy(e, id){
 /* Buy a shop item */
 function buy(e, id){
 	var pos = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY};
-	if(distance(buyPos, pos) > 20){
+	var truePos = {x: e.changedTouches[0].pageX - $("#" + id).offset().left, y: e.changedTouches[0].pageY - $("#" + id).offset().top};
+	
+	if(distance(truePos, {x: 270, y: 56}) < 25){
+		toggleAbout(id);
+		return;
+	}
+	
+	if(!buyPos || distance(buyPos, pos) > 20){
 		return;
 	}
 	buyPos = undefined;

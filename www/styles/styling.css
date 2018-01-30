@@ -556,20 +556,17 @@ body {
 	text-align: right;
 }
 
-.shop-menu .about {
+.shop-menu .shop-item .about {
 	position: absolute;
-    right: 75px;
-    top: 47px;
-    width: 18px;
-    height: 18px;
+	right: 33px;
+	top: 43px;
+	width: 18px;
+	height: 18px;
 	opacity: 0.8;
+	z-index: -1;
 }
 
-.shop-menu .about:active {
-	transform: scale(0.8, 0.8);
-}
-
-.shop-menu .about-desc {
+.shop-menu .shop-item .about-desc {
 	display: none;
 	position: absolute;
     top: 75px;
