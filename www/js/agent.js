@@ -22,9 +22,6 @@ var Agent = function(id, loc, size){
 	
 	this.deport_total = unroundedRand(0, 1);
 	this.lastAdd = Date.now();
-	
-	this.animation = 0;
-	this.resetAnimating = false;
 };
 
 Agent.prototype.fromData = function(data){
@@ -43,9 +40,6 @@ Agent.prototype.fromData = function(data){
 	
 	this.deport_total = unroundedRand(0, 1);
 	this.lastAdd = Date.now();
-	
-	this.animation = settings.agent_animation_steps;
-	this.resetAnimating = false;
 	
 	return this;
 };
@@ -90,30 +84,5 @@ Agent.prototype.deport = function(){
 };
 
 Agent.prototype.draw = function(){
-	var size = this.size;
-
-	if(this.resetAnimating){
-		this.resetAnimating = false;
-		this.animation = settings.agent_animation_steps;
-		
-		if(agentCancelTask){
-			clearInterval(agentCancelTask);
-		}
-		agentCancelTask = setTimeout(function(){
-			agentsAnimating = false;
-			agentCancelTask = undefined;
-		}, 1000);
-	}else if(this.animation < settings.agent_animation_steps){
-		agentsAnimating = true;
-		
-		var diff = (settings.agent_animation_steps / settings.agent_animation_factor) - (this.animation / settings.agent_animation_factor);
-		size = {width: this.size.width * diff, height: this.size.height * diff};
-		
-		this.animation++;
-		if(this.animation >= settings.agent_animation_steps || size.width < this.size.width){
-			this.resetAnimating = true;
-		}
-	}
-	
-	ctx_agents.drawImage(this.img, this.x - size.width / 2, this.y - size.height / 2, size.width, size.height);
+	ctx_agents.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
 };
