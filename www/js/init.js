@@ -12,6 +12,9 @@ slideout.on('close', function () {
 	if (settingsOpen) {
 		toggleSettings();
 	}
+	if(current_about){
+		retractAbout(current_about);
+	}
 });
 
 var size = window.innerHeight * 1.5;

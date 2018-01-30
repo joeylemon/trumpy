@@ -108,6 +108,24 @@ time, mark, audio, video {
 	}
 }
 
+@keyframes expand {
+	0% {
+		height: 70px;
+	}
+	100% {
+		height: 130px;
+	}
+}
+
+@keyframes retract {
+	0% {
+		height: 130px;
+	}
+	100% {
+		height: 70px;
+	}
+}
+
 body {
 	/* Background color for shop */
 	background-color: #2280BA;
@@ -476,6 +494,7 @@ body {
     margin-left: -10px;
     padding-left: 23px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+	overflow: hidden;
 }
 
 .shop-menu .shop-item:active {
@@ -530,11 +549,39 @@ body {
 .shop-menu .shop-item .amount {
 	position: absolute;
 	left: 39px;
-	bottom: 0px;
+	top: 55px;
 	width: 50px;
 	font-size: 14px;
 	font-family: profont;
 	text-align: right;
+}
+
+.shop-menu .about {
+	position: absolute;
+    right: 75px;
+    bottom: 5px;
+    width: 15px;
+    height: 15px;
+	opacity: 0.8;
+}
+
+.shop-menu .about-desc {
+	position: absolute;
+    top: 75px;
+    left: 15px;
+    width: 260px;
+    font-family: profont;
+    font-size: 15px;
+    padding-left: 5;
+}
+
+.shop-menu .expand {
+	animation: expand 0.5s;
+	animation-fill-mode: forwards;
+}
+
+.shop-menu .retract {
+	animation: retract 0.5s;
 }
 
 .light {

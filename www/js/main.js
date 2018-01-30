@@ -15,7 +15,9 @@ function draw(){
 		
 		for(var i = 0; i < agents.length; i++){
 			var agent = agents[i];
-			agent.deport();
+			if(!agent.no_deport){
+				agent.deport();
+			}
 		}
 		
 		for(var i = 0; i < people.length; i++){

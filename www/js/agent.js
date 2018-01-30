@@ -1,4 +1,4 @@
-var Agent = function(id, loc, size){
+var Agent = function(id, loc, size, no_deport){
 	if(!loc){
 		this.setRandomLocation();
 	}else{
@@ -22,6 +22,8 @@ var Agent = function(id, loc, size){
 	
 	this.deport_total = unroundedRand(0, 1);
 	this.lastAdd = Date.now();
+	
+	this.no_deport = no_deport;
 };
 
 Agent.prototype.fromData = function(data){
@@ -40,6 +42,8 @@ Agent.prototype.fromData = function(data){
 	
 	this.deport_total = unroundedRand(0, 1);
 	this.lastAdd = Date.now();
+	
+	this.no_deport = data.no_deport;
 	
 	return this;
 };

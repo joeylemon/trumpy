@@ -1,57 +1,73 @@
 // http://cookieclicker.wikia.com/wiki/Building
 var default_purchases = {
+	tap_multiplier: new Purchase('tap_multiplier', 20, 'upgrade', {
+		desc: "Allows you to deport more illegals every time you tap the screen.",
+		rate: .10
+	}),
+	detention_center: new Purchase('detention_center', 1000, 'center', {
+		desc: "Holds illegal immigrants until it runs out of capacity. Works even when you're not playing.",
+		hours: 0.5
+	}),
 	republican: new Purchase('republican', 10, 'agent', {
+		desc: "A trustworthy constituent just trying to do their part.",
 		delay: 1000 / 0.2,
 		size: 15
 	}),
-	click_multiplier: new Purchase('click_multiplier', 20, 'upgrade', {
-		rate: .10
-	}),
 	ice_agent: new Purchase('ice_agent', 100, 'agent', {
+		desc: "A ruthless agent of the U.S. Immigration and Customs Enforcement agency.",
 		delay: 1000 / 1,
 		size: 18
 	}),
 	border_agent: new Purchase('border_agent', 1100, 'agent', {
+		desc: "A well-trained soldier ordered to protect the borders at all costs.",
 		delay: 1000 / 8,
 		size: 20,
 		max: 2
 	}),
 	wall: new Purchase('wall', 13000, 'agent', {
+		desc: "A 35-foot high portion of the massive wall protecting the southern border.",
 		delay: 1000 / 45,
 		size: 9,
 		max: 6
 	}),
 	executive_order: new Purchase('executive_order', 140000, 'agent', {
+		desc: "An executive order passed by President Trump himself.",
 		delay: 1000 / 260,
 		size: 22,
 		max: 30
 	}),
 	local_law: new Purchase('local_law', 1500000, 'agent', {
+		desc: "A county-level law allowing its citizens to manually deport illegal immigrants.",
 		delay: 1000 / 1400,
 		size: 22,
 		max: 100
 	}),
 	state_law: new Purchase('state_law', 20000000, 'agent', {
+		desc: "A state-wide law allowing its citizens to manually deport illegal immigrants.",
 		delay: 1000 / 7800,
 		size: 20,
 		max: 400
 	}),
 	federal_law: new Purchase('federal_law', 330000000, 'agent', {
+		desc: "A nation-wide law allowing all citizens to manually deport illegal immigrants.",
 		delay: 1000 / 44000,
 		size: 25,
 		max: 3000
 	}),
-	federal_mandate: new Purchase('federal_mandate', 5100000000, 'agent', {
+	amendment: new Purchase('amendment', 5100000000, 'agent', {
+		desc: "An amendment to the Constitution itself. Approved by Congress and all states.",
 		delay: 1000 / 260000,
 		size: 28,
 		max: 10000
 	}),
-	martial_law: new Purchase('martial_law', 75000000000, 'agent', {
+	national_guard: new Purchase('national_guard', 75000000000, 'agent', {
+		desc: "The deployment of the national guard to raid private property and find illegals.",
 		delay: 1000 / 1600000,
 		size: 28,
 		max: 70000
 	}),
-	national_guard: new Purchase('national_guard', 1000000000000, 'agent', {
+	martial_law: new Purchase('martial_law', 1000000000000, 'agent', {
+		desc: "The last straw of the U.S. government: declare martial law and get every last illegal out.",
 		delay: 1000 / 10000000,
 		size: 28,
 		max: 250000
@@ -65,7 +81,11 @@ function initShop() {
 	for (var key in purchases) {
 		var item = purchases[key];
 		var details = item.getDetails();
-		$("#shop").append(getPurchaseHTML(details));
+		if(item.type != "agent"){
+			$("#upgrades").append(getPurchaseHTML(details));
+		}else{
+			$("#deporters").append(getPurchaseHTML(details));
+		}
 	}
 	setTimeout(updateItemCosts, 500);
 }
@@ -73,16 +93,22 @@ function initShop() {
 /* Get the shop html for a purchase */
 function getPurchaseHTML(details) {
 	return `
-		<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
-			<img id="` + details.id + `-img" src="` + details.image + `">
-			<div class="desc" id="` + details.id + `-desc">
-				<p class="name">` + details.title + `</p>
-				<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
-				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
+		<div style="position: relative;">
+			<div class="shop-item" id="` + details.id + `" ontouchstart="attemptBuy(event, '` + details.id + `')" ontouchend="buy(event, '` + details.id + `')">
+				<img id="` + details.id + `-img" src="` + details.image + `">
+				<div class="desc" id="` + details.id + `-desc">
+					<p class="name">` + details.title + `</p>
+					<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
+					<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
+				</div>
+				<div class="amount">
+					<p id="` + details.id + `-amount">` + details.amount + `</p>
+				</div>
+				<div class="about-desc" id="about-desc">
+					<p>` + details.about + `</p>
+				</div>
 			</div>
-			<div class="amount">
-				<p id="` + details.id + `-amount">` + details.amount + `</p>
-			</div>
+			<img class="about" src="images/about.png" ontouchend="toggleAbout('` + details.id + `')">
 		</div>
 	`;
 }
@@ -104,23 +130,6 @@ function updateObscuredItems() {
 			}
 		}
 	}
-
-	if (total_persecond > (settings.click_factor / 10)) {
-		var new_rate = total_persecond / settings.click_factor;
-		
-		if(new_rate != purchases.click_multiplier.options.rate){
-			console.log("change");
-			
-			purchases.click_multiplier.cost = (new_rate * 95);
-			for(var i = 0; i < purchases.click_multiplier.current; i++){
-				purchases.click_multiplier.cost += Math.round(purchases.click_multiplier.cost / 20);
-			}
-			
-			purchases.click_multiplier.options.rate = new_rate;
-			$("#click_multiplier-per").html(purchases.click_multiplier.getDescription());
-			$("#click_multiplier-cost").html(purchases.click_multiplier.getProperCost());
-		}
-	}
 }
 
 /* Update shop item costs based on their new amounts */
@@ -128,6 +137,58 @@ function updateItemCosts() {
 	for (var key in purchases) {
 		var item = purchases[key];
 		$("#" + key + "-cost").html(item.getProperCost());
+		$("#" + key + "-amount").html(item.getProperAmount());
+	}
+	
+	if (total_persecond > (settings.click_factor / 10)) {
+		var new_rate = total_persecond / settings.click_factor;
+		
+		if(new_rate != purchases.tap_multiplier.options.rate){
+			purchases.tap_multiplier.cost = (new_rate * 95);
+			for(var i = 0; i < purchases.tap_multiplier.current; i++){
+				purchases.tap_multiplier.cost += Math.round(purchases.tap_multiplier.cost / 20);
+			}
+			
+			purchases.tap_multiplier.options.rate = new_rate;
+			$("#tap_multiplier-per").html(purchases.tap_multiplier.getDescription());
+			$("#tap_multiplier-cost").html(purchases.tap_multiplier.getProperCost());
+		}
+	}
+	
+	var new_cost = 1000 + (total_persecond * 900) + Math.pow(purchases.detention_center.current + 3, 4);
+	purchases.detention_center.cost = new_cost;
+	$("#detention_center-cost").html(purchases.detention_center.getProperCost());
+}
+
+var current_about;
+/* Expand the about description for the item */
+function expandAbout(id){
+	current_about = id;
+	$("#" + id).removeClass("retract");
+	$("#" + id).addClass("expand");
+}
+
+/* Close the about description for the item */
+function retractAbout(id){
+	current_about = undefined;
+	$("#" + id).removeClass("expand");
+	$("#" + id).addClass("retract");
+	setTimeout(function(){
+		$("#" + id).removeClass("retract");
+	}, 1000);
+}
+
+/* Toggle the about description for the item */
+function toggleAbout(id){
+	if(current_about && current_about != id){
+		retractAbout(current_about);
+	}
+	
+	var open = $("#" + id).hasClass("expand") ? true : false;
+	if(!open){
+		expandAbout(id);
+	}else{
+		retractAbout(id);
 	}
 }
 
@@ -193,80 +254,7 @@ function buy(e, id){
 	
 	var item = purchases[id];
 	if(deported >= item.cost){
-		playSound("buy");
-		flipIcon(id);
-		
-		if(id == "click_multiplier"){
-			/* Seperate buy function, otherwise deport total becomes NaN? */
-			item.current++;
-			
-			deported -= item.cost;
-			document.getElementById("count").innerHTML = deported.toFixed(0);
-			
-			total_perclick += item.options.rate;
-			updateCounts();
-			
-			if(item.current == 1){
-				updateNews("Unknown entity is assisting in the war on illegals &mdash; large amounts of immigrants exiting the country for no apparent reason.");
-			}
-			
-			document.getElementById(id + "-amount").innerHTML = item.current;
-			
-			item.cost += Math.round(item.cost / 6.5);
-			updateItemCosts();
-			updateObscuredItems();
-			
-			updateAgentCanvas();
-			saveData();
-			
-			return;
-		}
-		
-		item.current++;
-		
-		deported -= item.cost;
-		document.getElementById("count").innerHTML = deported.toFixed(0);
-		
-		if(item.type == 'agent'){
-			total_persecond += (1000 / item.options.delay);
-			updateCounts();
-			
-			if(total_persecond > milestones[0]){
-				updateNews("Deportation totals are soaring, reaching a record high of " + milestones[0] + " illegals deported per second.");
-				milestones.splice(0, 1);
-			}
-		}
-		
-		document.getElementById(id + "-amount").innerHTML = item.current;
-		
-		item.cost += Math.round(item.cost / 6.5);
-		updateItemCosts();
-		updateObscuredItems();
-		
-		if(id == "wall"){
-			addWall();
-			
-			if(item.current == 1){
-				updateNews("After a long wait, Trump finally laying down foundations for the wall between the U.S. and Mexico.");
-			}else if(item.current == 4){
-				updateNews("Trump rapidly expanding the wall--already stretching hundreds of miles on the border.");
-			}else if(item.current == 8){
-				updateNews("The wall between the U.S. and Mexico is showing great promise. Immeasurable amounts of illegals being deterred from the U.S. already.");
-			}
-		}else{
-			agents.push(new Agent(id));
-			
-			if(id == "republican" && item.current == 1){
-				updateNews("Trump supporters getting involved by helping identify illegal immigrants.");
-			}else if(id == "agent" && item.current == 1){
-				updateNews("President pushing for deportation agents to start doing their jobs--handing out bonuses for agents with the highest deport totals.");
-			}else if(id == "executive_order" && item.current == 1){
-				updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
-			}
-		}
-		
-		updateAgentCanvas();
-		saveData();
+		item.buy();
 	}else{
 		playSound("error");
 	}

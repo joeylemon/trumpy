@@ -73,7 +73,7 @@ function moveBannerHTML(){
 	$("#count-div").css({bottom: "55px"});
 	$("#shop-img").css({bottom: "56px"});
 	$("#added").css({bottom: "100px"});
-	$("#shop").css({marginBottom: "50px"});
+	$("#deporters").css({marginBottom: "50px"});
 }
 
 /* Check if an interstitial ad can be displayed */
