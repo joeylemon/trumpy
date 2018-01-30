@@ -110,7 +110,7 @@ time, mark, audio, video {
 
 @keyframes expand {
 	0% {
-		height: 70px;
+		height: 80px;
 	}
 	100% {
 		height: 130px;
@@ -122,7 +122,7 @@ time, mark, audio, video {
 		height: 130px;
 	}
 	100% {
-		height: 70px;
+		height: 80px;
 	}
 }
 
@@ -152,6 +152,16 @@ body {
 	font-family: profont;
 	font-size: 15px;
 	color: #fff;
+}
+
+.ad {
+	display: none;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: 100%;
+	height: 50px;
 }
 
 .bg {
@@ -507,7 +517,7 @@ body {
 .shop-menu .shop-item {
 	position: relative;
     width: 290px;
-    height: 70px;
+    height: 80px;
     margin-left: -10px;
     padding-left: 23px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -523,7 +533,7 @@ body {
 .shop-menu .shop-item img {
 	width: 55px;
 	height: 55px;
-	margin-top: 5px;
+	margin-top: 12px;
 	filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
 }
 
@@ -533,8 +543,8 @@ body {
 
 .shop-menu .shop-item .desc {
 	display: inline-block;
-	margin-top: 11px;
-	margin-left: 20px;
+	margin-top: 15px;
+	margin-left: 22px;
 	height: 100%;
 	text-align: left;
 	font-family: bigfont;
@@ -566,8 +576,8 @@ body {
 
 .shop-menu .shop-item .amount {
 	position: absolute;
-	left: 39px;
-	top: 55px;
+	left: 37px;
+	top: 60px;
 	width: 50px;
 	font-size: 14px;
 	font-family: profont;
@@ -577,7 +587,7 @@ body {
 .shop-menu .shop-item .about {
 	position: absolute;
 	right: 33px;
-	top: 43px;
+	top: 44px;
 	width: 18px;
 	height: 18px;
 	opacity: 0.8;
@@ -592,6 +602,7 @@ body {
     font-family: profont;
     font-size: 15px;
     padding-left: 5;
+	margin-top: 5px;
 }
 
 .shop-menu .expand {

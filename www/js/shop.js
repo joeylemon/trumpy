@@ -5,11 +5,11 @@ var default_purchases = {
 		rate: .10
 	}),
 	detention_center: new Purchase('detention_center', 1000, 'center', {
-		desc: "Holds illegal immigrants until it runs out of capacity. Works even when you're not playing.",
+		desc: "Deports illegal immigrants until it runs out of capacity. Works even when you're not playing.",
 		hours: 0.5
 	}),
 	republican: new Purchase('republican', 10, 'agent', {
-		desc: "A trustworthy constituent just trying to do their part.",
+		desc: "A trustworthy constituent just trying to do his part.",
 		delay: 1000 / 0.2,
 		size: 15
 	}),
@@ -193,6 +193,8 @@ function retractAbout(id){
 
 /* Toggle the about description for the item */
 function toggleAbout(id){
+	playSound("open");
+	
 	if(current_about && current_about != id){
 		retractAbout(current_about);
 	}
@@ -270,7 +272,7 @@ function buy(e, id){
 		return;
 	}
 	
-	if(distance(truePos, {x: 270, y: 56}) < 25){
+	if(distance(truePos, {x: 270, y: 64}) < 25){
 		toggleAbout(id);
 		return;
 	}

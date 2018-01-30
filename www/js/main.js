@@ -114,12 +114,6 @@ $(window).bind('touchend', function(e){
 	}
 });
 
-var last_deported = deported;
-setInterval(function(){
-	$("#true-persecond").html((deported - last_deported).toFixed(1));
-	last_deported = deported;
-}, 1000);
-
 /*
 var temp_locs = new Array();
 $(window).bind('touchstart', function(e){

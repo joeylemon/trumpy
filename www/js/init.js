@@ -25,6 +25,11 @@ setTimeout(function(){
 	$("#shop-hide").show();
 }, 100);
 
+if(typeof admob === "undefined"){
+	$("#ad").show();
+	moveBannerHTML();
+}
+
 /* Save progress every 5 seconds */
 setInterval(saveData, 5000);
 
