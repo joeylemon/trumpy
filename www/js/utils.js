@@ -1,3 +1,29 @@
+/* Shorten a number with letter endings */
+function getShortenedNumber(num, longEnding){
+	var dividers = [
+		{div: 1000000000000000, ext: "Q", longEnd: " quadrillion"},
+		{div: 1000000000000, ext: "T", longEnd: " trillion"},
+		{div: 1000000000, ext: "B", longEnd: " billion"},
+		{div: 1000000, ext: "M", longEnd: " million"},
+		{div: 1000, ext: "K", longEnd: " thousand"}
+	];
+	
+	for(var i = 0; i < dividers.length; i++){
+		var entry = dividers[i];
+		if(num >= entry.div){
+			var ending = longEnding ? entry.longEnd : entry.ext;
+			
+			var fixed = (num / entry.div).toFixed(0);
+			if((num / entry.div) % 1 != 0 && num < 100000){
+				fixed = roundNumber(num / entry.div);
+			}
+			return (fixed + ending).replace(".0", "");
+		}
+	}
+	
+	return num.toFixed(0);
+}
+
 /* Check if an object exists in an array */
 function doesIndexExist(array, object) {
 	for (var i = 0; i < array.length; i++) {

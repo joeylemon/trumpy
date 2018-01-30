@@ -149,29 +149,3 @@ function getRewardAmount(){
 function getProperRewardAmount(){
 	return getShortenedNumber(getRewardAmount());
 }
-
-/* Shorten a number with letter endings */
-function getShortenedNumber(num, longEnding){
-	var dividers = [
-		{div: 1000000000000000, ext: "Q", longEnd: " quadrillion"},
-		{div: 1000000000000, ext: "T", longEnd: " trillion"},
-		{div: 1000000000, ext: "B", longEnd: " billion"},
-		{div: 1000000, ext: "M", longEnd: " million"},
-		{div: 1000, ext: "K", longEnd: " thousand"}
-	];
-	
-	for(var i = 0; i < dividers.length; i++){
-		var entry = dividers[i];
-		if(num >= entry.div){
-			var ending = entry.ext;
-			if(longEnding){
-				ending = entry.longEnd;
-			}
-			
-			var fixed = (num / entry.div) % 1 == 0 ? (num / entry.div).toFixed(0) : (num / entry.div).toFixed(1);
-			return (fixed + ending).replace(".0", "");
-		}
-	}
-	
-	return num.toFixed(0);
-}

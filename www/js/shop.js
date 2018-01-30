@@ -104,11 +104,11 @@ function getPurchaseHTML(details) {
 				<div class="amount">
 					<p id="` + details.id + `-amount">` + details.amount + `</p>
 				</div>
-				<div class="about-desc" id="about-desc">
+				<div class="about-desc" id="about-desc-` + details.id + `">
 					<p>` + details.about + `</p>
 				</div>
 			</div>
-			<img class="about" src="images/about.png" ontouchend="toggleAbout('` + details.id + `')">
+			<img class="about" id="about-img-` + details.id + `" src="images/about.png" ontouchend="toggleAbout('` + details.id + `')">
 		</div>
 	`;
 }
@@ -121,11 +121,13 @@ function updateObscuredItems() {
 		if (deported < item.cost) {
 			if(!item.hidden){
 				$("#" + key).css("opacity", "0.3");
+				$("#about-img-" + key).css("opacity", "0.3");
 				item.hidden = true;
 			}
 		} else {
 			if(item.hidden){
 				$("#" + key).css("opacity", "1");
+				$("#about-img-" + key).css("opacity", "1");
 				item.hidden = false;
 			}
 		}
@@ -164,6 +166,7 @@ var current_about;
 /* Expand the about description for the item */
 function expandAbout(id){
 	current_about = id;
+	$("#about-desc-" + id).show();
 	$("#" + id).removeClass("retract");
 	$("#" + id).addClass("expand");
 }
@@ -174,6 +177,7 @@ function retractAbout(id){
 	$("#" + id).removeClass("expand");
 	$("#" + id).addClass("retract");
 	setTimeout(function(){
+		$("#about-desc-" + id).hide();
 		$("#" + id).removeClass("retract");
 	}, 1000);
 }
