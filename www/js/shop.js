@@ -187,7 +187,7 @@ function retractAbout(id){
 		$("#about-desc-" + id).hide();
 		$("#" + id).removeClass("retract");
 		removeTask(id);
-	}, 1000);
+	}, 300);
 	tasks.push({id: id, task: task});
 }
 
