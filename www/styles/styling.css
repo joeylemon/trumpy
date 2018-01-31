@@ -526,12 +526,12 @@ body {
 }
 
 .shop-menu .center-collect {
-	position: relative;
-	width: 269px;
-	height: 33px;
-	border: 3px solid rgba(0, 0, 0, 0.8);
-	font-family: profont;
-	font-size: 17px;
+    position: relative;
+    width: 269px;
+    height: 27px;
+    border: 3px solid rgba(0, 0, 0, 0.8);
+    font-family: profont;
+    font-size: 16px;
 }
 
 .shop-menu .center-collect:active {
@@ -540,7 +540,7 @@ body {
 
 .shop-menu .center-collect .text {
 	text-align: center;
-	margin-top: 5px;
+	margin-top: 3px;
 }
 
 .shop-menu .center-collect .progress-bar-bg {
@@ -549,7 +549,7 @@ body {
 	left: 0px;
 	right: 0px;
 	height: 4px;
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.25);
 }
 
 .shop-menu .center-collect .progress-bar {

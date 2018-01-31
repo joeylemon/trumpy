@@ -129,20 +129,7 @@ function getData() {
 				}
 			}
 			
-			var seconds = (Date.now() - data.closed) / 1000;
-			var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
-			if(seconds > max_seconds){
-				seconds = max_seconds;
-			}else{
-				if(detention_centers < max_seconds){
-					if(detention_centers + seconds > max_seconds){
-						seconds = max_seconds;
-					}
-				}else{
-					seconds = 0;
-				}
-			}
-			detention_centers += seconds;
+			addToCentersSinceTime(data.closed);
 			
 			locs = data.locs;
 			borders = data.borders;
@@ -150,15 +137,22 @@ function getData() {
 	}
 }
 
-/* Add to the total based on a timestamp */
-function addToTotalSinceTime(closed){
-	var secondsSinceLast = (Date.now() - closed) / 1000;
-	var toAdd = (secondsSinceLast * total_persecond);
-	if(toAdd > 1){
-		deported += toAdd;
-		$("#count").html(deported.toFixed(0));
-		showAdded(toAdd);
+/* Add to the detention centers based on a timestamp */
+function addToCentersSinceTime(closed){
+	var seconds = (Date.now() - closed) / 1000;
+	var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
+	if(seconds > max_seconds){
+		seconds = max_seconds;
+	}else{
+		if(detention_centers < max_seconds){
+			if(detention_centers + seconds > max_seconds){
+				seconds = max_seconds;
+			}
+		}else{
+			seconds = 0;
+		}
 	}
+	detention_centers += seconds;
 }
 
 var temp = {closed: 0};
@@ -173,7 +167,7 @@ function paused() {
 
 /* Detect when the app is back in the foreground */
 function resumed() {
-	addToTotalSinceTime(temp.closed);
+	addToCentersSinceTime(temp.closed);
 	gamePaused = false;
 }
 

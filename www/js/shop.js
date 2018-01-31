@@ -94,7 +94,7 @@ function updateItemCosts() {
 /* Get the percentage of detention centers full */
 function getDetentionCentersPercent(){
 	var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
-	return (detention_centers / max_seconds) * 100;
+	return max_seconds != 0 ? (detention_centers / max_seconds) * 100 : 0;
 }
 
 /* Get the total illegals in the deportation centers */
