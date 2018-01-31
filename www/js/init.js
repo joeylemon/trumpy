@@ -141,18 +141,9 @@ function getData() {
 function addToCentersSinceTime(closed){
 	var seconds = (Date.now() - closed) / 1000;
 	var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
-	if(seconds > max_seconds){
-		seconds = max_seconds;
-	}else{
-		if(detention_centers < max_seconds){
-			if(detention_centers + seconds > max_seconds){
-				seconds = max_seconds;
-			}
-		}else{
-			seconds = 0;
-		}
-	}
-	detention_centers += seconds;
+	
+	var new_total = detention_centers + seconds;
+	detention_centers = new_total > max_seconds ? max_seconds : new_total;
 }
 
 var temp = {closed: 0};
