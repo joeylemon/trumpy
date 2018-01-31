@@ -5,7 +5,7 @@ function getShortenedNumber(num, longEnding){
 		{div: 1000000000000, ext: "T", longEnd: " trillion"},
 		{div: 1000000000, ext: "B", longEnd: " billion"},
 		{div: 1000000, ext: "M", longEnd: " million"},
-		{div: 1000, ext: "K", longEnd: " thousand"}
+		{div: 1000, ext: "k", longEnd: " thousand"}
 	];
 	
 	for(var i = 0; i < dividers.length; i++){
@@ -14,7 +14,7 @@ function getShortenedNumber(num, longEnding){
 			var ending = longEnding ? entry.longEnd : entry.ext;
 			
 			var fixed = (num / entry.div).toFixed(0);
-			if((num / entry.div) % 1 != 0 && num < 100000){
+			if((num / entry.div) % 1 != 0 && (num < 100000 || num >= 1000000)){
 				fixed = roundNumber(num / entry.div);
 			}
 			return (fixed + ending).replace(".0", "");

@@ -71,6 +71,11 @@
 			<div class="no-scrollbar" id="shop-hide" style="display: none;">
 				<h1>Upgrades</h1>
 				<div class="shop-container" id="upgrades"></div>
+				<div class="center-collect" id="center-collect-div" ontouchend="emptyDetentionCenters();">
+					<p class="text">Deport <span id="center-collect"></span> illegals</p>
+					<div class="progress-bar-bg"></div>
+					<div class="progress-bar" id="center-collect-progress"></div>
+				</div>
 				<h1 style="margin-top: 30px;">Workers</h1>
 				<div class="shop-container" id="deporters"></div>
 				<div class="settings" id="settings" style="display: none;">
@@ -100,8 +105,8 @@
 		});
 	</script>
 	
-	<script src="js/global.js"></script>
 	<script src="js/purchase.js"></script>
+	<script src="js/global.js"></script>
 	<script src="js/ads.js"></script>
 	<script src="js/sounds.js"></script>
 	<script src="js/utils.js"></script>

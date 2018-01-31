@@ -23,12 +23,13 @@ $("#rays").css({width: size + "px", height: size + "px", margin: "-" + (size / 2
 setTimeout(function(){
 	$("body").css({backgroundColor: "#fff"});
 	$("#shop-hide").show();
+	
+	if(typeof admob === "undefined"){
+		$("#ad").show();
+		moveBannerHTML();
+		showVideoButton();
+	}
 }, 100);
-
-if(typeof admob === "undefined"){
-	$("#ad").show();
-	moveBannerHTML();
-}
 
 /* Save progress every 5 seconds */
 setInterval(saveData, 5000);
@@ -40,6 +41,7 @@ function saveData() {
 			total_persecond: total_persecond,
 			total_perclick: total_perclick,
 			videos_watched: videosWatched,
+			detention_centers: detention_centers,
 			closed: Date.now(),
 			news: news,
 			borders: borders,
@@ -68,12 +70,12 @@ function getData() {
 		var data = $.parseJSON(window.localStorage.getItem('data'));
 		
 		deported = data.deported;
+		
+		detention_centers = data.detention_centers;
 
 		total_persecond = data.total_persecond;
 		total_perclick = data.total_perclick;
 		updateCounts();
-		
-		addToTotalSinceTime(data.closed);
 		
 		videosWatched = data.videos_watched;
 		$("#vid-reward").html("+" + getProperRewardAmount());
@@ -127,8 +129,22 @@ function getData() {
 				}
 			}
 			
+			var seconds = (Date.now() - data.closed) / 1000;
+			var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
+			if(seconds > max_seconds){
+				seconds = max_seconds;
+			}else{
+				if(detention_centers < max_seconds){
+					if(detention_centers + seconds > max_seconds){
+						seconds = max_seconds;
+					}
+				}else{
+					seconds = 0;
+				}
+			}
+			detention_centers += seconds;
+			
 			locs = data.locs;
-		
 			borders = data.borders;
 		}, 100);
 	}
