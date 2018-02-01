@@ -88,19 +88,19 @@ var milestones = [
 var detention_center_prices = [
     1000,
     100000,
-    1000000,
+    10000000,
     500000000,
-    10000000000,
-    1000000000000,
+    100000000000,
+    10000000000000,
 ];
 
 var default_purchases = {
 	tap_multiplier: new Purchase('tap_multiplier', 20, 'upgrade', {
-		desc: "Allows you to deport more illegals every time you tap the screen.",
+		desc: "Increases the amount of illegal immigrants you deport every time you tap the screen.",
 		rate: .10
 	}),
 	detention_center: new Purchase('detention_center', 1000, 'center', {
-		desc: "Collects illegal immigrants when you're not playing. Upgrade to increase capacity.",
+		desc: "Collects illegal immigrants when you're not playing. Buy more to increase capacity.",
 		hours: 0.5
 	}),
 	republican: new Purchase('republican', 10, 'agent', {

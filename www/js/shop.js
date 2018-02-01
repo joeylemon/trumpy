@@ -54,7 +54,7 @@ function updateObscuredItems() {
 
 /* Change a shop item's visibility */
 function showShopItem(item, show){
-    if(show){
+    if(show && item.cost >= 0){
         $("#" + item.id).css("opacity", "1");
         $("#about-img-" + item.id).css("opacity", "1");
         item.hidden = false;
@@ -102,13 +102,17 @@ function updateItemCosts() {
 /* Get the price of the next detention center */
 function getDetentionCenterPrice(){
     var index = purchases.detention_center.current;
+    var price;
     if(index >= detention_center_prices.length){
         index = detention_center_prices.length - 1;
         showShopItem(purchases.detention_center, false);
         $("#detention_center-per").html(purchases.detention_center.getDescription());
         $("#detention_center-cost-div").html("");
+        price = -1;
+    }else{
+        price = detention_center_prices[index];
     }
-    return detention_center_prices[index];
+    return price;
 }
 
 /* Get the percentage of detention centers full */
@@ -233,7 +237,7 @@ function taskExists(id){
 
 /* Add a wall to the map */
 function addWall(){
-	agents.push(new Agent("wall", getRandomBorder(), {width: 20, height: 10}));
+	agents.push(new Agent("wall", getRandomBorder(), {width: 20, height: 15}));
 }
 
 
@@ -259,7 +263,7 @@ function buy(e, id){
 	}
 	
 	var item = purchases[id];
-	if(deported >= item.cost && !item.hidden){
+	if(deported >= item.cost && !item.hidden && item.cost >= 0){
 		item.buy();
 	}else{
 		playSound("error");

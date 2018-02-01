@@ -56,7 +56,7 @@ function getRandomBorder(person){
 	}
 	
 	var plus_x = loc.plus_x + rand(-13, 13);
-	var plus_y = loc.plus_y + rand(-5, 5);
+	var plus_y = loc.plus_y + rand(-1, 1);
 	
 	return {
 		x: (canvas.width / 4) + plus_x,
