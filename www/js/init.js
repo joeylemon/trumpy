@@ -152,14 +152,18 @@ document.addEventListener("resume", resumed, false);
 
 /* Detect when the app is moved to the background */
 function paused() {
-	temp.closed = Date.now();
-	gamePaused = true;
+    if(!gamePaused){
+        temp.closed = Date.now();
+        gamePaused = true;
+    }
 }
 
 /* Detect when the app is back in the foreground */
 function resumed() {
-	addToCentersSinceTime(temp.closed);
-	gamePaused = false;
+    if(gamePaused){
+        addToCentersSinceTime(temp.closed);
+        gamePaused = false;
+    }
 }
 
 /* Toggle the game paused boolean */
