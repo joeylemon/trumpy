@@ -139,6 +139,7 @@ function getData() {
 
 /* Add to the detention centers based on a timestamp */
 function addToCentersSinceTime(closed){
+    debug("add to centers");
 	var seconds = (Date.now() - closed) / 1000;
 	var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
 	
