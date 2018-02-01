@@ -586,6 +586,7 @@ body {
 	width: 55px;
 	height: 55px;
 	margin-top: 12px;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.05);
 	filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
 }
 
