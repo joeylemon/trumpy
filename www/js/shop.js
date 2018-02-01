@@ -42,18 +42,27 @@ function updateObscuredItems() {
 		var item = purchases[key];
 		if (deported < item.cost) {
 			if(!item.hidden){
-				$("#" + key).css("opacity", "0.3");
-				$("#about-img-" + key).css("opacity", "0.3");
-				item.hidden = true;
+				showShopItem(item, false);
 			}
 		} else {
 			if(item.hidden){
-				$("#" + key).css("opacity", "1");
-				$("#about-img-" + key).css("opacity", "1");
-				item.hidden = false;
+				showShopItem(item, true);
 			}
 		}
 	}
+}
+
+/* Change a shop item's visibility */
+function showShopItem(item, show){
+    if(show){
+        $("#" + item.id).css("opacity", "1");
+        $("#about-img-" + item.id).css("opacity", "1");
+        item.hidden = false;
+    }else{
+        $("#" + item.id).css("opacity", "0.3");
+        $("#about-img-" + item.id).css("opacity", "0.3");
+        item.hidden = true;
+    }
 }
 
 /* Update shop item costs based on their new amounts */
@@ -79,8 +88,7 @@ function updateItemCosts() {
 		}
 	}
 	
-	var new_cost = 1000 + (total_persecond * 900) + Math.pow(purchases.detention_center.current + 3, 4);
-	purchases.detention_center.cost = new_cost;
+	purchases.detention_center.cost = getDetentionCenterPrice();
 	$("#detention_center-cost").html(purchases.detention_center.getProperCost());
 	
 	if(getDetentionCentersPercent() > 1){
@@ -89,6 +97,17 @@ function updateItemCosts() {
 	}else{
 		$("#center-collect-div").hide();
 	}
+}
+
+/* Get the price of the next detention center */
+function getDetentionCenterPrice(){
+    var index = purchases.detention_center.current;
+    if(index >= detention_center_prices.length){
+        index = detention_center_prices.length - 1;
+        showShopItem(purchases.detention_center, false);
+        $("#detention_center-per").html(purchases.detention_center.getDescription());
+    }
+    return detention_center_prices[index];
 }
 
 /* Get the percentage of detention centers full */
@@ -239,7 +258,7 @@ function buy(e, id){
 	}
 	
 	var item = purchases[id];
-	if(deported >= item.cost){
+	if(deported >= item.cost && !item.hidden){
 		item.buy();
 	}else{
 		playSound("error");

@@ -85,6 +85,15 @@ var milestones = [
 	1000
 ];
 
+var detention_center_prices = [
+    1000,
+    100000,
+    1000000,
+    500000000,
+    10000000000,
+    1000000000000,
+];
+
 var default_purchases = {
 	tap_multiplier: new Purchase('tap_multiplier', 20, 'upgrade', {
 		desc: "Allows you to deport more illegals every time you tap the screen.",

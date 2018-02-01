@@ -23,12 +23,14 @@ $("#rays").css({width: size + "px", height: size + "px", margin: "-" + (size / 2
 setTimeout(function(){
 	$("body").css({backgroundColor: "#fff"});
 	$("#shop-hide").show();
-	
-	if(typeof admob === "undefined"){
-		$("#ad").show();
+    
+    try {
+        console.log(admob);
+    }catch(ex){
+        $("#ad").show();
 		moveBannerHTML();
 		showVideoButton();
-	}
+    }
 }, 100);
 
 /* Save progress every 5 seconds */

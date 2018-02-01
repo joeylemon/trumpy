@@ -56,7 +56,11 @@ Purchase.prototype.getDescription = function(){
 		
 		return "+" + getNumberWithCommas(per) + " per click";
 	}else if(this.type == "center"){
-		return "+" + this.options.hours + " hours capacity";
+        if(this.current < detention_center_prices.length){
+		  return "+" + this.options.hours + " hours capacity";
+        }else{
+            return "Max capacity!";
+        }
 	}
 };
 
@@ -117,8 +121,8 @@ Purchase.prototype.buy = function(){
 	$("#" + this.id + "-amount").html(this.getProperAmount());
 	
 	this.cost += Math.round(this.cost / 6.5);
-	updateItemCosts();
 	updateObscuredItems();
+    updateItemCosts();
 	
 	if(this.id == "wall"){
 		addWall();
