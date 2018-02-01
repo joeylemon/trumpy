@@ -81,8 +81,8 @@
 				<div class="settings" id="settings" style="display: none;">
 					<h1 style="margin-bottom: 6px;">Settings</h1>
 					<p ontouchend="clearData();">Restart</p>
-					<p ontouchend="setCount(0);">Reset count</p>
-					<p ontouchend="setCount(Number.MAX_SAFE_INTEGER / 20);">Infinite count</p>
+					<p ontouchend="setCount(0);updateObscuredItems();">Reset count</p>
+					<p ontouchend="setCount(Number.MAX_SAFE_INTEGER / 20);updateObscuredItems();">Infinite count</p>
 					<p ontouchend="showAlert('Mexico has begun showing signs of aggression against the United States. Is war eminent?');">Test alert</p>
 					<p ontouchend="togglePaused();">Toggle pause</p>
 					<p ontouchend="saveData();">Save data</p>

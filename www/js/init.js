@@ -4,8 +4,6 @@ function onDeviceReady() {
 		window.plugins.webviewcolor.change('#2280BA');
 		StatusBar.hide();
 	} catch (e) {}
-	
-	getData();
 }
 
 slideout.on('close', function () {
@@ -63,6 +61,12 @@ function clearData() {
 	}
 }
 
+/* Get the progress object */
+function getDataObject(){
+    return $.parseJSON(window.localStorage.getItem('data'));
+}
+
+getData();
 /* Retrieve the progress and add it to game */
 function getData() {
 	if (window.localStorage.getItem('data')) {
