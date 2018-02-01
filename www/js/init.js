@@ -142,7 +142,6 @@ function addToCentersSinceTime(closed){
 	var max_seconds = (purchases.detention_center.current * purchases.detention_center.options.hours) * 3600;
 	
 	var new_total = detention_centers + seconds;
-    debug("set centers to " + new_total);
 	detention_centers = new_total > max_seconds ? max_seconds : new_total;
 }
 
