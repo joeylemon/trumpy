@@ -46,7 +46,6 @@ function saveData() {
 			detention_centers: detention_centers,
 			closed: Date.now(),
 			news: news,
-			borders: borders,
 			faces: faces,
 			locs: locs,
 			lastId: lastId,
@@ -134,7 +133,6 @@ function getData() {
 			addToCentersSinceTime(data.closed);
 			
 			locs = data.locs;
-			borders = data.borders;
 		}, 100);
 	}
 }

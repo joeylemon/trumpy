@@ -4,6 +4,7 @@ var Agent = function(id, loc, size, no_deport){
 	}else{
 		this.x = loc.x;
 		this.y = loc.y;
+        this.setDirection();
 	}
 	
 	this.id = id;
@@ -52,6 +53,7 @@ Agent.prototype.setRandomLocation = function(){
 	var loc = getRandomLocation(true);
 	this.x = loc.x;
 	this.y = loc.y;
+    this.setDirection();
 	
 	/*
 	if(distance({x: x, y: y}, {x: (canvas.width / 2) + 180, y: (canvas.height / 2) - 319}) < 50){
@@ -61,6 +63,14 @@ Agent.prototype.setRandomLocation = function(){
 		this.y = y;
 	}
 	*/
+};
+
+Agent.prototype.setDirection = function(){
+    if(this.x < (canvas.width / 4) + 53.6 && this.y < (middle_y - 33)){
+        this.dir = "N";
+    }else{
+        this.dir = "S";
+    }
 };
 
 Agent.prototype.canDeport = function(){
@@ -75,7 +85,7 @@ Agent.prototype.deport = function(){
 	var now = Date.now();
 	
 	if(this.canDeport()){
-		addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10)});
+		addPerson({x: rand(this.x - 10, this.x + 10), y: rand(this.y - 10, this.y + 10), dir: this.dir});
 		this.deport_total = 0;
 	}
 

@@ -140,7 +140,7 @@ Purchase.prototype.buy = function(){
 			updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
 		}
 	}else if(this.type == "center"){
-		agents.push(new Agent(this.id, undefined, {width: 15, height: 15}, true));
+		agents.push(new Agent(this.id, undefined, {width: 20, height: 20}, true));
 	}
 	
 	updateAgentCanvas();

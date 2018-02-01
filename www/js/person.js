@@ -1,12 +1,13 @@
 var Person = function(start){
-	if(!start){
+    if(!start){
 		this.setRandomLocation();
 	}else{
 		this.x = start.x;
 		this.y = start.y;
+        this.dir = start.dir;
 	}
 	
-	var border = getRandomBorder(true);
+	var border = getRandomBorder(this.dir, true);
 	
 	this.dest = {
 		x: border.x + rand(-20, 20),
@@ -36,6 +37,11 @@ Person.prototype.setRandomLocation = function(){
 	var loc = getRandomLocation();
 	this.x = loc.x;
 	this.y = loc.y;
+    if(this.x < (canvas.width / 4) + 53.6){
+        this.dir = getRandomDirection();
+    }else{
+        this.dir = "S";
+    }
 	
 	/*
 	if(distance({x: x, y: y}, {x: (canvas.width / 2) + 180, y: (canvas.height / 2) - 319}) < 50){

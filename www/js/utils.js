@@ -168,12 +168,20 @@ function debug(message){
 	}
 }
 
+/*
 var colors = [
 	"132, 92, 0",
 	"139, 69, 19",
 	"205, 133, 63",
 	"244, 164, 96",
 	"160, 82, 45"
+];
+*/
+var colors = [
+    "204, 0, 0",
+    "0, 98, 204",
+    "160, 82, 45",
+    "244, 164, 96"
 ];
 /* Get a random color from the array */
 function getRandomColor(){

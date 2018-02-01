@@ -237,7 +237,7 @@ function taskExists(id){
 
 /* Add a wall to the map */
 function addWall(){
-	agents.push(new Agent("wall", getRandomBorder(), {width: 20, height: 15}));
+	agents.push(new Agent("wall", getRandomBorder("S"), {width: 20, height: 15}));
 }
 
 
