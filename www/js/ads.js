@@ -52,7 +52,6 @@ function onDeviceReady() {
 	setTimeout(function(){
 		navigator.splashscreen.hide();
 	}, 1000);
-	getData();
 }
 
 /* Fired when the banner loads */

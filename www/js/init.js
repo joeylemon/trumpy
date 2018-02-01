@@ -65,7 +65,6 @@ function clearData() {
 }
 
 /* Retrieve the progress and add it to game */
-getData();
 function getData() {
 	if (window.localStorage.getItem('data')) {
 		var data = $.parseJSON(window.localStorage.getItem('data'));
@@ -144,9 +143,7 @@ function addToCentersSinceTime(closed){
 	
 	var new_total = detention_centers + seconds;
     debug("set centers to " + new_total);
-    setTimeout(function(){
-        detention_centers = new_total > max_seconds ? max_seconds : new_total;
-    }, 100);
+	detention_centers = new_total > max_seconds ? max_seconds : new_total;
 }
 
 var temp = {closed: 0};
