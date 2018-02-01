@@ -212,7 +212,7 @@ function flipIcon(id){
 			removeTask(id);
 		}, 500);
 		tasks.push({id: id, task: task});
-	}, 0);
+	}, 150);
 }
 
 /* Remove and cancel a task from the array */

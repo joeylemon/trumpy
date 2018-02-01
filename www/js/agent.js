@@ -30,6 +30,7 @@ var Agent = function(id, loc, size, no_deport){
 Agent.prototype.fromData = function(data){
 	this.x = data.x;
 	this.y = data.y;
+    this.dir = data.dir;
 	
 	this.id = data.id;
 	
