@@ -586,7 +586,7 @@ body {
 	width: 55px;
 	height: 55px;
 	margin-top: 12px;
-    outline: 1px solid transparent;
+    transform: translateZ(0);
 	filter: drop-shadow(1px 1px 5px rgba(0, 0, 0, 0.5));
 }
 
