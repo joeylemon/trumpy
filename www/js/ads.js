@@ -28,6 +28,8 @@ function onDeviceReady() {
 				id: admobid.reward_video,
 				autoShow: false
 			});
+            
+            showFakeAd = false;
 			
 			/* Load banner ad */
 			document.addEventListener('admob.banner.events.LOAD', onBannerLoad);

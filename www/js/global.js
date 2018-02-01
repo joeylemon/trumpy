@@ -70,6 +70,7 @@ var total = 0;
 var shopOpen = false;
 var settingsOpen = false;
 var gamePaused = false;
+var showFakeAd = true;
 
 var news_left = 0;
 var news = [

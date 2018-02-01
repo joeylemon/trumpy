@@ -24,9 +24,7 @@ setTimeout(function(){
 	$("body").css({backgroundColor: "#fff"});
 	$("#shop-hide").show();
     
-    try {
-        console.log(admob);
-    }catch(ex){
+    if(showFakeAd){
         $("#ad").show();
 		moveBannerHTML();
 		showVideoButton();
