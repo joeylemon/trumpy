@@ -23,13 +23,14 @@ $("#rays").css({width: size + "px", height: size + "px", margin: "-" + (size / 2
 setTimeout(function(){
 	$("body").css({backgroundColor: "#fff"});
 	$("#shop-hide").show();
-    
+}, 100);
+setTimeout(function(){
     if(showFakeAd){
         $("#ad").show();
 		moveBannerHTML();
 		showVideoButton();
     }
-}, 100);
+}, 1000)
 
 /* Save progress every 5 seconds */
 setInterval(saveData, 5000);
