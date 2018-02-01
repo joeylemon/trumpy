@@ -144,7 +144,9 @@ function addToCentersSinceTime(closed){
 	
 	var new_total = detention_centers + seconds;
     debug("set centers to " + new_total);
-	detention_centers = new_total > max_seconds ? max_seconds : new_total;
+    setTimeout(function(){
+        detention_centers = new_total > max_seconds ? max_seconds : new_total;
+    }, 100);
 }
 
 var temp = {closed: 0};
