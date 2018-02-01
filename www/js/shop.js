@@ -21,7 +21,7 @@ function getPurchaseHTML(details) {
 			<div class="desc" id="` + details.id + `-desc">
 				<p class="name">` + details.title + `</p>
 				<p class="more" id="` + details.id + `-per">` + details.desc + `</p>
-				<p class="more">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
+				<p class="more" id="` + details.id + `-cost-div">Cost: <span id="` + details.id + `-cost">` + details.cost + `</span></p>
 			</div>
 			<div class="amount">
 				<p id="` + details.id + `-amount">` + details.amount + `</p>
@@ -106,6 +106,7 @@ function getDetentionCenterPrice(){
         index = detention_center_prices.length - 1;
         showShopItem(purchases.detention_center, false);
         $("#detention_center-per").html(purchases.detention_center.getDescription());
+        $("#detention_center-cost-div").html("");
     }
     return detention_center_prices[index];
 }
