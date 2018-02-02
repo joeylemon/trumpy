@@ -90,10 +90,7 @@ function getData() {
         illegals_entering_index = data.illegals_entering_index;
         clicks = data.clicks;
         if(isEventRunning("illegals_entering")){
-            var entry = illegals_entering[illegals_entering_index];
-            showAlert(entry.msg);
-            last_illegal_enter = Date.now();
-            illegals_entering_delay = (0.7 / total_persecond) * 1000;
+            startEvent("illegals_entering");
         }
 
 		news = data.news;
