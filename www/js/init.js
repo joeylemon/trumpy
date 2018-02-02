@@ -90,7 +90,7 @@ function getData() {
         illegals_entering_index = data.illegals_entering_index;
         clicks = data.clicks;
         if(isEventRunning("illegals_entering")){
-            startEvent("illegals_entering");
+            startEvent("illegals_entering", true);
         }
 
 		news = data.news;

@@ -160,7 +160,11 @@ function isAlertOpen(){
 /* Show the health bar with a title */
 function showHealthBar(title){
     $("#health-bar-title").html(title);
-    $("#health-bar-length").css({width: "0%"});
+    if(clicks > 0){
+        setHealthBarPercent((clicks / min_clicks) * 100)
+    }else{
+        setHealthBarPercent(0);
+    }
     $("#health-bar").show();
     popElement("health-bar");
 }
@@ -197,14 +201,16 @@ function canSendIllegal(){
 }
 
 /* Start an event */
-function startEvent(event){
+function startEvent(event, dontSave){
     if(event == "illegals_entering"){
         var entry = illegals_entering[illegals_entering_index];
         showAlert(entry.msg);
         last_illegal_enter = Date.now();
         illegals_entering_delay = (0.7 / total_persecond) * 1000;
     }
-    saveData();
+    if(!dontSave){
+        saveData();
+    }
 }
 
 /* End an event */
