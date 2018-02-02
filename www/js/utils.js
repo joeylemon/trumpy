@@ -108,15 +108,14 @@ function updateCounts(){
 	}
 }
 
-/* Add a new string to the news at the top of the page */
+/* Add a new string to the news */
 function updateNews(string) {
 	if (news.length > 5) {
 		news.splice(0, 1);
 	}
 	news.push(string);
 
-	$("#news").html(news.join(" <img src='images/fox.png'> "));
-	min_left = -$("#news").width() - 120;
+	joinNews();
 }
 
 // showAlert("Mexico has begun showing signs of aggression against the United States. Is war eminent?");
@@ -146,6 +145,59 @@ function canExitAlert(){
 /* Check if the alert is open */
 function isAlertOpen(){
 	return (alertShown != 0);
+}
+
+/* Send an illegal up from the south */
+function sendIllegal(){
+    if(typeof Person !== "undefined"){
+        people.push(new Person(getRandomSouthLocation(), true));
+    }
+}
+
+/* Check if a new illegal can be sent north */
+function canSendIllegal(){
+    if(deported <= 0){
+        endEvent("illegals_entering", true);
+        deported = 0;
+    }
+    return Date.now() - last_illegal_enter > illegals_entering_delay && deported > 0;
+}
+
+/* Start an event */
+function startEvent(event){
+    if(event == "illegals_entering"){
+        var entry = illegals_entering[illegals_entering_index];
+        showAlert(entry.msg);
+        last_illegal_enter = Date.now();
+        illegals_entering_delay = (0.7 / total_persecond) * 1000;
+    }
+}
+
+/* End an event */
+function endEvent(event, fail){
+    if(event == "illegals_entering"){
+        illegals_entering_delay = 0;
+        clicks = 0;
+        
+        illegals_entering_index++;
+        if(illegals_entering_index >= illegals_entering.length){
+            illegals_entering_index = 0;
+        }
+        
+        if(!fail){
+            showAlert("You have sucessfully ended the threat of illegal immigrants entering the country!");
+        }else{
+            showAlert("You failed to keep the illegals out. Fortunately, President Trump stepped in and finished the job.");
+        }
+    }
+}
+
+/* Check if an event is running */
+function isEventRunning(event){
+    if(event == "illegals_entering"){
+        return illegals_entering_delay > 0;
+    }
+    return false;
 }
 
 var debugMessages = new Array();

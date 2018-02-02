@@ -2,6 +2,7 @@ var default_locs = [{"plus_x":-149.5,"plus_y":-92},{"plus_x":-151.5,"plus_y":-83
 
 var locs = default_locs.slice();
 
+/* Get a random location in the main landmass */
 function getRandomLocation(agent){
 	var i = rand(0, locs.length - 1);
 	var loc = locs[i];
@@ -29,6 +30,31 @@ function getRandomLocation(agent){
 	return {
 		x: (canvas.width / 4) + plus_x,
 		y: middle_y + plus_y
+	};
+}
+
+var south_locs = [{"plus_x":-15.669998168945312,"plus_y":142.2550048828125},{"plus_x":-40.85099792480469,"plus_y":126.86801147460938},{"plus_x":-15.580001831054688,"plus_y":117.25900268554688},{"plus_x":-63.56500244140625,"plus_y":104.84100341796875},{"plus_x":-38.4949951171875,"plus_y":104.02299499511719},{"plus_x":-64.80699920654297,"plus_y":82.96200561523438},{"plus_x":-87.91899871826172,"plus_y":71.75700378417969}];
+
+/* Get a random location from the south */
+function getRandomSouthLocation(){
+    var loc = south_locs[rand(0, south_locs.length - 1)];
+    
+    var plus_x = loc.plus_x + rand(-10, 10);
+	var plus_y = loc.plus_y + rand(-5, 5);
+	
+	return {
+		x: (canvas.width / 4) + plus_x,
+		y: middle_y + plus_y
+	};
+}
+
+/* Get a random location in the main part above the south */
+function getRandomMainLocation(){
+    var loc = default_locs[rand(0, default_locs.length / 1.7)];
+	
+	return {
+		x: (canvas.width / 4) + loc.plus_x,
+		y: middle_y + loc.plus_y
 	};
 }
 
@@ -61,3 +87,23 @@ function getRandomBorder(dir, person){
 function getRandomDirection(){
     return Math.random() <= 0.5 ? "N" : "S";
 }
+
+
+/*
+var temp_locs = new Array();
+$(window).bind('touchstart', function(e){
+	var x = e.changedTouches[0].pageX;
+	var y = e.changedTouches[0].pageY;
+	console.log(x + ", " + y);
+
+	var plus_x = (canvas.width / 4) - x;
+	var plus_y = middle_y - y;
+	console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
+	console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
+	
+	temp_locs.push({
+		plus_x: -plus_x,
+		plus_y: -plus_y
+	});
+});
+*/

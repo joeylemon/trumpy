@@ -40,6 +40,9 @@ function saveData() {
 			total_persecond: total_persecond,
 			total_perclick: total_perclick,
 			videos_watched: videosWatched,
+            illegals_entering_delay: illegals_entering_delay,
+            illegals_entering_index: illegals_entering_index,
+            clicks: clicks,
 			detention_centers: detention_centers,
 			closed: Date.now(),
 			news: news,
@@ -82,10 +85,19 @@ function getData() {
 		
 		videosWatched = data.videos_watched;
 		$("#vid-reward").html("+" + getProperRewardAmount());
+        
+        illegals_entering_delay = data.illegals_entering_delay;
+        illegals_entering_index = data.illegals_entering_index;
+        clicks = data.clicks;
+        if(isEventRunning("illegals_entering")){
+            var entry = illegals_entering[illegals_entering_index];
+            showAlert(entry.msg);
+            last_illegal_enter = Date.now();
+            illegals_entering_delay = (0.7 / total_persecond) * 1000;
+        }
 
 		news = data.news;
-		$("#news").html(news.join(" <img src='images/fox.png'> "));
-		min_left = -$("#news").width() - 120;
+		joinNews();
 		
 		lastId = data.lastId;
 

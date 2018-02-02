@@ -8,6 +8,17 @@ function draw(){
 		
 		clearPeople();
 		clearFaces();
+        
+        var now = Date.now();
+        if(isEventRunning("illegals_entering") && canSendIllegal()){
+            sendIllegal();
+            
+            var diff = now - last_illegal_enter;
+            var add = diff / illegals_entering_delay;
+            deported -= add;
+            
+            last_illegal_enter = now;
+        }
 		
 		for(var i = 0; i < faces.length; i++){
 			faces[i].draw();
@@ -66,7 +77,17 @@ function addPerson(start, click){
 	people.push(new Person(start));
 	
 	if(click){
-		deported += 1 + total_perclick;
+        var add = 1 + total_perclick;
+        
+        if(isEventRunning("illegals_entering")){
+            clicks++;
+            add = 1;
+            if(clicks > illegals_entering[illegals_entering_index].min_clicks){
+                endEvent("illegals_entering");
+            }
+        }
+        
+		deported += add;
 		total++;
 	}
 	
@@ -113,22 +134,3 @@ $(window).bind('touchend', function(e){
 		click = false;
 	}
 });
-
-/*
-var temp_locs = new Array();
-$(window).bind('touchstart', function(e){
-	var x = e.changedTouches[0].pageX;
-	var y = e.changedTouches[0].pageY;
-	console.log(x + ", " + y);
-
-	var plus_x = (canvas.width / 4) - x;
-	var plus_y = middle_y - y;
-	console.log("(canvas.width / 4)" + (plus_x > 0 ? " - " : " + ") + Math.abs(plus_x));
-	console.log("middle_y" + (plus_y > 0 ? " - " : " + ") + Math.abs(plus_y));
-	
-	temp_locs.push({
-		plus_x: -plus_x,
-		plus_y: -plus_y
-	});
-});
-*/

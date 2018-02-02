@@ -77,8 +77,24 @@ var news = [
 	"Donald Trump approval rating sitting at 35%.",
 	"Americans wondering when Trump will make good on his promise to build the wall."
 ];
-$("#news").html(news.join(" <img src='images/fox.png'> "));
-var min_left = -$("#news").width() - 120;
+joinNews();
+
+/* Join the news array and display it at the top of the screen */
+function joinNews(){
+    $("#news").html(news.join(" <img src='images/fox.png'> "));
+	min_left = -$("#news").width() - 120;
+}
+
+var illegals_entering = [
+    {msg: "A hole in the wall has caused a huge spike of illegals re-entering the country. Beat them before they overrun you!", min_clicks: 200},
+    {msg: "A recent law has decreased the amount of patrol agents at the border. Stop the illegals from entering!", min_clicks: 400},
+    {msg: "A massive tunnel has been dug under the wall. Send the illegal immigrants back as fast as you can!", min_clicks: 500},
+    {msg: "A bureaucratic oversight has temporarily allowed illegal immigrants to enter the country freely. Stop them!", min_clicks: 600}
+];
+var illegals_entering_index = 0;
+var illegals_entering_delay = 0;
+var clicks = 0;
+var last_illegal_enter = Date.now();
 
 var milestones = [
 	50,

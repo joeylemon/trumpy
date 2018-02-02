@@ -1,4 +1,4 @@
-var Person = function(start){
+var Person = function(start, south){
     if(!start){
 		this.setRandomLocation();
 	}else{
@@ -7,7 +7,12 @@ var Person = function(start){
         this.dir = start.dir;
 	}
 	
-	var border = getRandomBorder(this.dir, true);
+    var border;
+    if(!south){
+        border = getRandomBorder(this.dir, true);
+    }else{
+        border = getRandomMainLocation();
+    }
 	
 	this.dest = {
 		x: border.x + rand(-20, 20),
