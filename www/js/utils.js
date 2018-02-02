@@ -48,10 +48,15 @@ function showAdded(added) {
 }
 
 /* Make an element pop on the screen */
-function popElement(element){
-	$("#" + element).addClass("pop-animate");
+function popElement(element, small){
+    var style = "pop-animate";
+    if(small){
+        style = "pop-animate-small"
+    }
+    
+	$("#" + element).addClass(style);
 	setTimeout(function(){
-		$("#" + element).removeClass("pop-animate");
+		$("#" + element).removeClass(style);
 	}, 1000);
 }
 
@@ -124,6 +129,7 @@ function showAlert(message){
 	$("#alert-message").html(message);
 	$("#overlay").show();
 	$("#alert").show();
+    popElement("alert", true);
 	
 	alertShown = Date.now();
 }
@@ -134,6 +140,10 @@ function exitAlert(){
 		$("#overlay").hide();
 		$("#alert").hide();
 		alertShown = 0;
+        
+        if(isEventRunning("illegals_entering")){
+            showHealthBar("Beat the illegals!");
+        }
 	}
 }
 
@@ -145,6 +155,29 @@ function canExitAlert(){
 /* Check if the alert is open */
 function isAlertOpen(){
 	return (alertShown != 0);
+}
+
+/* Show the health bar with a title */
+function showHealthBar(title){
+    $("#health-bar-title").html(title);
+    $("#health-bar-length").css({width: "0%"});
+    $("#health-bar").show();
+    popElement("health-bar");
+}
+
+/* Set the percent of the health bar */
+function setHealthBarPercent(percent){
+    $("#health-bar-length").css({width: percent + "%"});
+}
+
+/* Add a click to the illegals entering event */
+function addSendIllegalClick(){
+    var min_clicks = illegals_entering[illegals_entering_index].min_clicks;
+    clicks++;
+    setHealthBarPercent((clicks / min_clicks) * 100);
+    if(clicks > min_clicks){
+        endEvent("illegals_entering");
+    }
 }
 
 /* Send an illegal up from the south */
@@ -171,6 +204,7 @@ function startEvent(event){
         last_illegal_enter = Date.now();
         illegals_entering_delay = (0.7 / total_persecond) * 1000;
     }
+    saveData();
 }
 
 /* End an event */
@@ -184,12 +218,15 @@ function endEvent(event, fail){
             illegals_entering_index = 0;
         }
         
+        $("#health-bar").hide();
+        
         if(!fail){
             showAlert("You have sucessfully ended the threat of illegal immigrants entering the country!");
         }else{
             showAlert("You failed to keep the illegals out. Fortunately, President Trump stepped in and finished the job.");
         }
     }
+    saveData();
 }
 
 /* Check if an event is running */

@@ -47,6 +47,11 @@
 				<p class="vid-reward" id="vid-reward">+1K</p>
 			</div>
 			<img class="video-loading" id="video-loading" src="images/loading.gif">
+            
+            <div class="health-bar" id="health-bar">
+                <div class="bar" id="health-bar-length"></div>
+                <p id="health-bar-title">Beat the illegals!</p>
+            </div>
 			
 			<div class="overlay" id="overlay" ontouchend="exitAlert();"></div>
 			<div class="alert" id="alert">
@@ -73,8 +78,9 @@
 				<div class="shop-container" id="upgrades"></div>
 				<div class="center-collect" id="center-collect-div" ontouchend="emptyDetentionCenters();">
 					<p class="text">Deport <span id="center-collect"></span> illegals</p>
-					<div class="progress-bar-bg"></div>
-					<div class="progress-bar" id="center-collect-progress"></div>
+                    <div class="progress-bar">
+                        <div class="bar" id="center-collect-progress"></div>
+                    </div>
 				</div>
 				<h1 style="margin-top: 30px;">Workers</h1>
 				<div class="shop-container" id="deporters"></div>

@@ -80,11 +80,8 @@ function addPerson(start, click){
         var add = 1 + total_perclick;
         
         if(isEventRunning("illegals_entering")){
-            clicks++;
             add = 1;
-            if(clicks > illegals_entering[illegals_entering_index].min_clicks){
-                endEvent("illegals_entering");
-            }
+            addSendIllegalClick();
         }
         
 		deported += add;

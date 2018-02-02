@@ -91,6 +91,18 @@ time, mark, audio, video {
 	}
 }
 
+@keyframes popzoom-small {
+	0% {
+		transform: scale(1, 1);
+	}
+	50% {
+		transform: scale(1.2, 1.2);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+
 @keyframes addmove {
 	0% {
 		left: 5px;
@@ -360,6 +372,34 @@ body {
 	font-size: 25px;
 }
 
+.health-bar {
+    display: none;
+    position: fixed;
+    top: 23px;
+    left: 10px;
+    right: 10px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.health-bar .bar {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 0%;
+    background-color: rgba(15, 188, 125, 0.9);;
+    z-index: -1;
+}
+
+.health-bar p {
+    margin-top: 5px;
+    font-family: profont;
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
 .scroll-container {
 	overflow: hidden;
 }
@@ -404,6 +444,10 @@ body {
 
 .pop-animate {
 	animation: popzoom 0.8s;
+}
+
+.pop-animate-small {
+	animation: popzoom-small 0.8s;
 }
 
 .vid-img {
@@ -527,7 +571,7 @@ body {
 
 .shop-menu .center-collect {
     position: relative;
-    width: 270px;
+    width: 271px;
     height: 27px;
     border: 2px solid #000;
     font-family: profont;
@@ -543,7 +587,7 @@ body {
 	margin-top: 3px;
 }
 
-.shop-menu .center-collect .progress-bar-bg {
+.shop-menu .center-collect .progress-bar {
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
@@ -552,11 +596,11 @@ body {
 	background-color: rgba(0, 0, 0, 0.25);
 }
 
-.shop-menu .center-collect .progress-bar {
+.shop-menu .center-collect .bar {
 	position: absolute;
 	bottom: 0px;
 	left: 0px;
-	height: 4px;
+	top: 0px;
 	width: 0%;
 	background-color: #0fbc7d;
 }
