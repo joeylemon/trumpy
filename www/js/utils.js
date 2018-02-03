@@ -170,7 +170,7 @@ function isAlertOpen(){
 function showHealthBar(title){
     $("#health-bar-title").html(title);
     if(clicks > 0){
-        setHealthBarPercent((clicks / min_clicks) * 100)
+        setHealthBarPercent((clicks / illegals_entering[illegals_entering_index].min_clicks) * 100)
     }else{
         setHealthBarPercent(0);
     }
