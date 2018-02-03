@@ -30,8 +30,13 @@ setTimeout(function(){
     }
 }, 1000)
 
-/* Save progress every 5 seconds */
-setInterval(saveData, 5000);
+/* Set an interval for every 5 seconds */
+setInterval(function(){
+    saveData();
+    if(canStartEvent("illegals_entering")){
+        startEvent("illegals_entering");
+    }
+}, 5000);
 
 /* Save progress */
 function saveData() {

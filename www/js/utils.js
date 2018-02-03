@@ -200,6 +200,15 @@ function canSendIllegal(){
     return Date.now() - last_illegal_enter > illegals_entering_delay && deported > 0;
 }
 
+/* Check if an event can be started */
+function canStartEvent(event){
+    if(event == "illegals_entering"){
+        if(illegals_entering_index >= 0 && !isEventRunning("illegals_entering") && total_persecond >= 5){
+            return deported >= illegals_entering[illegals_entering_index].min_deported;
+        }
+    }
+}
+
 /* Start an event */
 function startEvent(event, dontSave){
     if(event == "illegals_entering"){
@@ -221,7 +230,7 @@ function endEvent(event, fail){
         
         illegals_entering_index++;
         if(illegals_entering_index >= illegals_entering.length){
-            illegals_entering_index = 0;
+            illegals_entering_index = -1;
         }
         
         $("#health-bar").hide();

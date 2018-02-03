@@ -86,10 +86,10 @@ function joinNews(){
 }
 
 var illegals_entering = [
-    {msg: "A hole in the wall has caused a huge spike of illegals re-entering the country. Beat them before they overrun you!", min_clicks: 200},
-    {msg: "A recent law has decreased the amount of patrol agents at the border. Stop the illegals from entering!", min_clicks: 400},
-    {msg: "A massive tunnel has been dug under the wall. Send the illegal immigrants back as fast as you can!", min_clicks: 500},
-    {msg: "A bureaucratic oversight has temporarily allowed illegal immigrants to enter the country freely. Stop them!", min_clicks: 600}
+    {min_deported: 500, msg: "A hole in the wall has caused a huge spike of illegals re-entering the country. Beat them before they overrun you!", min_clicks: 200},
+    {min_deported: 100000, msg: "A recent law has decreased the amount of patrol agents at the border. Stop the illegals from entering!", min_clicks: 400},
+    {min_deported: 20000000, msg: "A massive tunnel has been dug under the wall. Send the illegal immigrants back as fast as you can!", min_clicks: 500},
+    {min_deported: 300000000, msg: "A bureaucratic oversight has temporarily allowed illegal immigrants to enter the country freely. Stop them!", min_clicks: 500}
 ];
 var illegals_entering_index = 0;
 var illegals_entering_delay = 0;
