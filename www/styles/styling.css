@@ -559,6 +559,18 @@ body {
 	font-size: 15px;
 }
 
+.shop-menu .settings input {
+    width: 180px;
+    height: 38px;
+    border: 2px solid #000;
+    margin-left: 16px;
+    margin-bottom: 7px;
+    margin-top: 0;
+    font-family: profont;
+    font-size: 23px;
+    text-align: center;
+}
+
 .shop-menu h1 {
 	width: 280px;
 	background-color: #fff;

@@ -87,6 +87,15 @@ function setCount(num){
 	$("#count").html(deported.toFixed(0));
 }
 
+/* Set deported to the entered number */
+function setCustomDeported(){
+    var num = parseInt(document.getElementById("custom-deported").value);
+    if(!isNaN(num)){
+        deported = num;
+    }
+    document.getElementById("custom-deported").value = "";
+}
+
 setTimeout(updateCounts, 0);
 /* Update the counts at the bottom of the screen */
 function updateCounts(){
