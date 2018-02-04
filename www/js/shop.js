@@ -207,7 +207,7 @@ function flipIcon(id, slow){
     var delay = 500;
     if(slow){
         elem_class = "slowflip";
-        delay = 7000;
+        delay = 5000;
     }
     
 	if(taskExists(id)){

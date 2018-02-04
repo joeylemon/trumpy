@@ -100,17 +100,23 @@ document.addEventListener('admob.interstitial.events.CLOSE', function(event) {
 /* Show the reward video button */
 function showVideoButton() {
 	$("#reward").show();
+    $("#video").css({opacity: "1"});
 }
 
 /* Load and open a reward video */
 function watchRewardVideo() {
-	admob.rewardvideo.prepare();
-    flipIcon("video", true);
+    if(!loadingVideo){
+        admob.rewardvideo.prepare();
+        flipIcon("video", true);
+        $("#video").css({opacity: "0.3"});
+        loadingVideo = true;
+    }
 }
 
 /* Listen for reward video load event */
 document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 	admob.rewardvideo.show();
+    loadingVideo = false;
 	setTimeout(function(){
 		$("#reward").hide();
 	}, 1000);
@@ -119,6 +125,7 @@ document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 /* Listen for reward video fail to load event */
 document.addEventListener('admob.rewardvideo.events.LOAD_FAIL', function(event) {
 	$("#reward").hide();
+    loadingVideo = false;
 });
 
 /* Listen for reward video play event */

@@ -74,6 +74,7 @@ var canBuy = false;
 var settingsOpen = false;
 var gamePaused = false;
 var showFakeAd = true;
+var loadingVideo = false;
 
 var clickPos = {};
 
