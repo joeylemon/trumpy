@@ -5,6 +5,20 @@ var admobid = {
 };
 var lastInterstitial = 0;
 
+slideout.on('open', function () {
+    canBuy = false;
+    setTimeout(function(){
+        canBuy = true;
+    }, 500);
+    
+    try{
+        if (canDisplayInterstitial()) {
+            admob.interstitial.show();
+            lastInterstitial = Date.now();
+        }
+    }catch(e){}
+});
+
 /* Listen for device ready event */
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
@@ -40,18 +54,6 @@ function onDeviceReady() {
 				document.addEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
 				admob.interstitial.prepare();
 			}, 2000);
-			
-			/* Show interstitial ad on slideout open */
-			slideout.on('open', function () {
-				if (canDisplayInterstitial()) {
-					admob.interstitial.show();
-					lastInterstitial = Date.now();
-				}
-                canBuy = false;
-                setTimeout(function(){
-                    canBuy = true;
-                }, 250);
-			});
 		} catch (e) {}
 	}, 0);
 	
