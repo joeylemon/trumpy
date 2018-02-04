@@ -47,6 +47,10 @@ function onDeviceReady() {
 					admob.interstitial.show();
 					lastInterstitial = Date.now();
 				}
+                canBuy = false;
+                setTimeout(function(){
+                    canBuy = true;
+                }, 250);
 			});
 		} catch (e) {}
 	}, 0);

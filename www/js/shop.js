@@ -273,7 +273,7 @@ function buy(e, id){
 	}
 	
 	var item = purchases[id];
-	if(deported >= item.cost && !item.hidden && item.cost >= 0){
+	if(deported >= item.cost && !item.hidden && item.cost >= 0 && canBuy){
 		item.buy();
 	}else{
 		playSound("error");
