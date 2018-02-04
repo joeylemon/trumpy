@@ -100,23 +100,20 @@ function showVideoButton() {
 /* Load and open a reward video */
 function watchRewardVideo() {
 	admob.rewardvideo.prepare();
-	
-	$("#reward").hide();
-	$("#video-loading").show();
-	setTimeout(function(){
-		$("#video-loading").hide();
-	}, 7000);
+    flipIcon("video", true);
 }
 
 /* Listen for reward video load event */
 document.addEventListener('admob.rewardvideo.events.LOAD', function(event) {
 	admob.rewardvideo.show();
-	$("#video-loading").hide();
+	setTimeout(function(){
+		$("#reward").hide();
+	}, 1000);
 });
 
 /* Listen for reward video fail to load event */
 document.addEventListener('admob.rewardvideo.events.LOAD_FAIL', function(event) {
-	$("#video-loading").hide();
+	$("#reward").hide();
 });
 
 /* Listen for reward video play event */

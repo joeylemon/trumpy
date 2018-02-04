@@ -476,14 +476,6 @@ body {
 	text-align: right;
 }
 
-.video-loading {
-	display: none;
-	position: fixed;
-	bottom: 138px;
-	right: 9px;
-	width: 45px;
-}
-
 .shop-img {
 	position: fixed;
 	bottom: 7px;
@@ -648,6 +640,10 @@ body {
 
 .shop-menu .shop-item .flip {
 	animation: shopflip 0.5s;
+}
+
+.shop-menu .shop-item .slowflip {
+	animation: shopflip 7s linear;
 }
 
 .shop-menu .shop-item .desc {

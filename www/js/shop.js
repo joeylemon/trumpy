@@ -202,18 +202,25 @@ function toggleAbout(id){
 var tasks = [];
 
 /* Flip an icon in the shop */
-function flipIcon(id){
+function flipIcon(id, slow){
+    var elem_class = "flip";
+    var delay = 500;
+    if(slow){
+        elem_class = "slowflip";
+        delay = 7000;
+    }
+    
 	if(taskExists(id)){
-		$("#" + id + "-img").removeClass("flip");
+		$("#" + id + "-img").removeClass(elem_class);
 		removeTask(id);
 	}
 	
 	setTimeout(function(){
-		$("#" + id + "-img").addClass("flip");
+		$("#" + id + "-img").addClass(elem_class);
 		var task = setTimeout(function(){
-			$("#" + id + "-img").removeClass("flip");
+			$("#" + id + "-img").removeClass(elem_class);
 			removeTask(id);
-		}, 500);
+		}, delay);
 		tasks.push({id: id, task: task});
 	}, 0);
 }
