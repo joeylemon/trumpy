@@ -44,7 +44,9 @@ var settings = {
 	max_people: 1500,
 	max_faces: 75,
 	click_factor: 7,
-	shorten_min: 10000
+	shorten_min: 10000,
+    about_loc: {x: 270, y: 64},
+    about_dist: 25
 }
 
 /* Declare global variables */
@@ -71,6 +73,8 @@ var shopOpen = false;
 var settingsOpen = false;
 var gamePaused = false;
 var showFakeAd = true;
+
+var clickPos = {};
 
 var news_left = 0;
 var news = [
@@ -103,7 +107,7 @@ var milestones = [
 ];
 
 var detention_center_prices = [
-    1000,
+    15000,
     1000000,
     100000000,
     50000000000,

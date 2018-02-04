@@ -35,6 +35,20 @@ function doesIndexExist(array, object) {
 	return false;
 }
 
+/* Save the click location ontouchend before action */
+function attemptAction(e){
+    clickPos = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY};
+}
+
+/* Compare current click location to previous to do action */
+function doAction(e, id, method){
+    var pos = {x: e.changedTouches[0].pageX, y: e.changedTouches[0].pageY};
+    var truePos = {x: e.changedTouches[0].pageX - $("#" + id).offset().left, y: e.changedTouches[0].pageY - $("#" + id).offset().top};
+    if(distance(clickPos, pos) < 20 && distance(truePos, settings.about_loc) > settings.about_dist){
+        method();
+    }
+}
+
 /* Display an animate the amount added after starting app */
 function showAdded(added) {
 	$("#added").html("+" + getShortenedNumber(added));

@@ -72,6 +72,8 @@ function updateItemCosts() {
 		$("#" + key + "-cost").html(item.getProperCost());
 		$("#" + key + "-amount").html(item.getProperAmount());
 	}
+    
+    updateRewardAmount();
 	
 	if (total_persecond > (settings.click_factor / 10)) {
 		var new_rate = total_persecond / settings.click_factor;
@@ -140,6 +142,7 @@ function emptyDetentionCenters(){
 	deported += getDetentionCentersTotal();
 	showAdded(getDetentionCentersTotal());
 	detention_centers = 0;
+    updateRewardAmount();
 	saveData();
 	
 	hideCentersCollectButton();
@@ -257,7 +260,7 @@ function buy(e, id){
 		return;
 	}
 	
-	if(distance(truePos, {x: 270, y: 64}) < 25){
+	if(distance(truePos, settings.about_loc) < settings.about_dist){
 		toggleAbout(id);
 		return;
 	}

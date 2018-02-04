@@ -42,11 +42,6 @@
 			<canvas class="canvas" id="canvas_agents"></canvas>
 			
 			<img class="shop-img" id="shop-img" src="images/shop.png" ontouchend="openShop();">
-			<div id="reward" ontouchend="watchRewardVideo();" style="display: none;">
-				<img class="vid-img" id="vid-img" src="images/video.png">
-				<p class="vid-reward" id="vid-reward">+1K</p>
-			</div>
-			<img class="video-loading" id="video-loading" src="images/loading.gif">
             
             <div class="health-bar" id="health-bar">
                 <div class="bar" id="health-bar-length"></div>
@@ -74,7 +69,24 @@
 		
 		<nav id="menu" class="shop-menu">
 			<div class="no-scrollbar" id="shop-hide" style="display: none;">
-				<h1>Upgrades</h1>
+                <div id="reward" style="display: none;">
+                    <h1>Rewards</h1>
+                    <div class="shop-container" id="rewards">
+                        <div class="shop-item" id="video" ontouchstart="attemptAction(event)" ontouchend="doAction(event, this.id, watchRewardVideo)">
+                            <img id="video-img" src="images/video.png">
+                            <div class="desc">
+                                <p class="name">WATCH A VIDEO</p>
+                                <p class="more">Watch a video to get</p>
+                                <p class="more">+<span id="vid-reward">1000</span> illegals!</p>
+                            </div>
+                            <div class="about-desc" id="about-desc-video">
+                                <p>Watch a video of up to 30 seconds and claim your reward!</p>
+                            </div>
+                            <img class="about" src="images/about.png" ontouchend="toggleAbout('video')">
+                        </div>
+                    </div>
+                </div>
+				<h1 style="margin-top: 30px;">Upgrades</h1>
 				<div class="shop-container" id="upgrades"></div>
 				<div class="center-collect" id="center-collect-div" ontouchend="emptyDetentionCenters();">
 					<p class="text">Deport <span id="center-collect"></span> illegals</p>

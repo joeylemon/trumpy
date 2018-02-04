@@ -89,7 +89,7 @@ function getData() {
 		updateCounts();
 		
 		videosWatched = data.videos_watched;
-		$("#vid-reward").html("+" + getProperRewardAmount());
+		updateRewardAmount();
         
         illegals_entering_delay = data.illegals_entering_delay;
         illegals_entering_index = data.illegals_entering_index;
