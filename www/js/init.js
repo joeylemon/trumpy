@@ -7,12 +7,13 @@ function onDeviceReady() {
 }
 
 slideout.on('close', function () {
-	if (settingsOpen) {
+	if(settingsOpen){
 		toggleSettings();
 	}
 	if(current_about){
 		retractAbout(current_about);
 	}
+    canBuy = false;
 });
 
 var size = window.innerHeight * 1.5;

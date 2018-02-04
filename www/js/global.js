@@ -70,7 +70,7 @@ var lastId = 0;
 var total = 0;
 
 var shopOpen = false;
-var canBuy = true;
+var canBuy = false;
 var settingsOpen = false;
 var gamePaused = false;
 var showFakeAd = true;

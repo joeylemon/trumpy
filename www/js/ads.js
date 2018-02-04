@@ -6,7 +6,6 @@ var admobid = {
 var lastInterstitial = 0;
 
 slideout.on('open', function () {
-    canBuy = false;
     setTimeout(function(){
         canBuy = true;
     }, 500);
