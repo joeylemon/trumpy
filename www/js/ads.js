@@ -140,7 +140,7 @@ document.addEventListener('admob.rewardvideo.events.REWARD', function(event) {
 	setTimeout(function(){
 		showAdded(getRewardAmount());
 		deported += getRewardAmount();
-		$("#count").html(deported.toFixed(0));
+        setCount(deported);
 	}, 1000);
 	
 	videosWatched++;

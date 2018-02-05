@@ -81,7 +81,7 @@ function getData() {
 	if (window.localStorage.getItem('data')) {
 		var data = $.parseJSON(window.localStorage.getItem('data'));
 		
-		deported = data.deported;
+        setCount(data.deported);
 		
 		detention_centers = data.detention_centers;
 
