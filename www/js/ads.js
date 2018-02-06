@@ -154,10 +154,9 @@ document.addEventListener('admob.rewardvideo.events.REWARD', function (event) {
         showAdded(getRewardAmount());
         deported += getRewardAmount();
         setCount(deported);
+        videosWatched++;
+        updateRewardAmount();
     }, 1000);
-
-    videosWatched++;
-    updateRewardAmount();
 });
 
 /* Update the video reward amount */
