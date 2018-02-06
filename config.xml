@@ -34,6 +34,6 @@
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
     <plugin name="cordova-plugin-splashscreen" spec="5.0.1" />
-	<plugin name="cordova-allow-background-audio" spec="1.0.2" />
-    <plugin name="cordova-plugin-admob-mediation-inmobi" spec="https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git" />
+    <plugin name="cordova-allow-background-audio" spec="1.0.2" />
+    <plugin name="cordova-admob-inmobi" spec="0.0.4" />
 </widget>
