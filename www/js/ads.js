@@ -56,10 +56,6 @@ function onDeviceReady() {
             }, 2000);
         } catch (e) {}
     }, 0);
-
-    setTimeout(function () {
-        navigator.splashscreen.hide();
-    }, 1000);
 }
 
 /* Fired when the banner loads */

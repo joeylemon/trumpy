@@ -3,6 +3,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     try {
         StatusBar.hide();
+        // Trumpy Click -> Plugins -> CDVSplashScreen.m -> (void)setVisible:(BOOL)visible andForce:(BOOL)force
+        setTimeout(function () {
+            navigator.splashscreen.hide();
+        }, 1000);
     } catch (e) {}
 }
 
