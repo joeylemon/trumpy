@@ -21,7 +21,6 @@
     "cordova-plugin-admob-free": "0.13.0",
     "cordova-plugin-admob-mediation-inmobi": "git+https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
     "cordova-plugin-splashscreen": "^5.0.1",
-    "cordova-plugin-statusbar": "2.4.1",
-    "cordova-plugin-webviewcolor": "2.0.0"
+    "cordova-plugin-statusbar": "2.4.1"
   }
 }

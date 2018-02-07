@@ -2,7 +2,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     try {
-        window.plugins.webviewcolor.change('#2280BA');
         StatusBar.hide();
     } catch (e) {}
 }
