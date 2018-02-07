@@ -30,6 +30,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="backgroundColor" value="0xff0000ff" />
     <plugin name="cordova-plugin-webviewcolor" spec="2.0.0" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.1" />
     <plugin name="cordova-plugin-admob-free" spec="0.13.0" />
