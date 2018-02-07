@@ -127,7 +127,7 @@ $(window).bind('touchstart', function (e) {
             width: expanded_face
         });
         $("#face-div").css({
-            bottom: "103px"
+            bottom: expanded_bottom
         });
     }
 });

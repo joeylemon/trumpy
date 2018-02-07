@@ -18,6 +18,14 @@ slideout.on('open', function () {
     } catch (e) {}
 });
 
+setTimeout(function () {
+    if (showFakeAd) {
+        $("#ad").show();
+        moveBannerHTML();
+        showVideoButton();
+    }
+}, 1000);
+
 /* Listen for device ready event */
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -80,9 +88,14 @@ function moveBannerHTML() {
     $("#added").css({
         bottom: "100px"
     });
+    $("#face-div").css({
+        bottom: "100px"
+    });
     $("#deporters").css({
         marginBottom: "50px"
     });
+    face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));
+    expanded_bottom = face_bottom + 3;
 }
 
 /* Check if an interstitial ad can be displayed */
@@ -148,8 +161,8 @@ document.addEventListener('admob.rewardvideo.events.START', function (event) {
 document.addEventListener('admob.rewardvideo.events.REWARD', function (event) {
     setTimeout(function () {
         showAdded(getRewardAmount());
-        deported += getRewardAmount();
-        setCount(deported);
+        setCount(deported + getRewardAmount());
+        updateObscuredItems();
         videosWatched++;
         updateRewardAmount();
     }, 1000);

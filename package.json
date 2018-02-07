@@ -8,19 +8,13 @@
     ],
     "plugins": {
       "cordova-plugin-webviewcolor": {},
-      "cordova-plugin-statusbar": {},
       "cordova-plugin-admob-free": {},
-      "cordova-plugin-splashscreen": {},
-      "cordova-plugin-admob-mediation-inmobi": {},
-      "cordova-admob-inmobi": {}
+      "cordova-plugin-splashscreen": {}
     }
   },
   "dependencies": {
-    "cordova-admob-inmobi": "0.0.4",
     "cordova-ios": "4.4.0",
     "cordova-plugin-admob-free": "0.13.0",
-    "cordova-plugin-admob-mediation-inmobi": "git+https://github.com/rebrandsoftware/cordova-plugin-admob-mediation-inmobi.git",
-    "cordova-plugin-splashscreen": "^5.0.1",
-    "cordova-plugin-statusbar": "2.4.1"
+    "cordova-plugin-splashscreen": "^5.0.1"
   }
 }

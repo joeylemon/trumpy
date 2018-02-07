@@ -2,11 +2,29 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
     try {
-        StatusBar.hide();
-        // Trumpy Click -> Plugins -> CDVSplashScreen.m -> (void)setVisible:(BOOL)visible andForce:(BOOL)force
-        setTimeout(function () {
-            navigator.splashscreen.hide();
-        }, 1000);
+        /*
+            Xcode set up instructions:
+            
+            pod init
+            Add pod 'GoogleMobileAdsMediationInMobi' to Podfile
+            pod install --repo-update
+            
+            Trumpy Clicker -> Build settings
+            Add user-defined setting
+            PODS_ROOT = ${SRCROOT}/Pods
+            PODS_PODFILE_DIR_PATH = ${SRCROOT}
+            
+            Trumpy Clicker -> Hide status bar
+            
+            Resources -> Info.plist
+            Set "Status bar is initially hidden" to YES
+            Set "View controller-based status bar appearance" to NO
+            
+            Plugins -> CDVSplashScreen.m
+            Set BOOL autoHideSplashScreen = false at line 439
+            Set fadeDuration = 400 at line 462
+        */
+        navigator.splashscreen.hide();
     } catch (e) {}
 }
 
@@ -33,13 +51,6 @@ setTimeout(function () {
     });
     $("#shop-hide").show();
 }, 100);
-setTimeout(function () {
-    if (showFakeAd) {
-        $("#ad").show();
-        moveBannerHTML();
-        showVideoButton();
-    }
-}, 1000)
 
 /* Set an interval for every 5 seconds */
 setInterval(function () {

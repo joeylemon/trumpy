@@ -31,7 +31,8 @@ ctx_bg.globalAlpha = 0.7;
 
 var face_width = $("#face").width();
 var expanded_face = face_width - 5;
-var face_bottom = $("#face-div").css("bottom");
+var face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));;
+var expanded_bottom = face_bottom + 3;
 
 /* Load face image */
 var face = new Image();
