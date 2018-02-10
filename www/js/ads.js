@@ -109,8 +109,14 @@ function onInterstitialLoad() {
     document.removeEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
 }
 
+/* Listen for interstitial open event */
+document.addEventListener('admob.interstitial.events.OPEN', function (event) {
+    gamePaused = true;
+});
+
 /* Listen for interstitial close event */
 document.addEventListener('admob.interstitial.events.CLOSE', function (event) {
+    gamePaused = false;
     admob.interstitial.prepare();
 });
 
@@ -141,6 +147,16 @@ function watchRewardVideo() {
 function canWatchVideo(){
     return (Date.now() - lastVideo > 900000);
 }
+
+/* Listen for reward video open event */
+document.addEventListener('admob.rewardvideo.events.OPEN', function (event) {
+    gamePaused = true;
+});
+
+/* Listen for reward video close event */
+document.addEventListener('admob.rewardvideo.events.CLOSE', function (event) {
+    gamePaused = false;
+});
 
 /* Listen for reward video load event */
 document.addEventListener('admob.rewardvideo.events.LOAD', function (event) {
