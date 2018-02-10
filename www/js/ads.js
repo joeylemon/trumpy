@@ -8,7 +8,7 @@ var lastInterstitial = 0;
 slideout.on('open', function () {
     setTimeout(function () {
         canBuy = true;
-    }, 500);
+    }, 200);
 
     try {
         if (canDisplayInterstitial()) {
@@ -62,6 +62,8 @@ function onDeviceReady() {
                 document.addEventListener('admob.interstitial.events.LOAD', onInterstitialLoad);
                 admob.interstitial.prepare();
             }, 2000);
+            
+            showVideoButton();
         } catch (e) {}
     }, 0);
 }
@@ -71,9 +73,7 @@ function onBannerLoad() {
     moveBannerHTML();
     admob.banner.show();
     updateItemCosts();
-
-    showVideoButton();
-
+    bannerShown = true;
     document.removeEventListener('admob.banner.events.LOAD', onBannerLoad);
 }
 
@@ -117,22 +117,30 @@ document.addEventListener('admob.interstitial.events.CLOSE', function (event) {
 
 /* Show the reward video button */
 function showVideoButton() {
-    $("#reward").show();
-    $("#video").css({
-        opacity: "1"
-    });
+    if(canWatchVideo() && bannerShown){
+        $("#reward").show();
+        $("#video").css({
+            opacity: "1"
+        });
+    }
 }
 
 /* Load and open a reward video */
 function watchRewardVideo() {
     if (!loadingVideo) {
-        admob.rewardvideo.prepare();
         flipIcon("video", true);
         $("#video").css({
             opacity: "0.3"
         });
         loadingVideo = true;
+        lastVideo = Date.now();
+        admob.rewardvideo.prepare();
     }
+}
+
+/* Check if another video can be watched */
+function canWatchVideo(){
+    return (Date.now() - lastVideo > 900000);
 }
 
 /* Listen for reward video load event */
@@ -148,13 +156,6 @@ document.addEventListener('admob.rewardvideo.events.LOAD', function (event) {
 document.addEventListener('admob.rewardvideo.events.LOAD_FAIL', function (event) {
     $("#reward").hide();
     loadingVideo = false;
-});
-
-/* Listen for reward video play event */
-document.addEventListener('admob.rewardvideo.events.START', function (event) {
-    setTimeout(function () {
-        showVideoButton();
-    }, 80000);
 });
 
 /* Listen for reward video finish event */
@@ -175,7 +176,7 @@ function updateRewardAmount() {
 
 /* Get the amount to reward for watching the video */
 function getRewardAmount() {
-    return 1000 + (videosWatched * 2000) + (total_persecond * 120) + (deported / 12);
+    return 1000 + (videosWatched * 2000) + (total_persecond * 180) + (deported / 12);
 }
 
 /* Get the shortened reward amount */

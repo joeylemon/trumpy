@@ -9,12 +9,16 @@
     "plugins": {
       "cordova-plugin-webviewcolor": {},
       "cordova-plugin-admob-free": {},
-      "cordova-plugin-splashscreen": {}
+      "cordova-plugin-splashscreen": {},
+      "cordova-allow-background-audio": {}
     }
   },
   "dependencies": {
-    "cordova-ios": "4.4.0",
-    "cordova-plugin-admob-free": "0.13.0",
-    "cordova-plugin-splashscreen": "^5.0.1"
+    "cordova-admob-sdk": "^0.13.1",
+    "cordova-allow-background-audio": "^1.0.2",
+    "cordova-ios": "^4.4.0",
+    "cordova-plugin-admob-free": "^0.13.0",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-promise-polyfill": "0.0.2"
   }
 }

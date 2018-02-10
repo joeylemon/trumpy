@@ -5,6 +5,7 @@ function onDeviceReady() {
         /*
             Xcode set up instructions:
             
+            Go to platforms/ios
             pod init
             Add pod 'GoogleMobileAdsMediationInMobi' to Podfile
             pod install --repo-update
@@ -55,7 +56,10 @@ setTimeout(function () {
 /* Set an interval for every 5 seconds */
 setInterval(function () {
     saveData();
+    
     updateRewardAmount();
+    showVideoButton();
+    
     if (canStartEvent("illegals_entering")) {
         startEvent("illegals_entering");
     }
@@ -68,6 +72,7 @@ function saveData() {
         total_persecond: total_persecond,
         total_perclick: total_perclick,
         videos_watched: videosWatched,
+        lastVideo: lastVideo,
         illegals_entering_delay: illegals_entering_delay,
         illegals_entering_index: illegals_entering_index,
         clicks: clicks,
@@ -113,6 +118,8 @@ function getData() {
 
         videosWatched = data.videos_watched;
         updateRewardAmount();
+        
+        lastVideo = data.lastVideo;
 
         illegals_entering_delay = data.illegals_entering_delay;
         illegals_entering_index = data.illegals_entering_index;
@@ -204,6 +211,13 @@ function paused() {
 function resumed() {
     if (gamePaused) {
         addToCentersSinceTime(temp.closed);
+        
+        var now = Date.now();
+        for(var i = 0; i < agents.length; i++){
+            var agent = agents[i];
+            agent.lastAdd = now;
+        }
+        
         gamePaused = false;
     }
 }

@@ -78,6 +78,12 @@ function doAction(e, id, method) {
     }
 }
 
+/* Add to the deport count and show the amount added */
+function addToDeported(amount) {
+    showAdded(amount);
+    setCount(deported + amount);
+}
+
 /* Display an animate the amount added after starting app */
 function showAdded(added) {
     $("#added").html("+" + getShortenedNumber(added));
@@ -295,6 +301,7 @@ function endEvent(event, fail) {
 
         if (!fail) {
             showAlert("You have sucessfully ended the threat of illegal immigrants entering the country!");
+            addToDeported(total_persecond * 60);
         } else {
             showAlert("You failed to keep the illegals out. Fortunately, President Trump stepped in and finished the job.");
         }

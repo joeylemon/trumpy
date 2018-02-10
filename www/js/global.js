@@ -69,6 +69,7 @@ var detention_centers = 0;
 var videosWatched = 0;
 var alertShown = 0;
 var lastRemove = 0;
+var lastVideo = 0;
 var middle_y = 148;
 var lastId = 0;
 var total = 0;
@@ -79,6 +80,7 @@ var settingsOpen = false;
 var gamePaused = false;
 var showFakeAd = true;
 var loadingVideo = false;
+var bannerShown = false;
 
 var clickPos = {};
 
@@ -199,7 +201,7 @@ var default_purchases = {
         max: 10000
     }),
     national_guard: new Purchase('national_guard', 75000000000, 'agent', {
-        desc: "The deployment of the national guard to raid private property and find illegals.",
+        desc: "National guard soliders ordered to raid suspected properties and find hidden illegals.",
         delay: 1000 / 1600000,
         size: 28,
         max: 70000
