@@ -1,6 +1,5 @@
 # Trumpy Clicker
 An endless idle game based on Trump's immigration policies.
 
-![](https://jlemon.org/images/trumpy1.png)
-![](https://jlemon.org/images/trumpy2.png)
-![](https://thumbs.gfycat.com/NearVacantHoopoe-size_restricted.gif)
+<img src="https://i.imgur.com/7FtcJxh.png" width="300" style="display: inline-block;">
+<img src="https://i.imgur.com/7RFlHny.png" width="300" style="display: inline-block;">
