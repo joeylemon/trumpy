@@ -80,7 +80,6 @@ var settingsOpen = false;
 var gamePaused = false;
 var showFakeAd = true;
 var loadingVideo = false;
-var bannerShown = false;
 
 var clickPos = {};
 

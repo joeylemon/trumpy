@@ -450,39 +450,13 @@ body {
 	animation: popzoom-small 0.8s;
 }
 
-.vid-img {
-	position: fixed;
-	bottom: 135px;
-	right: 8px;
-	width: 45px;
-	height: auto;
-	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
-}
-
-.vid-img:active {
-	transform: scale(0.9, 0.9);
-}
-
-.vid-reward {
-	position: fixed;
-	bottom: 118px;
-	right: 6px;
-	width: 80px;
-	height: auto;
-	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
-	font-size: 16px;
-	font-family: profont;
-	color: #fff;
-	text-align: right;
-}
-
 .shop-img {
 	position: fixed;
 	bottom: 7px;
 	right: 6px;
 	width: 50px;
 	height: auto;
-	filter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5));
+	filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.4));
 }
 
 .shop-img:active {

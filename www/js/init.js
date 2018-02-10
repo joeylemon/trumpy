@@ -5,16 +5,6 @@ function onDeviceReady() {
         /*
             Xcode set up instructions:
             
-            Go to platforms/ios
-            pod init
-            Add pod 'GoogleMobileAdsMediationInMobi' to Podfile
-            pod install --repo-update
-            
-            Trumpy Clicker -> Build settings
-            Add user-defined setting
-            PODS_ROOT = ${SRCROOT}/Pods
-            PODS_PODFILE_DIR_PATH = ${SRCROOT}
-            
             Trumpy Clicker -> Hide status bar
             
             Resources -> Info.plist

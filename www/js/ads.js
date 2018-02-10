@@ -36,7 +36,7 @@ function onDeviceReady() {
             admob.setOptions({
                 publisherId: admobid.banner,
                 overlap: true,
-                isTesting: true
+                isTesting: false
             });
             admob.banner.config({
                 id: admobid.banner,
@@ -73,7 +73,6 @@ function onBannerLoad() {
     moveBannerHTML();
     admob.banner.show();
     updateItemCosts();
-    bannerShown = true;
     document.removeEventListener('admob.banner.events.LOAD', onBannerLoad);
 }
 
@@ -117,7 +116,7 @@ document.addEventListener('admob.interstitial.events.CLOSE', function (event) {
 
 /* Show the reward video button */
 function showVideoButton() {
-    if(canWatchVideo() && bannerShown){
+    if(canWatchVideo() && lastInterstitial > 0){
         $("#reward").show();
         $("#video").css({
             opacity: "1"
