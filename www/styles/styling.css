@@ -234,12 +234,12 @@ body {
 	font-size: 15px;
 	color: #fff;
 	overflow: hidden;
-	margin-top: -15px;
+	top: -1px;
 }
 
 .news span img {
 	position: relative;
-	top: 2px;
+	top: 3px;
 	width: 15px;
 	margin-right: 5px;
 }
