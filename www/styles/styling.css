@@ -344,7 +344,7 @@ body {
 .alert .header img {
 	height: 40px;
 	margin-top: 5px;
-	margin-left: 5px;
+	margin-left: 6px;
 	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
@@ -354,14 +354,14 @@ body {
 	font-family: bigfont;
 	font-size: 30px;
 	margin-left: 15px;
-	margin-top: 5px;
+	margin-top: 4px;
 }
 
 .alert .message {
 	text-align: center;
 	font-family: profont;
-	font-size: 20px;
-	padding: 5px;
+	font-size: 19px;
+	padding: 10px;
 }
 
 .alert .exit {
