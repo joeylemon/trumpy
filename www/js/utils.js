@@ -134,6 +134,15 @@ function toggleSettings(manual) {
 function setCount(num) {
     deported = num;
     $("#count").html(deported.toFixed(0));
+
+    $("#count").css({
+        fontSize: "35px"
+    });
+    if ($("#count").width() > 155) {
+        $("#count").css({
+            fontSize: "25px"
+        });
+    }
 }
 
 /* Set deported to the entered number */

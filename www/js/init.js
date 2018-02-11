@@ -46,14 +46,18 @@ setTimeout(function () {
 /* Set an interval for every 5 seconds */
 setInterval(function () {
     saveData();
-    
+
     updateRewardAmount();
     showVideoButton();
-    
+
     if (canStartEvent("illegals_entering")) {
         startEvent("illegals_entering");
     }
 }, 5000);
+
+setInterval(function () {
+    setCount(deported);
+}, 1000);
 
 /* Save progress */
 function saveData() {
@@ -108,7 +112,7 @@ function getData() {
 
         videosWatched = data.videos_watched;
         updateRewardAmount();
-        
+
         lastVideo = data.lastVideo;
 
         illegals_entering_delay = data.illegals_entering_delay;
@@ -201,13 +205,13 @@ function paused() {
 function resumed() {
     if (gamePaused) {
         addToCentersSinceTime(temp.closed);
-        
+
         var now = Date.now();
-        for(var i = 0; i < agents.length; i++){
+        for (var i = 0; i < agents.length; i++) {
             var agent = agents[i];
             agent.lastAdd = now;
         }
-        
+
         gamePaused = false;
     }
 }

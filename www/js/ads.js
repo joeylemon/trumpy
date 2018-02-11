@@ -85,7 +85,7 @@ function moveBannerHTML() {
         bottom: "56px"
     });
     $("#added").css({
-        bottom: "100px"
+        bottom: "115px"
     });
     $("#face-div").css({
         bottom: "100px"
