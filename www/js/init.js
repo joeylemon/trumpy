@@ -19,7 +19,6 @@ function initApp() {
         if(isiPad()){
             $("#face").width("265px");
             $("#face-div").css({bottom: "150px"});
-            updateFaceSize();
             
             $("#count").css({fontSize: "50px"});
             $("#pers").css({fontSize: "30px"});
@@ -27,6 +26,7 @@ function initApp() {
             
             $("#added").css({fontSize: "40px", bottom: "100px"});
         }
+        updateFaceSize();
     } catch (e) {}
 }
 

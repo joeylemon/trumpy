@@ -59,8 +59,16 @@ function doesIndexExist(array, object) {
 function updateFaceSize(){
     face_width = $("#face").width();
     expanded_face = face_width - 5;
-    face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));
+    
+    face_bottom = getCSSInteger("face-div", "bottom");
     expanded_bottom = face_bottom + 3;
+    
+     $("#face").css({width: face_width, bottom: face_bottom});
+}
+
+/* Get the integer value of a CSS property */
+function getCSSInteger(id, property){
+    return parseInt($("#" + id).css(property).replace("px", ""))
 }
 
 /* Save the click location ontouchend before action */

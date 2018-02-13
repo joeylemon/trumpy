@@ -18,6 +18,7 @@ slideout.on('open', function () {
     } catch (e) {}
 });
 
+/*
 setTimeout(function () {
     if (showFakeAd) {
         $("#ad").show();
@@ -25,6 +26,7 @@ setTimeout(function () {
         showVideoButton();
     }
 }, 1000);
+*/
 
 /* Listen for device ready event */
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -78,13 +80,13 @@ function onBannerLoad() {
 
 /* Move elements up when banner is loaded */
 function moveBannerHTML() {
-    var add = isiPad() ? 100 : 50;
+    var add = isiPad() ? 90 : 50;
     
     var elements = [
         {id: "count-div", property: "bottom"},
         {id: "shop-img", property: "bottom"},
         {id: "added", property: "bottom"},
-        {id: "face-div", property: "bottom", div: 1.5},
+        {id: "face-div", property: "bottom", div: 1.9},
         {id: "deporters", property: "marginBottom"}
     ];
     
