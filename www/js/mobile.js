@@ -10,3 +10,12 @@ function mobile(){
 		return cached;
 	}
 }
+
+var ipad = undefined;
+
+function isiPad(){
+    if(ipad == undefined){
+        ipad = navigator.userAgent.match(/iPad/i) != null;;
+    }
+    return ipad;
+}

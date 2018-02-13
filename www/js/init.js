@@ -1,6 +1,6 @@
-document.addEventListener("deviceready", onDeviceReady, false);
+document.addEventListener("deviceready", initApp, false);
 
-function onDeviceReady() {
+function initApp() {
     try {
         /*
             Xcode set up instructions:
@@ -16,6 +16,17 @@ function onDeviceReady() {
             Set fadeDuration = 400 at line 462
         */
         navigator.splashscreen.hide();
+        if(isiPad()){
+            $("#face").width("265px");
+            $("#face-div").css({bottom: "150px"});
+            updateFaceSize();
+            
+            $("#count").css({fontSize: "50px"});
+            $("#pers").css({fontSize: "30px"});
+            $("#shop-img").css({width: "90px"});
+            
+            $("#added").css({fontSize: "40px", bottom: "100px"});
+        }
     } catch (e) {}
 }
 

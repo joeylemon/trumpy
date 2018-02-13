@@ -55,6 +55,14 @@ function doesIndexExist(array, object) {
     return false;
 }
 
+/* Update face size variables */
+function updateFaceSize(){
+    face_width = $("#face").width();
+    expanded_face = face_width - 5;
+    face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));
+    expanded_bottom = face_bottom + 3;
+}
+
 /* Save the click location ontouchend before action */
 function attemptAction(e) {
     clickPos = {
@@ -134,14 +142,16 @@ function toggleSettings(manual) {
 function setCount(num) {
     deported = num;
     $("#count").html(deported.toFixed(0));
-
-    $("#count").css({
-        fontSize: "35px"
-    });
-    if ($("#count").width() > 155) {
+    
+    if(!isiPad()){
         $("#count").css({
-            fontSize: "25px"
+            fontSize: "35px"
         });
+        if ($("#count").width() > 155) {
+            $("#count").css({
+                fontSize: "25px"
+            });
+        }
     }
 }
 
@@ -157,9 +167,11 @@ function setCustomDeported() {
 setTimeout(updateCounts, 0);
 /* Update the counts at the bottom of the screen */
 function updateCounts() {
-    $("#pers").css({
-        fontSize: "15px"
-    });
+    if(!isiPad()){
+        $("#pers").css({
+            fontSize: "15px"
+        });
+    }
 
     var persecond;
     if (total_persecond > settings.shorten_min) {
@@ -177,7 +189,7 @@ function updateCounts() {
     }
     $("#perclick").html(perclick);
 
-    if ($("#pers").width() > 305) {
+    if (!isiPad() && $("#pers").width() > 305) {
         $("#pers").css({
             fontSize: "12.5px"
         });

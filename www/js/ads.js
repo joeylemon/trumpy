@@ -78,23 +78,29 @@ function onBannerLoad() {
 
 /* Move elements up when banner is loaded */
 function moveBannerHTML() {
-    $("#count-div").css({
-        bottom: "55px"
-    });
-    $("#shop-img").css({
-        bottom: "56px"
-    });
-    $("#added").css({
-        bottom: "115px"
-    });
-    $("#face-div").css({
-        bottom: "100px"
-    });
-    $("#deporters").css({
-        marginBottom: "50px"
-    });
-    face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));
-    expanded_bottom = face_bottom + 3;
+    var add = isiPad() ? 100 : 50;
+    
+    var elements = [
+        {id: "count-div", property: "bottom"},
+        {id: "shop-img", property: "bottom"},
+        {id: "added", property: "bottom"},
+        {id: "face-div", property: "bottom", div: 1.5},
+        {id: "deporters", property: "marginBottom"}
+    ];
+    
+    for(var i = 0; i < elements.length; i++){
+        var elem = elements[i];
+        var div = elem.div ? elem.div : 1;
+        addToCSS(elem.id, elem.property, add / div);
+    }
+    
+    updateFaceSize();
+}
+
+/* Add to an element's css property */
+function addToCSS(id, property, add){
+    var amount = parseInt($("#" + id).css(property).replace("px", "")) + add;
+    $("#" + id).css(property, amount + "px");
 }
 
 /* Check if an interstitial ad can be displayed */
