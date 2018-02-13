@@ -113,7 +113,9 @@ function getData() {
         videosWatched = data.videos_watched;
         updateRewardAmount();
 
-        lastVideo = data.lastVideo;
+        if(data.lastVideo && data.lastVideo != undefined){
+            lastVideo = data.lastVideo;
+        }
 
         illegals_entering_delay = data.illegals_entering_delay;
         illegals_entering_index = data.illegals_entering_index;
