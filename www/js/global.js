@@ -1,6 +1,7 @@
 /* Define settings */
 var settings = {
     canvas_width: 375,
+    max_bg_width: 500,
     person_size: 3.25,
     fade_dist: 10,
     max_people: 1500,
@@ -38,11 +39,16 @@ ctx_agents.shadowOffsetY = 2;
 ctx_agents.shadowColor = 'rgba(0, 0, 0, 0.5)';
 
 /* Initialize face canvas */
+var bg_width = window.innerWidth;
+if(bg_width > settings.max_bg_width){
+    bg_width = settings.max_bg_width;
+}
+
 var canvas_bg = document.getElementById("canvas_bg");
 var ctx_bg = canvas_bg.getContext("2d");
-canvas_bg.width = window.innerWidth;
+canvas_bg.width = bg_width;
 canvas_bg.height = window.innerHeight;
-canvas_bg.style.width = window.innerWidth;
+canvas_bg.style.width = bg_width;
 canvas_bg.style.height = window.innerHeight;
 ctx_bg.globalAlpha = 0.7;
 
