@@ -106,18 +106,7 @@ $(window).bind('touchstart', function (e) {
     var x = e.changedTouches[0].pageX;
     var y = e.changedTouches[0].pageY;
 
-    if (distance({
-            x: x,
-            y: y
-        }, {
-            x: window.innerWidth,
-            y: window.innerHeight - 50
-        }) < 75 && !slideout.isOpen()) {
-        return;
-    }
-
     if (!click && !slideout.isOpen() && !isAlertOpen()) {
-        click = true;
         touchpos = {
             x: x,
             y: y
@@ -129,6 +118,7 @@ $(window).bind('touchstart', function (e) {
         $("#face-div").css({
             bottom: expanded_bottom
         });
+        click = true;
     }
 });
 
