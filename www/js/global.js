@@ -1,45 +1,6 @@
-/* Initialize person canvas */
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth * 2;
-canvas.height = window.innerHeight * 2;
-canvas.style.width = window.innerWidth;
-canvas.style.height = window.innerHeight;
-ctx.scale(2, 2);
-
-/* Initialize agent canvas */
-var canvas_agents = document.getElementById("canvas_agents");
-var ctx_agents = canvas_agents.getContext("2d");
-canvas_agents.width = window.innerWidth * 2;
-canvas_agents.height = window.innerHeight * 2;
-canvas_agents.style.width = window.innerWidth;
-canvas_agents.style.height = window.innerHeight;
-ctx_agents.scale(2, 2);
-
-ctx_agents.shadowBlur = 7;
-ctx_agents.shadowOffsetX = 2;
-ctx_agents.shadowOffsetY = 2;
-ctx_agents.shadowColor = 'rgba(0, 0, 0, 0.5)';
-
-/* Initialize face canvas */
-var canvas_bg = document.getElementById("canvas_bg");
-var ctx_bg = canvas_bg.getContext("2d");
-ctx_bg.canvas.width = window.innerWidth;
-ctx_bg.canvas.height = window.innerHeight;
-ctx_bg.globalAlpha = 0.7;
-
-
-var face_width = $("#face").width();
-var expanded_face = face_width - 5;
-var face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));;
-var expanded_bottom = face_bottom + 3;
-
-/* Load face image */
-var face = new Image();
-face.src = "images/small_face.png";
-
 /* Define settings */
 var settings = {
+    canvas_width: 375,
     person_size: 3.25,
     fade_dist: 10,
     max_people: 1500,
@@ -52,6 +13,48 @@ var settings = {
     },
     about_dist: 25
 }
+
+/* Initialize person canvas */
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+canvas.width = settings.canvas_width * 2;
+canvas.height = settings.canvas_width * 2;
+canvas.style.width = settings.canvas_width;
+canvas.style.height = settings.canvas_width;
+ctx.scale(2, 2);
+
+/* Initialize agent canvas */
+var canvas_agents = document.getElementById("canvas_agents");
+var ctx_agents = canvas_agents.getContext("2d");
+canvas_agents.width = settings.canvas_width * 2;
+canvas_agents.height = settings.canvas_width * 2;
+canvas_agents.style.width = settings.canvas_width;
+canvas_agents.style.height = settings.canvas_width;
+ctx_agents.scale(2, 2);
+
+ctx_agents.shadowBlur = 7;
+ctx_agents.shadowOffsetX = 2;
+ctx_agents.shadowOffsetY = 2;
+ctx_agents.shadowColor = 'rgba(0, 0, 0, 0.5)';
+
+/* Initialize face canvas */
+var canvas_bg = document.getElementById("canvas_bg");
+var ctx_bg = canvas_bg.getContext("2d");
+canvas_bg.width = window.innerWidth;
+canvas_bg.height = window.innerHeight;
+canvas_bg.style.width = window.innerWidth;
+canvas_bg.style.height = window.innerHeight;
+ctx_bg.globalAlpha = 0.7;
+
+
+var face_width = $("#face").width();
+var expanded_face = face_width - 5;
+var face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));;
+var expanded_bottom = face_bottom + 3;
+
+/* Load face image */
+var face = new Image();
+face.src = "images/small_face.png";
 
 /* Declare global variables */
 var people = new Array();
@@ -145,7 +148,7 @@ var default_purchases = {
     }),
     detention_center: new Purchase('detention_center', 1000, 'center', {
         desc: "Collects illegal immigrants when you're not playing. Buy more to increase capacity.",
-        hours: 0.5
+        hours: 0.2
     }),
     republican: new Purchase('republican', 10, 'agent', {
         desc: "A trustworthy constituent just trying to do his part.",

@@ -1,5 +1,5 @@
 var FallingFace = function(){
-	this.x = rand(0, (canvas.width / 2) - face.width);
+	this.x = rand(0, canvas_bg.width - face.width);
 	this.y = rand(-face.height - 10, -face.height);
 	this.speed = unroundedRand(2, 3.5);
 	this.id = rand(1, 1000000);
@@ -24,7 +24,7 @@ FallingFace.prototype.draw = function(){
 	
 	ctx_bg.drawImage(face, this.x, this.y, this.size.width, this.size.height);
 	
-	if(this.y > canvas.height + face.height){
+	if(this.y > canvas_bg.height + face.height){
 		faces_to_remove.push(this.id);
 	}
 };

@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Security-Policy">
 	</head>
 	
-	<body onresize="resize()">
+	<body>
 		<div id="trumpy" style="box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.4);background-color: #2280BA;">
 			<div class="bg" id="bg">
 				<img src="images/rays.png" id="rays">
@@ -39,8 +39,12 @@
 				<span class="pers" id="pers"><span id="persecond">0</span> per second | +<span id="perclick">0</span> per click</span>
 			</div>
 			
-			<canvas class="canvas" id="canvas"></canvas>
-			<canvas class="canvas" id="canvas_agents"></canvas>
+            <div class="canvas-container">
+                <canvas class="canvas" id="canvas"></canvas>
+            </div>
+            <div class="canvas-container">
+                <canvas class="canvas" id="canvas_agents"></canvas>
+            </div>
 			
 			<img class="shop-img" id="shop-img" src="images/shop.png" ontouchend="openShop();">
             

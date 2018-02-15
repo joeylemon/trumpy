@@ -15,7 +15,7 @@ var ipad = undefined;
 
 function isiPad(){
     if(ipad == undefined){
-        ipad = navigator.userAgent.match(/iPad/i) != null;;
+        ipad = navigator.userAgent.match(/iPad/i) != null;
     }
     return ipad;
 }
