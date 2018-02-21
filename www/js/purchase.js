@@ -143,6 +143,5 @@ Purchase.prototype.buy = function(){
 		agents.push(new Agent(this.id, undefined, {width: 20, height: 20}, true));
 	}
 	
-	updateAgentCanvas();
 	saveData();
 };

@@ -301,12 +301,3 @@ function buy(e, id) {
         playSound("error");
     }
 }
-
-/* Update the agents canvas */
-function updateAgentCanvas() {
-    ctx_agents.clearRect(0, 0, canvas_agents.width, canvas_agents.height);
-    for (var i = 0; i < agents.length; i++) {
-        var agent = agents[i];
-        agent.draw();
-    }
-}

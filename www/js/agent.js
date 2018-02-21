@@ -67,10 +67,15 @@ Agent.prototype.setRandomLocation = function(){
 };
 
 Agent.prototype.setDirection = function(){
-    if(this.x < (canvas.width / 4) + 53.6 && this.y < (middle_y - 33)){
+    var mid_x = (canvas.width / 4) + 53.6;
+    var mid_y = (middle_y - 33);
+    
+    if(this.x < mid_x && this.y < mid_y){
         this.dir = "N";
-    }else{
+    }else if(this.x < mid_x && this.y >= mid_y){
         this.dir = "S";
+    }else{
+        this.dir = "E";
     }
 };
 

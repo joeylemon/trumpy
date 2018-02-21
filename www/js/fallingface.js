@@ -2,7 +2,7 @@ var FallingFace = function(){
 	this.x = rand(0, canvas_bg.width - face.width);
 	this.y = rand(-face.height - 10, -face.height);
 	this.speed = unroundedRand(2, 3.5);
-	this.id = rand(1, 1000000);
+	this.id = getNextID();
 	
 	var ratio = unroundedRand(0.95, 1.05);
 	this.size = {

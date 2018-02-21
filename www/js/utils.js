@@ -1,33 +1,20 @@
+/* Get the next available boat */
+function getNextBoat() {
+    for(var i = 0; i < boats.length; i++){
+        var boat = boats[i];
+        if(!boat.isFull()){
+            boat.capacity++;
+            return boat;
+        }
+    }
+    
+    var boat = new Boat();
+    boats.push(boat);
+    return boat;
+}
+
 /* Shorten a number with letter endings */
 function getShortenedNumber(num, longEnding) {
-    var dividers = [
-        {
-            div: 1000000000000000,
-            ext: "Q",
-            longEnd: " quadrillion"
-        },
-        {
-            div: 1000000000000,
-            ext: "T",
-            longEnd: " trillion"
-        },
-        {
-            div: 1000000000,
-            ext: "B",
-            longEnd: " billion"
-        },
-        {
-            div: 1000000,
-            ext: "M",
-            longEnd: " million"
-        },
-        {
-            div: 1000,
-            ext: "k",
-            longEnd: " thousand"
-        }
-	];
-
     for (var i = 0; i < dividers.length; i++) {
         var entry = dividers[i];
         if (num >= entry.div) {

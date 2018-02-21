@@ -59,6 +59,20 @@ function getRandomMainLocation(){
 }
 
 
+var east_coast = [{"plus_x":116.01998901367188,"plus_y":39.71400451660156},{"plus_x":126.0369873046875,"plus_y":20.203994750976562},{"plus_x":137.91598510742188,"plus_y":1.0720062255859375},{"plus_x":137.62200927734375,"plus_y":-17.9010009765625},{"plus_x":135.9119873046875,"plus_y":-37.88999938964844},{"plus_x":145.00201416015625,"plus_y":-53.573997497558594}];
+
+function getRandomCoastLocation(){
+    var loc = east_coast[rand(0, east_coast.length - 1)];
+    
+    var plus_x = loc.plus_x;
+	var plus_y = loc.plus_y + rand(-10, 10);
+	
+	return {
+		x: (canvas.width / 4) + plus_x,
+		y: middle_y + plus_y
+	};
+}
+
 var north_borders = [{"plus_x":-127.18299865722656,"plus_y":-106.54000091552734},{"plus_x":-98.17400360107422,"plus_y":-101.48699951171875},{"plus_x":-61.9530029296875,"plus_y":-96.98400115966797},{"plus_x":-31.076995849609375,"plus_y":-94.06100082397461},{"plus_x":9.223007202148438,"plus_y":-93.76100158691406}];
 
 var south_borders = [{"plus_x":-121.90899658203125,"plus_y":38.02099609375},{"plus_x":-96.5,"plus_y":52},{"plus_x":-65.99500274658203,"plus_y":50.92500305175781},{"plus_x":-53.09100341796875,"plus_y":72.42999267578125},{"plus_x":-26.210006713867188,"plus_y":71.35499572753906},{"plus_x":-58.46800231933594,"plus_y":59.52699279785156}];
@@ -68,6 +82,8 @@ function getRandomBorder(dir, person){
     var array;
     if(dir == "N"){
         array = north_borders;
+    }else if(dir == "E"){
+        return getNextBoat().getLocation();
     }else{
         array = south_borders;
     }
@@ -85,9 +101,15 @@ function getRandomBorder(dir, person){
 
 /* Get a random north or south direction */
 function getRandomDirection(){
-    return Math.random() <= 0.5 ? "N" : "S";
+    var rand = Math.random();
+    if(rand < 0.33){
+        return "N";
+    }else if(rand < 0.66){
+        return "S";
+    }else{
+        return "E";
+    }
 }
-
 
 /*
 var temp_locs = new Array();

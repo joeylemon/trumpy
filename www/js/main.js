@@ -5,9 +5,9 @@ function draw() {
     if (!gamePaused) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx_bg.clearRect(0, 0, canvas_bg.width, canvas_bg.height);
+        ctx_agents.clearRect(0, 0, canvas_agents.width, canvas_agents.height);
 
-        clearPeople();
-        clearFaces();
+        clearArrays();
 
         var now = Date.now();
         if (isEventRunning("illegals_entering") && canSendIllegal()) {
@@ -26,6 +26,7 @@ function draw() {
 
         for (var i = 0; i < agents.length; i++) {
             var agent = agents[i];
+            agent.draw();
             if (!agent.no_deport) {
                 agent.deport();
             }
@@ -33,6 +34,10 @@ function draw() {
 
         for (var i = 0; i < people.length; i++) {
             people[i].draw();
+        }
+        
+        for (var i = 0; i < boats.length; i++) {
+            boats[i].draw();
         }
 
         news_left -= 0.5;
@@ -60,6 +65,20 @@ function clearPeople() {
     people_to_remove = new Array();
 }
 
+/* Clear old boats from the array */
+function clearBoats() {
+    for (var x = 0; x < boats_to_remove.length; x++) {
+        var remove_id = boats_to_remove[x];
+        for (var i = 0; i < boats.length; i++) {
+            if (boats[i].id == remove_id) {
+                boats.splice(i, 1);
+                break;
+            }
+        }
+    }
+    boats_to_remove = new Array();
+}
+
 /* Clear old faces from the array */
 function clearFaces() {
     for (var x = 0; x < faces_to_remove.length; x++) {
@@ -72,6 +91,13 @@ function clearFaces() {
         }
     }
     faces_to_remove = new Array();
+}
+
+/* Clear all old elements from arrays */
+function clearArrays() {
+    clearPeople();
+    clearBoats();
+    clearFaces();
 }
 
 /* Add a person to the map */

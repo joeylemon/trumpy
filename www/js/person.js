@@ -62,17 +62,14 @@ Person.prototype.draw = function(){
 	var tx = this.dest.x - this.x;
 	var ty = this.dest.y - this.y;
 	var dist = Math.sqrt(tx * tx + ty * ty);
+    
+    this.x += (tx / dist) * this.speed;
+    this.y += (ty / dist) * this.speed;
 	
 	if(dist > settings.fade_dist){
-		this.x += (tx / dist) * this.speed;
-		this.y += (ty / dist) * this.speed;
-		
 		ctx.fillStyle = "rgba(" + this.color + ", 1)";
 		ctx.fillRect(this.x, this.y, settings.person_size, settings.person_size);
 	}else if(dist > 1){
-		this.x += (tx / dist) * this.speed;
-		this.y += (ty / dist) * this.speed;
-		
 		ctx.fillStyle = "rgba(" + this.color + ", " + (dist / settings.fade_dist) + ")";
 		ctx.fillRect(this.x, this.y, settings.person_size, settings.person_size);
 	}else{

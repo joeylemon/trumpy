@@ -1,9 +1,10 @@
 /* Define settings */
 var settings = {
     canvas_width: 375,
-    max_bg_width: 500,
     person_size: 3.25,
+    boat_ratio: 30,
     fade_dist: 10,
+    boat_fade_dist: 5,
     max_people: 1500,
     max_faces: 75,
     click_factor: 7,
@@ -39,16 +40,11 @@ ctx_agents.shadowOffsetY = 2;
 ctx_agents.shadowColor = 'rgba(0, 0, 0, 0.5)';
 
 /* Initialize face canvas */
-var bg_width = window.innerWidth;
-if(bg_width > settings.max_bg_width){
-    bg_width = settings.max_bg_width;
-}
-
 var canvas_bg = document.getElementById("canvas_bg");
 var ctx_bg = canvas_bg.getContext("2d");
-canvas_bg.width = bg_width;
+canvas_bg.width = window.innerWidth;
 canvas_bg.height = window.innerHeight;
-canvas_bg.style.width = bg_width;
+canvas_bg.style.width = window.innerWidth;
 canvas_bg.style.height = window.innerHeight;
 ctx_bg.globalAlpha = 0.7;
 
@@ -58,16 +54,21 @@ var expanded_face = face_width - 5;
 var face_bottom = parseInt($("#face-div").css("bottom").replace("px", ""));;
 var expanded_bottom = face_bottom + 3;
 
-/* Load face image */
+/* Load images */
 var face = new Image();
 face.src = "images/small_face.png";
 
+var boat = new Image();
+boat.src = "images/boat.png";
+
 /* Declare global variables */
 var people = new Array();
+var boats = new Array();
 var agents = new Array();
 var faces = new Array();
 
 var people_to_remove = new Array();
+var boats_to_remove = new Array();
 var faces_to_remove = new Array();
 
 var total_persecond = 0;
@@ -222,3 +223,31 @@ var default_purchases = {
     })
 };
 var purchases = default_purchases;
+
+var dividers = [
+    {
+        div: 1000000000000000,
+        ext: "Q",
+        longEnd: " quadrillion"
+    },
+    {
+        div: 1000000000000,
+        ext: "T",
+        longEnd: " trillion"
+    },
+    {
+        div: 1000000000,
+        ext: "B",
+        longEnd: " billion"
+    },
+    {
+        div: 1000000,
+        ext: "M",
+        longEnd: " million"
+    },
+    {
+        div: 1000,
+        ext: "k",
+        longEnd: " thousand"
+    }
+];

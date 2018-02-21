@@ -163,8 +163,6 @@ function getData() {
                     agents.push(agent);
                 }
             }
-            updateAgentCanvas();
-            setTimeout(updateAgentCanvas, 100);
 
             var purchases_json = $.parseJSON(data.purchases);
             for (var key in purchases_json) {
