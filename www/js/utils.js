@@ -365,8 +365,10 @@ var colors = [
 var colors = [
     "204, 0, 0",
     "0, 98, 204",
-    "160, 82, 45",
-    "244, 164, 96"
+    "45, 160, 75",
+    "244, 164, 96",
+    "45, 144, 160",
+    "142, 45, 160"
 ];
 /* Get a random color from the array */
 function getRandomColor() {
