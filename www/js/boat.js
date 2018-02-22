@@ -2,9 +2,9 @@ var Boat = function(){
     this.size = {width: boat.width / settings.boat_ratio, height: boat.height / settings.boat_ratio}
     
     var loc = getRandomCoastLocation();
-	this.x = loc.x;
-	this.y = loc.y;
-    this.dest = {x: (canvas.width / 2) - this.size.width, y: rand(100, 275)};
+	this.x = loc.x - (this.size.width / 4);
+	this.y = loc.y - (this.size.height / 2);
+    this.dest = {x: (canvas.width / 2) - this.size.width, y: rand(this.y - 20, this.y + 20)};
     
 	this.speed = 0.4;
 	this.id = getNextID();
@@ -33,17 +33,17 @@ Boat.prototype.draw = function(){
         var alpha = (dist / settings.boat_fade_dist);
 
         if(addAlpha){
-            ctx_agents.globalAlpha = alpha;
+            ctx.globalAlpha = alpha;
         }
-        ctx_agents.drawImage(boat, this.x, this.y, this.size.width, this.size.height);
+        ctx.drawImage(boat, this.x, this.y, this.size.width, this.size.height);
         if(addAlpha){
-            ctx_agents.globalAlpha = 1;
+            ctx.globalAlpha = 1;
         }
 
         if(dist < 1){
             boats_to_remove.push(this.id);
         }
     }else{
-        ctx_agents.drawImage(boat, this.x, this.y, this.size.width, this.size.height);
+        ctx.drawImage(boat, this.x, this.y, this.size.width, this.size.height);
     }
 };

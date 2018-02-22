@@ -5,7 +5,6 @@ function draw() {
     if (!gamePaused) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx_bg.clearRect(0, 0, canvas_bg.width, canvas_bg.height);
-        ctx_agents.clearRect(0, 0, canvas_agents.width, canvas_agents.height);
 
         clearArrays();
 
@@ -24,16 +23,16 @@ function draw() {
             faces[i].draw();
         }
 
+        for (var i = 0; i < people.length; i++) {
+            people[i].draw();
+        }
+        
         for (var i = 0; i < agents.length; i++) {
             var agent = agents[i];
             agent.draw();
             if (!agent.no_deport) {
                 agent.deport();
             }
-        }
-
-        for (var i = 0; i < people.length; i++) {
-            people[i].draw();
         }
         
         for (var i = 0; i < boats.length; i++) {

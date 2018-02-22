@@ -6,7 +6,7 @@ var Purchase = function(id, cost, type, options){
 	this.options = options;
 	this.hidden = false;
 	this.img = new Image();
-	this.img.src = "images/" + id + ".png";
+	this.img.src = "images/shadows/" + id + ".png";
 };
 
 Purchase.prototype.getProperCost = function(){

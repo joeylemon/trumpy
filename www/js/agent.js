@@ -104,5 +104,5 @@ Agent.prototype.deport = function(){
 };
 
 Agent.prototype.draw = function(){
-	ctx_agents.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
+	ctx.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
 };

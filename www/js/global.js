@@ -2,7 +2,7 @@
 var settings = {
     canvas_width: 375,
     person_size: 3.25,
-    boat_ratio: 30,
+    boat_ratio: 27,
     fade_dist: 10,
     boat_fade_dist: 5,
     max_people: 1500,
@@ -25,19 +25,9 @@ canvas.style.width = settings.canvas_width;
 canvas.style.height = settings.canvas_width;
 ctx.scale(2, 2);
 
-/* Initialize agent canvas */
-var canvas_agents = document.getElementById("canvas_agents");
-var ctx_agents = canvas_agents.getContext("2d");
-canvas_agents.width = settings.canvas_width * 2;
-canvas_agents.height = settings.canvas_width * 2;
-canvas_agents.style.width = settings.canvas_width;
-canvas_agents.style.height = settings.canvas_width;
-ctx_agents.scale(2, 2);
-
-ctx_agents.shadowBlur = 7;
-ctx_agents.shadowOffsetX = 2;
-ctx_agents.shadowOffsetY = 2;
-ctx_agents.shadowColor = 'rgba(0, 0, 0, 0.5)';
+ctx.shadowBlur = 7;
+ctx.shadowOffsetX = 2;
+ctx.shadowOffsetY = 2;
 
 /* Initialize face canvas */
 var canvas_bg = document.getElementById("canvas_bg");
@@ -152,6 +142,10 @@ var default_purchases = {
     tap_multiplier: new Purchase('tap_multiplier', 20, 'upgrade', {
         desc: "Increases the amount of illegal immigrants you deport every time you tap the screen.",
         rate: .10
+    }),
+    legal_immigrant: new Purchase('legal_immigrant', 300, 'citizen', {
+        desc: "A legal immigrant who has purchased a house and is a productive member of society.",
+        delay: 1000 / 4
     }),
     detention_center: new Purchase('detention_center', 1000, 'center', {
         desc: "Collects illegal immigrants when you're not playing. Buy more to increase capacity.",
