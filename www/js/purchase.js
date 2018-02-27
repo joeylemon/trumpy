@@ -36,7 +36,7 @@ Purchase.prototype.getProperID = function(){
 };
 
 Purchase.prototype.getDescription = function(){
-	if(this.type == "agent"){
+	if(this.type == "agent" || this.type == "city"){
 		var per = roundNumber(1000 / this.options.delay);
 		if(per > settings.shorten_min){
 			per = getShortenedNumber(roundNumber(1000 / this.options.delay));
@@ -139,8 +139,8 @@ Purchase.prototype.buy = function(){
 		}else if(this.id == "executive_order" && this.current == 1){
 			updateNews("President Donald Trump exhibiting his power as president by passing a new executive order to assist in the war on illegals.");
 		}
-	}else if(this.type == "center"){
-		agents.push(new Agent(this.id, undefined, {width: 20, height: 20}, true));
+	}else if(this.type == "center" || this.type == "city"){
+		agents.push(new Agent(this.id, undefined, {width: purchases[this.id].options.size, height: purchases[this.id].options.size}, true));
 	}
 	
 	saveData();

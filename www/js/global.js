@@ -24,10 +24,7 @@ canvas.height = settings.canvas_width * 2;
 canvas.style.width = settings.canvas_width;
 canvas.style.height = settings.canvas_width;
 ctx.scale(2, 2);
-
-ctx.shadowBlur = 7;
-ctx.shadowOffsetX = 2;
-ctx.shadowOffsetY = 2;
+ctx.font = "7px profont";
 
 /* Initialize face canvas */
 var canvas_bg = document.getElementById("canvas_bg");
@@ -143,13 +140,15 @@ var default_purchases = {
         desc: "Increases the amount of illegal immigrants you deport every time you tap the screen.",
         rate: .10
     }),
-    legal_immigrant: new Purchase('legal_immigrant', 300, 'citizen', {
-        desc: "A legal immigrant who has purchased a house and is a productive member of society.",
-        delay: 1000 / 4
+    sanctuary_city: new Purchase('sanctuary_city', 100, 'city', {
+        desc: "A city with a large illegal immigrant population that contributes to society.",
+        delay: 1000 / 5,
+        size: 25
     }),
     detention_center: new Purchase('detention_center', 1000, 'center', {
         desc: "Collects illegal immigrants when you're not playing. Buy more to increase capacity.",
-        hours: 0.2
+        hours: 0.2,
+        size: 20
     }),
     republican: new Purchase('republican', 10, 'agent', {
         desc: "A trustworthy constituent just trying to do his part.",

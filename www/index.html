@@ -73,8 +73,8 @@
 		
 		<nav id="menu" class="shop-menu">
 			<div class="no-scrollbar" id="shop-hide" style="display: none;">
-                <div id="reward" style="display: none;margin-bottom: 30px;">
-                    <h1>Rewards</h1>
+                <div id="reward" style="display:none;margin-bottom: 30px;">
+                    <h1><p>Rewards</p></h1>
                     <div class="shop-container" id="rewards">
                         <div class="shop-item" id="video" ontouchstart="attemptAction(event)" ontouchend="doAction(event, this.id, watchRewardVideo)">
                             <img id="video-img" src="images/video.png">
@@ -90,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-				<h1>Upgrades</h1>
+				<h1><p style="margin-top: 3;margin-bottom: 3;">Upgrades</p></h1>
 				<div class="shop-container" id="upgrades"></div>
 				<div class="center-collect" id="center-collect-div" ontouchend="emptyDetentionCenters();">
 					<p class="text">Deport <span id="center-collect"></span> illegals</p>
@@ -98,10 +98,10 @@
                         <div class="bar" id="center-collect-progress"></div>
                     </div>
 				</div>
-				<h1 style="margin-top: 30px;">Workers</h1>
+				<h1 style="margin-top: 30px;"><p>Workers</p></h1>
 				<div class="shop-container" id="deporters"></div>
 				<div class="settings" id="settings" style="display: none;">
-					<h1 style="margin-bottom: 6px;">Settings</h1>
+					<h1 style="margin-bottom: 6px;"><p class="nostyle" style="margin-top: 3;margin-bottom: 3;">Settings</p></h1>
 					<p ontouchend="clearData();">Restart</p>
                     <p ontouchend="saveData();">Force save</p>
                     <!--

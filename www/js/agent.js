@@ -68,7 +68,7 @@ Agent.prototype.setRandomLocation = function(){
 
 Agent.prototype.setDirection = function(){
     var mid_x = (canvas.width / 4) + 53.6;
-    var mid_y = (middle_y - 33);
+    var mid_y = (middle_y - 25);
     
     if(this.x < mid_x && this.y < mid_y){
         this.dir = "N";
@@ -104,5 +104,11 @@ Agent.prototype.deport = function(){
 };
 
 Agent.prototype.draw = function(){
-	ctx.drawImage(this.img, this.x - this.size.width / 2, this.y - this.size.height / 2, this.size.width, this.size.height);
+    var x = this.x - this.size.width / 2;
+    var y = this.y - this.size.height / 2;
+	ctx.drawImage(this.img, x, y, this.size.width, this.size.height);
+    if(this.id == "sanctuary_city"){
+        ctx.fillStyle = "#000";
+        ctx.fillText("Aliandra", x - 1, y + this.size.height + 4);
+    }
 };
